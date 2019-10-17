@@ -9,6 +9,7 @@ import Mint from 'mint-ui'
 import "mint-ui/lib/style.css"
 // 使用mint-ui
 Vue.use(Mint);
+
 // //引入axios模块
 // import axios from "axios"
 // //设置服务器基础路径
