@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+
+import "./assets/demo.css"
+
+export default {
+  
+}
+</script>
+
 <style lang="scss">
 body{
   margin:0;
