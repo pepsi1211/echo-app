@@ -33,7 +33,7 @@ app.use(session({
   saveUninitialized:true
 }))
 
-app.listen(3000);
+app.listen(5050);
 
 // app.use(bodyParser.urlencoded({
 //   extended:false
