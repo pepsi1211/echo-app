@@ -4,7 +4,7 @@
             <!-- 页面顶部 -->
             <div class="login-top">
                 <div class="logo">
-                    <img src="../../public/img/logo_echo.png">
+                    <img src="../../public/img/login/logo_echo.png">
                 </div>
                 <div>
                     <span style="font-size:14px;">潮流音乐生活方式</span>
@@ -35,16 +35,16 @@
             <div class="login-btm">
                 <div class="btm-w">
                     <div class="icon">
-                        <img src="../../public/img/v2_sina.png">
+                        <img src="../../public/img/login/v2_sina.png">
                     </div>
                     <div class="icon">
-                        <img src="../../public/img/v2_wechat.png">
+                        <img src="../../public/img/login/v2_wechat.png">
                     </div>
                     <div class="icon">
-                        <img src="../../public/img/v2_qq.png">
+                        <img src="../../public/img/login/v2_qq.png">
                     </div>
                     <div class="icon">
-                        <img src="../../public/img/ic_email.png">
+                        <img src="../../public/img/login/ic_email.png">
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@ export default {
     width:375px;
 }
 .login-bg{
-    background: url('../../img/drawable-hdpi-v4/famous_person_income_bg_pic.png') no-repeat center center;
+    background: url(../../public/img/login/famous_person_income_bg_pic.png) no-repeat center center;
 }
 .login-top{
     margin-top:50px;

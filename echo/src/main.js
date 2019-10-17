@@ -3,6 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// 引入 mint-ui
+import Mint from 'mint-ui'
+// 引入mint-ui样式
+import "mint-ui/lib/style.css"
+// 使用mint-ui
+Vue.use(Mint);
 // //引入axios模块
 // import axios from "axios"
 // //设置服务器基础路径
