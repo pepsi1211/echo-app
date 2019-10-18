@@ -1,0 +1,37 @@
+// 歌曲
+.songs{
+  display: flex;
+  height: 40px;
+  // img
+  // 右边
+  .songs-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 10px;
+    // 下的span 标题
+    span{
+      font: "12px 微软雅黑";
+    }
+    // 下的subtitle
+    small{
+      color: #cfcfcf;
+    }
+  }
+}
+// 歌曲列表下
+.songs-list{
+  &>li{
+    margin-top: 10px;
+  }
+}
+// 歌曲图片
+.songs-img{
+  width: 40px;
+  height: 40px;
+  // 图片定宽
+  img{
+    width: 40px;
+  }
+}
