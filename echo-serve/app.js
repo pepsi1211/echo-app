@@ -56,8 +56,33 @@ app.get("/login",(req,res)=>{
       // 将用户的id保存在session对象中
       //result数据格式将会是[{id:1}]
       req.session.uid = result[0].uid;
-      res.send({code:1,msg:"登录成功"})
+      res.send({code:1,msg:"登录成功"});
     }
   })
 });
 
+//2.注册模块功能
+
+//3.请求主页
+app.get("/getindex",(req,res)=>{
+  let sid = req.query.sid;
+  // 响应主页每日推荐歌曲
+  pool.query("select sname,song_pic,author from echo_song where sid in(?)",[sid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,msg:"请求每日推荐歌曲成功"})
+    }else{
+      res.send({code:-1,msg:"失败"})
+    }
+  });
+  // 响应主页歌曲频道
+  let cid = req.query.cid;
+  pool.query("select cname,pic,followed,phrase from echo_channel where cid in(?)",[cid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      
+    }else{
+
+    }
+  });
+});
