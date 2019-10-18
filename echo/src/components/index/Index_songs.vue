@@ -14,31 +14,33 @@
       <span><i class="i-play"></i>一键播放</span>
     </div>
     <!-- 歌曲列表 -->
-    <div>
-      <ul>
-        <mt-swipe :auto="4000" style="width:359px;height:147px;margin:0 auto;" :showIndicators="false">
+    <div class="sonts-page">
+      <ul><!-- 循环li -->
+      <li>
+              <mt-swipe :auto="0" style="width:359px;height:147px;margin:0 auto;" :showIndicators="false">
           <mt-swipe-item v-for="n in 3" :key="n">
-            <!-- 循环li -->
-            <li>
-              <ul>
-                <li v-for="(item,i) of songs" :key="i">
+              <ul class="songs-list">
+                <!-- <li v-for="(item,i) of songs" :key="i"> -->
+                  <slot name="li">
                   <!-- 一页 -->
                   <div class="songs">
                     <!-- 左 -->
                     <div class="songs-img">
-                      <img :src="item.img" style="width:50px;height:50px;" alt="">
+                      <!-- <img :src="item.img" style="height:40px;" alt=""> -->
+                      <slot name="img"></slot>
                     </div>
                     <!-- 右 -->
                     <div class="songs-right">
-                      <span>{{item.title}}</span>
-                      <span>{{item.subtitle}}</span>
+                      <slot name="songs-title"></slot>
+                      <slot name="songs-subtitle"></slot>
                     </div>
                   </div>
-                </li>
+                <!-- </li> -->
+                </slot>
               </ul>
-            </li>
           </mt-swipe-item>
         </mt-swipe>
+        </li>
       </ul>
     </div>
   </div>
@@ -47,12 +49,12 @@
 export default {
   data() {
    return{
-     songs:[
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //  songs:[
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
       
-     ]
+    //  ]
    }
   },
 methods: {
@@ -86,6 +88,10 @@ mouted() {
       }
       h3{
         font-size: 15px;
+        span{
+          font-size: 14px;
+          color: #2c3e50;;
+        }
       }
       span{
         font-size: 13px;
@@ -106,14 +112,5 @@ mouted() {
         margin: 0 4px 3px 0;
       }
     }
-  // 歌曲
-  .songs{
-    display: flex;
-    // img
-    // 右边
-    .songs-right{
-      display: flex;
-      flex-direction: column;
-    }
-  }
+  
 </style>

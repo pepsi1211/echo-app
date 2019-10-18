@@ -50,6 +50,11 @@ mouted() {
   .title{
     display: flex;
     justify-content: space-between;
+    // h3 样式
+    h3{
+      font-size: 14px;
+      color: #2c3e50;
+    }
     // 设置字体
     .text{
       font-size: 12px;
