@@ -32,7 +32,7 @@ mouted() {
   .replace-title{
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    
     line-height: 28px;
     span{
       color: #cfcfcf;
