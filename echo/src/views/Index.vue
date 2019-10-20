@@ -1,3 +1,4 @@
+
 <template>
   <div class="index">
     <!-- 轮播图 -->
@@ -12,6 +13,7 @@
     <index-channel></index-channel>
   </div>
 </template>
+
 <script>
 // 1.引入轮播图组件
 import Index_carousel from '../components/index/Index_carousel'
