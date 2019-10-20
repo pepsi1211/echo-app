@@ -22,6 +22,8 @@
     <new-songs></new-songs>
     <!-- 瞩目艺人 -->
     <index-head-linear></index-head-linear>
+    <!-- 音乐杂志 -->
+    <index-magazine></index-magazine>
   </div>
 </template>
 <script>
@@ -47,6 +49,8 @@ import Index_test from '../components/index/Index_test'
 import NewSongs from '../components/index/NewSongs'
 // 9.瞩目艺人
 import Index_Headlinear from '../components/index/Index_Headliner'
+// 10.音乐杂志
+import Index_magazine from '../components/index/Index_magazine'
 export default {
   data() {
    return{}
@@ -71,7 +75,8 @@ components:{
   "good-songs3": GoodSongs3,
   "index-test": Index_test,
   "new-songs": NewSongs,
-  "index-head-linear": Index_Headlinear
+  "index-head-linear": Index_Headlinear,
+  "index-magazine": Index_magazine
 },
 created() {
   
