@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
+import PersonalPage from './views/PersonalPage'
+import PersonalInfo from './views/PersonalInfo'
 import Task from './views/Task.vue'
 // 首页
 import Index from './views/Index'
@@ -12,6 +14,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/login',component:Login},
+    {path:'/PersonalPage',component:PersonalPage},
+    {path:'/PersonalInfo',component:PersonalInfo},
     {path:'/task',component:Task},
     {path:"/Index",component:Index},
     // 测试
