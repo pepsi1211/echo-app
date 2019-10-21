@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <line-division></line-division>
     <!-- title -->
     <replace-title>
       特色频道
@@ -22,7 +23,9 @@
 </template>
 <script>
 // 引入title
-import Replace_title from './title/Replace_title'
+import Replace_title from './sublevel/Replace_title'
+// 引入分割线
+import Line from './sublevel/Line'
 export default {
   data() {
    return{
@@ -51,7 +54,8 @@ created() {
   
   },
   components:{
-    "replace-title":Replace_title
+    "replace-title":Replace_title,
+    "line-division": Line,
   },
 mouted() {
   
@@ -97,10 +101,10 @@ mouted() {
         p{
           text-align: left;
         }
-        p:nth-child(2){
+        p:nth-child(3){
           color: #2c3e50;;
         }
-        p:nth-child(3){
+        p:last-child{
           color: #b7b7b7;
         }
         // 播放/暂停按钮

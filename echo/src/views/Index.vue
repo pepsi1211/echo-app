@@ -10,6 +10,20 @@
     <index-for-you></index-for-you>
     <!-- 特色频道 -->
     <index-channel></index-channel>
+    <!-- 好歌推荐1 -->
+    <good-songs1></good-songs1>
+    <!-- 好歌推荐2 -->
+    <good-songs2></good-songs2>
+    <!-- 好歌推荐3 -->
+    <good-songs3></good-songs3>
+    <!-- 测试人格 -->
+    <index-test></index-test>
+    <!-- 新歌发布 -->
+    <new-songs></new-songs>
+    <!-- 瞩目艺人 -->
+    <index-head-linear></index-head-linear>
+    <!-- 音乐杂志 -->
+    <index-magazine></index-magazine>
   </div>
 </template>
 <script>
@@ -23,6 +37,20 @@ import Index_today from '../components/index/Index_today'
 import Index_forYou from '../components/index/Index_forYou'
 // 5.引入 特色频道
 import Index_channel from '../components/index/Index_channel'
+// 6.引入好歌推荐1
+import GoodSongs1 from '../components/index/GoodSongs1'
+// 6.引入好歌推荐2
+import GoodSongs2 from '../components/index/GoodSongs2'
+// 6.引入好歌推荐3
+import GoodSongs3 from '../components/index/GoodSongs3'
+// 7.测试人格
+import Index_test from '../components/index/Index_test'
+// 8.新歌发布
+import NewSongs from '../components/index/NewSongs'
+// 9.瞩目艺人
+import Index_Headlinear from '../components/index/Index_Headliner'
+// 10.音乐杂志
+import Index_magazine from '../components/index/Index_magazine'
 export default {
   data() {
    return{}
@@ -41,7 +69,14 @@ components:{
   "index-nav":Index_nav,
   "index-today":Index_today,
   "index-for-you":Index_forYou,
-  "index-channel":Index_channel
+  "index-channel":Index_channel,
+  "good-songs1": GoodSongs1,
+  "good-songs2": GoodSongs2,
+  "good-songs3": GoodSongs3,
+  "index-test": Index_test,
+  "new-songs": NewSongs,
+  "index-head-linear": Index_Headlinear,
+  "index-magazine": Index_magazine
 },
 created() {
   
