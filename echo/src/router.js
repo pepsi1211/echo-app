@@ -6,6 +6,8 @@ import Task from './views/Task.vue'
 import Index from './views/Index'
 // 测试
 import Index_songs from './components/index/Index_songs'
+// 测试播放器
+import Audio from './views/test-1.vue'
 
 Vue.use(Router)
 
@@ -16,5 +18,6 @@ export default new Router({
     {path:"/Index",component:Index},
     // 测试
     {path:"/Index_songs",component:Index_songs},
+    {path:"/test",component:Audio},
   ]
 })
