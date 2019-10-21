@@ -1,7 +1,9 @@
+
 <template>
     <main>
+<!--         
         <div class="login-bg">
-            <!-- 页面顶部 -->
+            页面顶部
             <div class="login-top">
                 <div class="logo">
                     <img src="../../img/drawable-xhdpi-v4 大/logo_echo.png">
@@ -10,7 +12,7 @@
                     <span style="font-size:14px;">潮流音乐生活方式</span>
                 </div>
             </div>
-            <!-- 页面中部 -->
+            页面中部
             <div class="login-mid">
                 <div class="inputphone">
                     <p class="areacode">+86</p>
@@ -28,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <!-- 页面底部 -->
+            页面底部
             <p class="pp">
                 <a href="javascript:;">其他登录方式</a>
             </p>
@@ -56,15 +58,16 @@
                   </div>
                 </div>
             </div>
-            <!-- 协议 -->
+            协议
             <div class="xieyi">
                 <p>
                     <a href="javascript:;">注册即视为同意echo回声用户协议</a>
                 </p>
             </div>
-        </div>
+        </div> -->
     </main>
 </template>
+
 <script>
 export default {
     data(){
@@ -147,9 +150,9 @@ export default {
 .main{
     width:375px;
 }
-.login-bg{
+/* .login-bg{
     background: url('../../img/drawable-hdpi-v4/famous_person_income_bg_pic.png') no-repeat center center;
-}
+} */
 .login-top{
     margin-top:50px;
 }
