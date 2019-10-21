@@ -17,7 +17,7 @@ var pool = mysql.createPool({
 // 配置跨域模块
 // 允许哪个程序跨域访问服务器
 // 脚手架:8080 允许8080访问服务器
-// 服务器这边是3000
+// 服务器这边是5050
 
 var app = express();
 
@@ -70,9 +70,9 @@ app.get("/getindex",(req,res)=>{
   pool.query("select sname,song_pic,author from echo_song where sid in(?)",[sid],(err,result)=>{
     if(err) throw err;
     if(result.length>0){
-      res.send({code:1,msg:"请求每日推荐歌曲成功"})
+      res.send({code:1,msg:"响应每日推荐歌曲数据",data:result});
     }else{
-      res.send({code:-1,msg:"失败"})
+      res.send({code:-1,msg:"失败"});
     }
   });
   // 响应主页歌曲频道
@@ -80,9 +80,31 @@ app.get("/getindex",(req,res)=>{
   pool.query("select cname,pic,followed,phrase from echo_channel where cid in(?)",[cid],(err,result)=>{
     if(err) throw err;
     if(result.length>0){
-      
+      console.log(result);
+      res.send({code:1,msg:"响应首页频道数据",dataChannel:result});
+      pool.query("select sname,author,song_pic where cid in(?)",[cid],(err,result)=>{
+        if(err) throw err;
+        if(result.length>0){
+          console.log(result);
+          res.send({code:2,msg:"响应首页频道下歌曲数据",dataSong:result});
+        }else{
+          res.send({code:-2,msg:"响应失败"});
+        }
+      });
     }else{
-
+      res.send({code:-1,msg:"响应失败"});
+    }
+  });
+  //响应主页的艺人栏
+  let fid = req.query.fid;
+  pool.query("select fname,followed,f_avatar from echo_famous where fid in(?)",[fid],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,msg:"响应主页艺人成功",dataFamous:result});
+    }else{
+      res.send({code:-1,msg:"响应失败"})
     }
   });
 });
+
+// 4..
