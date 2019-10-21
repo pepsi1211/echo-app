@@ -10,14 +10,14 @@
     <index-for-you></index-for-you>
     <!-- 特色频道 -->
     <index-channel></index-channel>
+     <!-- 测试人格 -->
+    <index-test></index-test>
     <!-- 好歌推荐1 -->
     <good-songs1></good-songs1>
     <!-- 好歌推荐2 -->
     <good-songs2></good-songs2>
     <!-- 好歌推荐3 -->
     <good-songs3></good-songs3>
-    <!-- 测试人格 -->
-    <index-test></index-test>
     <!-- 新歌发布 -->
     <new-songs></new-songs>
     <!-- 瞩目艺人 -->
