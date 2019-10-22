@@ -2,15 +2,16 @@
     <div class="pageTabbar">
         <div class="page-scroll">
             <!-- head -->
-            <TitleBar 
+            <!-- 3.调用子组件 -->
+            <PersonalTb
             midMsg="我的" 
-            :leftImg="require('../../img/drawable-xxhdpi-v4 加大/ic_circle_black.png')"
-            :rightFimg="require('../../img/drawable-xxhdpi-v4 加大/search.png')"
-            :rightSimg="require('../../img/drawable-xxhdpi-v4 加大/disk.png')"></TitleBar>
+            :leftImg="require('../../public/img/PersonalPage/ic_circle_black.png')"
+            :rightFimg="require('../../public/img/PersonalPage/search.png')"
+            :rightSimg="require('../../public/img/PersonalPage/disk.png')"></PersonalTb>
             <!-- 个人信息 -->
             <div class="parent">
                 <div class="pLeft">
-                    <img src="../../img/drawable-xxhdpi-v4 加大/disk.png" alt="">
+                    <img src="../../public/img/PersonalPage/disk.png" alt="">
                     <ul class="leftInfo">
                         <li>
                             <router-link to="" class="leftInfo1">吃忘了要馍</router-link>
@@ -24,7 +25,7 @@
                         <span>个人主页</span>
                     </div>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                        <img src="../../public/img/PersonalPage/gray_left_arrow.png">
                     </div>
                 </div>
             </div>
@@ -55,25 +56,25 @@
             <ul class="make">
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_publish_record.png">
+                        <img src="../../public/img/PersonalPage/ic_publish_record.png">
                         <router-link to="" class="likecolor">录音制作</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_publish_sound.png">
+                        <img src="../../public/img/PersonalPage/ic_publish_sound.png">
                         <router-link to="" class="likecolor">上传音频</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_publish_picture.png">
+                        <img src="../../public/img/PersonalPage/ic_publish_picture.png">
                         <router-link to="" class="likecolor">发布图文</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_publish_bell.png">
+                        <img src="../../public/img/PersonalPage/ic_publish_bell.png">
                         <router-link to="" class="likecolor">制作铃声</router-link>
                     </div>
                 </li>
@@ -81,29 +82,12 @@
             <!-- 灰色分割线 -->
             <div class="line"></div>
             <!-- 功能1 -->
-            <ul class="functionf">
-                <li>
+            <ul class="functionf" @click="change">
+                <li v-for="(item,index) of list1" :key="index" :class="changec">
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_menu_vip.png">
-                        <router-link to="" class="likecolor">会员中心</router-link>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_network_flux.png">
-                        <router-link to="" class="likecolor">听歌免流量</router-link>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/echo_famous_album_income_icon.png">
-                        <router-link to="" class="likecolor">我的回声</router-link>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_menu_wallet.png">
-                        <router-link to="" class="likecolor">我的钱包</router-link>
+                        <!-- <img src="../../public/img/PersonalPage/ic_menu_vip.png"> -->
+                        <img :src="item.img">
+                        <router-link to="" class="likecolor">{{item.name}}</router-link>
                     </div>
                 </li>
             </ul>
@@ -111,25 +95,25 @@
             <ul class="functions">
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_menu_coin.png">
+                        <img src="../../public/img/PersonalPage/ic_menu_coin.png">
                         <router-link to="" class="likecolor">我的金币</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_menu_mall_.png">
+                        <img src="../../public/img/PersonalPage/ic_menu_mall_.png">
                         <router-link to="" class="likecolor">echo商城</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/my_order.png">
+                        <img src="../../public/img/PersonalPage/my_order.png">
                         <router-link to="" class="likecolor">我的订单</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="../../img/drawable-xxhdpi-v4 加大/ic_menu_ar.png">
+                        <img src="../../public/img/PersonalPage/ic_menu_ar.png">
                         <router-link to="" class="likecolor">扫一扫</router-link>
                     </div>
                 </li>
@@ -139,11 +123,11 @@
             <!-- 关注动态 -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/icon_my_center_follow.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/icon_my_center_follow.png">
                     <span>关注动态</span>
                 </div>
                 <div>
-                    <img class="focus2" src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                    <img class="focus2" src="../../public/img/PersonalPage/gray_left_arrow.png">
                 </div>
             </div>
             <!-- 灰色分割线 -->
@@ -151,11 +135,11 @@
             <!-- 消息提醒 -->
             <div class="focus" style="border-bottom:1px solid #ccc;">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/center_notification.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/center_notification.png">
                     <span>消息提醒</span>
                 </div>
                 <div>
-                    <img class="focus2" src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                    <img class="focus2" src="../../public/img/PersonalPage/gray_left_arrow.png">
                 </div>
             </div>
             <!-- 暂无消息提醒 -->
@@ -169,12 +153,12 @@
             <!-- 我的乐透眼镜 -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/ic_friend_circle_green.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/ic_friend_circle_green.png">
                     <span>我的乐透眼镜</span>
                 </div>
                 <div>
                     <span>未连接</span>
-                    <img class="focus2" src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                    <img class="focus2" src="../../public/img/PersonalPage/gray_left_arrow.png">
                 </div>
             </div>
             <!-- 灰色分割线 -->
@@ -182,12 +166,12 @@
             <!-- 我的MITC -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/icon_mitc.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/icon_mitc.png">
                     <span>我的MITC</span>
                 </div>
                 <div>
                     <span>未激活</span>
-                    <img class="focus2" src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                    <img class="focus2" src="../../public/img/PersonalPage/gray_left_arrow.png">
                 </div>
             </div>
             <!-- 灰色分割线 -->
@@ -195,11 +179,11 @@
             <!-- 兑换券 -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/ic_friend_circle_green.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/ic_friend_circle_green.png">
                     <span>兑换券</span>
                 </div>
                 <div>
-                    <img class="focus2" src="../../img/drawable-xxhdpi-v4 加大/gray_left_arrow.png">
+                    <img class="focus2" src="../../public/img/PersonalPage/gray_left_arrow.png">
                 </div>
             </div>
             <!-- 灰色分割线 -->
@@ -207,7 +191,7 @@
             <!-- 24小时客服 -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/mycenter_feedback.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/mycenter_feedback.png">
                     <span>24小时客服</span>
                 </div>
             </div>
@@ -216,7 +200,7 @@
             <!-- 设置 -->
             <div class="focus">
                 <div>
-                    <img class="focus1" src="../../img/drawable-xxhdpi-v4 加大/my_center_setting.png">
+                    <img class="focus1" src="../../public/img/PersonalPage/my_center_setting.png">
                     <span>设置</span>
                 </div>
             </div>
@@ -229,14 +213,48 @@
     </div>
 </template>
 <script>
-import TitleBar from "./TitleBar"
+//1.引入子组件
+import PersonalTb from "./PersonalTb"
+//2.注册子组件
 export default {
+    data(){
+        return {
+            list1:[
+                {img:require('../../public/img/PersonalPage/ic_menu_vip.png'),name:"会员中心"},
+                {img:require('../../public/img/PersonalPage/ic_network_flux.png'),name:"听歌免流量"},
+                {img:require('../../public/img/PersonalPage/echo_famous_album_income_icon.png'),name:"我的回声"},
+                {img:require('../../public/img/PersonalPage/ic_menu_wallet.png'),name:"我的钱包"},
+                ],
+            list2:[
+                {img:require('../../public/img/PersonalPage/ic_menu_coin.png'),name:"我的金币"},
+                {img:require('../../public/img/PersonalPage/ic_menu_mall_.png'),name:"echo商城"},
+                {img:require('../../public/img/PersonalPage/my_order.png'),name:"我的订单"},
+                {img:require('../../public/img/PersonalPage/ic_menu_ar.png'),name:"扫一扫s"},
+                ],
+            changec:{
+                cc:false
+            }   
+        }
+    },
     components:{
-        TitleBar
-    }
+        PersonalTb
+    },
+    methods: {
+        change(event){
+            if(event.target.nodeName=="LI"){
+                this.c=true;
+            }
+            console.log(event.target)
+        }
+    },
 }
 </script>
 <style scoped>
+    .cc{
+        background: #ccc;
+        opacity: .5;
+
+    }
     .pageTabbar{
         overflow: hidden;
     }
@@ -331,6 +349,7 @@ export default {
     .functionf li:not(:first-child),.functions li:not(:first-child){
         border-left: 1px solid #ccc;
     }
+    /* 通用样式 */
     .focus{
         display: flex;
         justify-content: space-between;
@@ -360,5 +379,8 @@ export default {
         line-height: 20px;
         padding: 10px;
         font-size: 14px;
+    }
+    .a{
+        text-decoration: none;
     }
 </style>

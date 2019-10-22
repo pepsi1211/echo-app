@@ -4,7 +4,7 @@
             <!-- 页面顶部 -->
             <div class="login-top">
                 <div class="logo">
-                    <img src="../../img/drawable-xhdpi-v4 大/logo_echo.png">
+                    <img src="../../public/img/login/logo_echo.png">
                 </div>
                 <div>
                     <span style="font-size:14px;">潮流音乐生活方式</span>
@@ -36,22 +36,22 @@
                 <div class="btm-w">
                     <div class="icon">
                         <a href="javascript:;">
-                            <img src="../../img\drawable-xxhdpi-v4 加大/v2_sina.png">
+                            <img src="../../public/img/login/v2_sina.png">
                         </a>
                     </div>
                     <div class="icon">
                         <a href="javascript:;">
-                            <img src="../../img\drawable-xxhdpi-v4 加大/v2_wechat.png">
+                            <img src="../../public/img/login/v2_wechat.png">
                         </a>
                     </div>
                     <div class="icon">
                         <a href="javascript:;">
-                            <img src="../../img\drawable-xxhdpi-v4 加大/v2_qq.png">
+                            <img src="../../public/img/login/v2_qq.png">
                         </a> 
                     </div>
                     <div class="icon">
                         <a href="javascript:;">
-                            <img src="../../img\drawable-xxhdpi-v4 加大/ic_email.png">
+                            <img src="../../public/img/login/ic_email.png">
                         </a>  
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default {
     width:375px;
 }
 .login-bg{
-    background: url('../../img/drawable-hdpi-v4/famous_person_income_bg_pic.png') no-repeat center center;
+    background: url('../../public/img/login/famous_person_income_bg_pic.png') no-repeat center center;
 }
 .login-top{
     margin-top:50px;
