@@ -1,7 +1,7 @@
 <template>
   <div id="Invitation">
     <div class="head">
-            <p></p>
+            <p @click="histiry"></p>
             <p>邀请好友</p>
             <p></p>
         </div>
@@ -76,7 +76,7 @@
 
 
         <div class="link">
-            <img src="../../public/img/task/v2_timeline.png" alt="">
+            <img src="../../public/img/task/ic_copy_link.png" alt="">
             <p>复制分享链接</p>
         </div>
 
@@ -84,7 +84,7 @@
           <div>
             <div>
               <span>0</span>
-              <span>可分红好友</span>
+              <span>激活好友</span>
             </div>
           </div>
           <div class=""></div>
@@ -100,7 +100,11 @@
 </template>
 <script>
 export default {
-  
+  methods: {
+    histiry(){
+      window.history.go(-1)
+    }
+  },
 }
 </script>
 <style scoped>
