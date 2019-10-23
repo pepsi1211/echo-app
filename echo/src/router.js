@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import PersonalPage from './views/PersonalPage'
-import PersonalInfo from './views/PersonalInfo'
+import PersonalTb from './views/PersonalTb'
+import Myfavorite from './views/Myfavorite'
 import Task from './views/Task.vue'
 import TaskPurchase from './views/Task-purchase.vue'
 import TaskInvitation from './views/Task-Invitation.vue'
@@ -20,7 +21,8 @@ export default new Router({
   routes: [
     {path:'/login',component:Login},
     {path:'/PersonalPage',component:PersonalPage},
-    {path:'/PersonalInfo',component:PersonalInfo},
+    {path:'/PersonalTb',component:PersonalTb},
+    {path:'/Myfavorite',component:Myfavorite},
     {path:'/task',component:Task},
     {path:"/Index",component:Index},
     
