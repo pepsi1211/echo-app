@@ -2,7 +2,7 @@
   <div class="replace-title">
     <!-- 换一批 头部 -->
     <h3><slot></slot></h3>
-    <span><i class="i-replace"></i>换一批</span>
+    <span class="icon"><i class="i-replace"></i>换一批</span>
   </div>
 </template>
 <script>

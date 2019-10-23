@@ -7,9 +7,9 @@
     </div>
     <div class="right">
       <div>
-        <a href="javascript:void(0);">
+        <router-link to="/Index/channel">
           <img :src="require('../../../public/img/index/02.png')" alt="" height="62px" width="200px">
-        </a>
+        </router-link>
       </div>
       <div class="right-bottom">
         <a href="javascript:void(0);">
