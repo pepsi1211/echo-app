@@ -9,12 +9,13 @@
         <div class="index">
             <div class="each">
                 <div class="left">
-                    <span :class="complete.isNaN==true?complete.complete:''">
-                        <span>
-                            <span>2</span>
-                        </span>
-                    </span>
+                    <svg  width="40" height="40" viewBox="0 0 40 40">
+                    <circle id="circle" cx="20" cy="20" r="18"  fill="none" stroke-width="3" stroke="#38b653" style="stroke-dasharray: 0,360"/>
+                    </svg>
+                    <div>2</div>
                 </div>
+
+
                 <div class="content">
                     <span >签到</span>
                     <span>连续签到五天获得10金币</span>
@@ -26,16 +27,17 @@
 
             <div class="each" v-for="(a,i) of each" :key="i">
                 <div class="left">
-                    <span :class="complete.isNaN==true?complete.complete:''">
-                        <span>{{a.left}}</span>
-                    </span>
+                    <svg  width="40" height="40" viewBox="0 0 40 40">
+                    <circle id="circle" cx="20" cy="20" r="18"  fill="none" stroke-width="3" stroke="#38b653" style="stroke-dasharray: 360,360"/>
+                    </svg>
+                    <div>{{a.left}}</div>
                 </div>
                 <div class="content">
                     <span>{{a.title}}</span>
                     <span>{{a.content}}</span>
                 </div>
                 <div class="right">
-                    <img src="../../public/img/task/bell_gold.png" alt="">
+                    <!-- <img src="../../public/img/task/bell_gold.png" alt=""> -->
                     <span>{{a.right}}</span>
                 </div>
             </div>
@@ -63,21 +65,19 @@ export default {
     },
     methods: {
         Sign(e){
-            var parent=e.target.parentNode.parentNode.firstChild.firstChild
-            parent.className="complete"
+            var parent=e.target.parentNode.parentNode.firstChild.firstChild.firstChild;
+            parent.style.cssText="stroke-dasharray: 360,360;";
             e.target.className="complete";
-            e.target.innerHTML="已签到"
+            e.target.innerHTML="已签到";
         },
          histiry(){
             window.history.go(-1)
         },
         circles(){
-            var circles=123
+           
         }
     },
-    created() {
-        circles()
-    },
+    
 }
 </script>
 <style scoped>
@@ -92,13 +92,24 @@ border-left: 1px solid #000;}
 
 #myTask>.index{width:100%; height: 614px;overflow-y:scroll;}
 #myTask>.index>.each{width:100%;height:40px;display: flex;justify-content: space-around;padding: 0.5rem 0;align-items: center;border-bottom: 1px solid #ccc}
-#myTask>.index>.each>.left{width:10%;height: 40px;border-radius: 50%;}
+#myTask>.index>.each>.left{width:40px;height: 40px;border-radius: 50%;position: relative;}
 
 #myTask>.index>.each>.left>span{width:40px;height: 40px;background: #ccc;border-radius: 50%;display: flex;justify-content: center;align-items: center;}
 
 #myTask>.index>.each>.left>span.complete{width:40px;height: 40px;
 background: #98d84d;border-radius: 50%;display: flex;justify-content: center;align-items: center;}
 
+#myTask>.index>.each>.left>div{width:32px;height: 32px;background: #fff;border-radius: 50%;position: absolute;top: 4px;left: 4px;line-height: 32px}
+
+svg{background: #ccc;border-radius: 50%}
+#circle{	
+    
+     transition: all 2s;
+			}
+			svg #circle{
+                
+    stroke-dashoffset:0;
+		}
 
 
 #myTask>.index>.each>.left>span>span{width:30px;height: 30px;background: #fff;border-radius: 50%;display: block;justify-content: center;align-items: center;line-height: 30px;}

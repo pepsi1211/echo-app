@@ -2,15 +2,14 @@
   <div id="savings">
     <div class="header">
     <div class="head">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
             <p @click="histiry"></p>
-=======
+
             <p></p>
->>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca
-=======
+
             <p></p>
->>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca
+
             <p>音乐勋章储蓄罐</p>
             <p>兑换记录</p>
       </div>
@@ -72,21 +71,19 @@ export default {
     return{
         arr:[1,2,3]
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   },
   methods: {
     histiry(){
       window.history.go(-1)
     }
   },
-=======
+
   }
->>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca
-=======
-  }
->>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca
-}
+
+
+
+
 </script>
 <style scoped>
 .header{background: royalblue;color: #fff;margin-top:1rem}

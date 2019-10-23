@@ -76,7 +76,7 @@
 
 
         <div class="link">
-            <img src="../../public/img/task/ic_copy_link.png" alt="">
+            <!-- <img src="../../public/img/task/ic_copy_link.png" alt=""> -->
             <p>复制分享链接</p>
         </div>
 

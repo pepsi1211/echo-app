@@ -5,6 +5,7 @@ import Task from './views/Task.vue'
 import TaskPurchase from './views/Task-purchase.vue'
 import TaskInvitation from './views/Task-Invitation.vue'
 import TaskSavings from './views/Task-savings.vue'
+import MyTask from './views/Task-myTask.vue'
 // 首页
 import Index from './views/Index'
 // 测试
@@ -19,6 +20,7 @@ export default new Router({
     {path:"/Index",component:Index},
     
     // 测试
+    {path:"/mytask",component:MyTask},
     {path:"/tasksavings",component:TaskSavings},
     {path:"/taskinvitation",component:TaskInvitation},
     {path:"/taskpurchase",component:TaskPurchase},
