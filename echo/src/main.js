@@ -11,12 +11,25 @@ import "mint-ui/lib/style.css"
 import VueTouch from 'vue-touch'
 // 使用mint-ui
 Vue.use(Mint);
+<<<<<<< HEAD
 // 使用vue-touch插件
 Vue.use(VueTouch,{name:'v-touch'});
 // 设置手指滑动距离
 VueTouch.config.swipe = {
   threshold: 10
 }
+=======
+
+// 引入vant
+import {NavBar} from 'vant';
+import {Icon} from 'vant';
+// 引入样式
+import "vant/lib/index.css";
+
+Vue.use(NavBar);
+Vue.use(Icon);
+
+>>>>>>> hzh
 // //引入axios模块
 // import axios from "axios"
 // //设置服务器基础路径
