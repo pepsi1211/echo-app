@@ -1,15 +1,19 @@
 <template>
   <div id="app">
     <router-view/>
+    <!-- tabbar -->
+    <echo-tabbar></echo-tabbar>
   </div>
 </template>
 
 <script>
 
 import "./assets/demo.css"
+// 引入头部
+
 
 export default {
-  
+
 }
 </script>
 
@@ -21,5 +25,9 @@ body{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
+}
+.main-center::after{
+    display: table;
+    height:1.75rem;
 }
 </style>

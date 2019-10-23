@@ -2,6 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import headerv1 from './components/header/Header.vue'
+import headerv2 from './components/header/AudioHeader.vue'
+import tabbar from './components/tabbar/Tabbar.vue'
+
+
+Vue.component("echo-headerv1",headerv1);
+Vue.component("echo-headerv2",headerv2);
+Vue.component("echo-tabbar",tabbar);
+
+
 
 // 引入 mint-ui
 import Mint from 'mint-ui'
@@ -11,25 +21,23 @@ import "mint-ui/lib/style.css"
 import VueTouch from 'vue-touch'
 // 使用mint-ui
 Vue.use(Mint);
-<<<<<<< HEAD
+
 // 使用vue-touch插件
 Vue.use(VueTouch,{name:'v-touch'});
 // 设置手指滑动距离
 VueTouch.config.swipe = {
   threshold: 10
 }
-=======
 
-// 引入vant
-import {NavBar} from 'vant';
-import {Icon} from 'vant';
-// 引入样式
-import "vant/lib/index.css";
+// // 引入vant
+// import {NavBar} from 'vant';
+// import {Icon} from 'vant';
+// // 引入样式
+// import "vant/lib/index.css";
 
-Vue.use(NavBar);
-Vue.use(Icon);
+// Vue.use(NavBar);
+// Vue.use(Icon);
 
->>>>>>> hzh
 // //引入axios模块
 // import axios from "axios"
 // //设置服务器基础路径
