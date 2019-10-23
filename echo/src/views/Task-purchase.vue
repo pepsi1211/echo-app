@@ -1,7 +1,7 @@
 <template>
     <div id="purchase">
         <div class="head">
-            <p></p>
+            <p @click="histiry"></p>
             <p>我的音乐币</p>
             <p>交易记录</p>
         </div>
@@ -104,14 +104,16 @@ export default {
         }
     },
     methods: {
-        
+      histiry(){
+        window.history.go(-1)
+      }
     },
 }
 </script>
 <style scoped>
 a{text-decoration: none}
 .dnone{display: none}
-#purchase{background: #fff;width: 372px;height: 670px}
+#purchase{background: #fff;width: 375px;height: 670px}
 #purchase>.head{display: flex;justify-content: space-between;
 padding: 1.5rem 0.5rem 0.5rem ;height: 3%}
 #purchase>.head>p:first-child{width: 8px;height: 8px;margin:3px 0 0 10px;

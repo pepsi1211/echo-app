@@ -4,7 +4,7 @@
         <div class="head">
             <div class="bg">
                 <p>共有0.01个音乐勋章</p>
-                <p>当前可兑换0.00个MITC<span>查看详情</span></p>
+                <p>当前可兑换0.00个MITC<span @click="details">查看详情</span></p>
                 <div class="huiZhang">
                     <div class="baiYuan" @click="hieMeadl">
                         <div>
@@ -23,12 +23,12 @@
 
             <!--音乐币-->
             <div class="yinYue">
-                <div>
+                <div @click="music">
                     <p>25.9</p>
                     <p>我的音乐币</p>
                     <p>=2279金币</p>
                 </div>
-                <div>
+                <div @click="bonus">
                     <p>0</p>
                     <p>我可分红的好友</p>
                     <p>共邀请0位好友</p>
@@ -37,7 +37,7 @@
 
 
              <!--任务加排名-->
-            <div class="myTask" v-for="(a,i) of myTask" :key="i">
+            <div class="myTask" v-for="(a,i)  of myTask" :key="i" @click="mytask(i)">
                 <img :src="a.pic" alt="" class="front">
                 <div class="in">{{a.in}}</div>
                 <div class="after">
@@ -79,8 +79,8 @@
         </div>
         <div class="voucher" v-for="(b,i) of wenzi" :key="i">{{b.son}}</div>
         <div class="myCurrency">
-            <a href="javasrcipt:;" class="recharge">充值音乐币</a>
-            <a href="javasrcipt:;" class="savings">我的储蓄罐</a>
+            <a href="javasrcipt:;" class="recharge" @click="music">充值音乐币</a>
+            <a href="javasrcipt:;" class="savings" @click="details">我的储蓄罐</a>
         </div>
         </div>
     </div>
@@ -115,8 +115,21 @@ export default {
              var medalIntro=document.getElementsByClassName("medalIntro");
              medalIntro=medalIntro[0]
              medalIntro.className="medalIntro dnone";
-         }
-        }
+         },
+         music(){
+             this.$router.push("/taskpurchase")
+         },
+         bonus(){
+             this.$router.push("/taskinvitation")
+         },
+         details(){
+             this.$router.push("/tasksavings")
+         },
+         mytask(i){
+             if(i==0){this.$router.push("MyTask")}
+             else if(i==1){this.$router.push("Taskranking")}
+         },
+    }
 }
 </script>
 <style scoped>
