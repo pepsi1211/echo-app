@@ -11,12 +11,14 @@
             <!-- 个人信息 -->
             <div class="parent">
                 <div class="pLeft">
-                    <img src="../../public/img/PersonalPage/disk.png" alt="">
+                    <div class="psize">
+                        <img :src="plist.bgp">
+                    </div>
                     <ul class="leftInfo">
                         <li>
-                            <router-link to="" class="leftInfo1">吃忘了要馍</router-link>
-                            <p class="leftInfo2">11&nbsp;人访问过我的主页</p>
-                            <p class="leftInfo3">echo ID: 23413445</p>  
+                            <router-link to="" class="leftInfo1">{{plist.name}}</router-link>
+                            <p class="leftInfo2">{{plist.num}}&nbsp;人访问过我的主页</p>
+                            <p class="leftInfo3">echo ID:&nbsp;{{plist.id}}</p>  
                         </li>
                     </ul>                   
                 </div>
@@ -231,9 +233,13 @@ export default {
                 {img:require('../../public/img/PersonalPage/my_order.png'),name:"我的订单"},
                 {img:require('../../public/img/PersonalPage/ic_menu_ar.png'),name:"扫一扫s"},
                 ],
-            changec:{
-                cc:false
-            }   
+            changec:{cc:false},   
+            plist:{
+                bgp:require('../../public/img/index/song1.png'),
+                num:11,
+                id:23413445,
+                name:"吃面忘了要馍"
+            }
         }
     },
     components:{
@@ -253,7 +259,6 @@ export default {
     .cc{
         background: #ccc;
         opacity: .5;
-
     }
     .pageTabbar{
         overflow: hidden;
@@ -272,6 +277,15 @@ export default {
     .parent .pLeft{
         display: flex;
         align-items: center;
+    }
+    .parent .pLeft .psize{
+        width:  80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow:  hidden;
+    }
+    .parent .pLeft .psize img{
+        width: 100%;
     }
     .parent .leftInfo{
         display: flex;

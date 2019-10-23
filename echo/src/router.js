@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 import PersonalPage from './views/PersonalPage'
 import PersonalTb from './views/PersonalTb'
+import Myfavorite from './views/Myfavorite'
 import Task from './views/Task.vue'
 // 首页
 import Index from './views/Index'
@@ -16,6 +17,7 @@ export default new Router({
     {path:'/login',component:Login},
     {path:'/PersonalPage',component:PersonalPage},
     {path:'/PersonalTb',component:PersonalTb},
+    {path:'/Myfavorite',component:Myfavorite},
     {path:'/task',component:Task},
     {path:"/Index",component:Index},
     // 测试
