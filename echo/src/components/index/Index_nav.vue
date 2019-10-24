@@ -12,12 +12,12 @@
         </router-link>
       </div>
       <div class="right-bottom">
-        <a href="javascript:void(0);">
+        <router-link href="javascript:void(0);" to="/Index/ranking">
           <img :src="require('../../../public/img/index/04.png')" alt="" height="56px">
-        </a>
-        <a href="javascript:void(0);">
+        </router-link>
+        <router-link href="javascript:void(0);" to="Index/bells">
           <img :src="require('../../../public/img/index/01.png')" alt="" height="56px">
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

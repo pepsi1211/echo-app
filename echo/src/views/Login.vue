@@ -150,15 +150,9 @@ export default {
 .main{
     width:375px;
 }
-<<<<<<< HEAD
-/* .login-bg{
-    background: url('../../img/drawable-hdpi-v4/famous_person_income_bg_pic.png') no-repeat center center;
-} */
-=======
 .login-bg{
     background: url('../../public/img/login/famous_person_income_bg_pic.png') no-repeat center center;
 }
->>>>>>> lrl
 .login-top{
     margin-top:50px;
 }

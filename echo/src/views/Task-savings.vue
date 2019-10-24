@@ -1,7 +1,6 @@
 <template>
   <div id="savings">
     <div class="header">
-<<<<<<< HEAD
       <div class="head">
         <!-- <<<<<<< HEAD -->
         <!-- <<<<<<< HEAD -->
@@ -14,7 +13,6 @@
         <!-- >>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca -->
         <p>音乐勋章储蓄罐</p>
         <p>兑换记录</p>
-=======
     <div class="head">
 
 
@@ -26,7 +24,6 @@
 
             <p>音乐勋章储蓄罐</p>
             <p>兑换记录</p>
->>>>>>> pjq
       </div>
 
       <div class="showFriend">
@@ -76,33 +73,20 @@
       了解更多MITC信息请访问官网http://www.musiclife.io
     </div>
   </div>
+  </div>
 </template>
 <script>
 export default {
-<<<<<<< HEAD
-  data() {
-    return {
-      arr: [1, 2, 3]
-    };
-    // <<<<<<< HEAD
-    // <<<<<<< HEAD
-=======
   data(){
     return{
         arr:[1,2,3]
     }
 
->>>>>>> pjq
   },
   methods: {
     histiry() {
       window.history.go(-1);
     }
-<<<<<<< HEAD
-  }
-  // =======
-};
-=======
   },
 
   }
@@ -110,7 +94,6 @@ export default {
 
 
 
->>>>>>> pjq
 </script>
 <style scoped>
 .header {

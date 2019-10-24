@@ -1,5 +1,14 @@
 <template>
   <div>
+    <!-- 头部导航栏 -->
+    <nav-bar>
+      <h3 slot="h3">频道</h3>
+      <!-- 搜索加音乐 -->
+      <div class="right" slot="div">
+        <i></i>
+        <i></i>
+      </div>
+    </nav-bar>
     <!-- v-touch组件 -->
     <v-touch @panstart="panstart" @panmove="panmove" @panend="panend" >
       <ul style="overflow:hidden;" :style="marginLeft">
@@ -17,10 +26,13 @@
     <!-- 2.最热 -->
     <!-- <channel-hot></channel-hot> -->
     <!-- 3.最新 -->
-    <channel-new></channel-new>
+    <!-- <channel-new></channel-new> -->
+    <component :is="componentId[active]"></component>
   </div>
 </template>
 <script>
+// 引入头部导航栏
+import NavBar from '../index/NavBar'
 // 1.引入订阅
 import ChannelTake from './channel/Channel-take'
 // 2.引入最热
@@ -34,11 +46,15 @@ export default {
      active:0,
      move:0,
      marginLeft:{marginLeft:0},
+    // 保存当前访问组件
+    componentId:["channel-take","channel-hot","channel-new"]
    }
   },
   methods: {
     clickTag(i){
+      // 改变样式
       this.active = i;
+      // 改变选择组件
     },
     // 移动开始
     panstart(e){
@@ -77,7 +93,8 @@ export default {
   components: {
     "channel-take":ChannelTake,
     "channel-hot": ChannelHot,
-    "channel-new": ChannelNew
+    "channel-new": ChannelNew,
+    "nav-bar": NavBar
   },
   created() {
   

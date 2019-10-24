@@ -11,13 +11,16 @@ import TaskSavings from './views/Task-savings.vue'
 import MyTask from './views/Task-myTask.vue'
 // 首页
 import Index from './views/Index'
-
+// 首页下的频道
+import IndexChannel from './views/IndexChannel'
+// 首页下的排行
+import Ranking from './views/Ranking'
+// 首页下的铃声
 // 测试
 // 测试播放器
 import Audio from './views/test-1.vue'
 
-// 首页下的频道
-import IndexChannel from './views/IndexChannel'
+
 
 Vue.use(Router)
 
@@ -38,6 +41,8 @@ export default new Router({
     {path:"/test",component:Audio},
 
     // 首页下的频道
-    {path:"/Index/channel",component: IndexChannel}
+    {path:"/Index/channel",component: IndexChannel},
+    // 首页下的排行
+    {path:"/Index/ranking",component:Ranking}
   ]
 })
