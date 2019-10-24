@@ -8,15 +8,15 @@
                 <span>我喜欢的</span>
             </div>
         </div>
-        <ul class="topbar">
+        <ul class="topbar" @click="change">
             <li>
-                <router-link to="">回声</router-link>
+                <router-link to="" :class="active=='tap1'?'show':''" data-i="tap1">回声</router-link>
             </li>
             <li>
-                <router-link to="">活动内容</router-link>
+                <router-link to="" :class="active=='tap2'?'show':''" data-i="tap2">活动内容</router-link>
             </li>
             <li>
-                <router-link to="">专题</router-link>
+                <router-link to="" :class="active=='tap3'?'show':''" data-i="tap3">专题</router-link>
             </li>
         </ul>
         <div class="topbar2">
@@ -26,15 +26,17 @@
                 <span>随机播放</span>
             </div>
         </div>
-        <div>
-            <img src="../../public/img/index/song1.png">
-            <div class="rightOfImg">
-                <span>Thinking 'Bout You</span>
-                <span>Ms_-A</span>
+        <div class="songlist" v-for="(item,index) of slists" :key="index">
+            <div class="songlistImg">
+                <img :src="item.spic">
             </div>
-            <span>
-                ...
-            </span>
+            <div class="right">
+                <div class="rightOfImg">
+                    <span>{{item.stitle}}</span>
+                    <span>{{item.singer}}</span>
+                </div>
+                <span class="extra">...</span>
+            </div>
         </div>
     </div>
 </template>
@@ -42,15 +44,39 @@
 export default {
     data(){
         return {
-            selected:"1",
-            list:[
-                name="回声"
-            ]
+            slists:[
+                {
+                spic:require('../../public/img/index/song1.png'),
+                singer:"阳台哪个唱歌的詹哈哈",
+                stitle:"雨和钢琴的相遇是天意"
+                },
+                {
+                spic:require('../../public/img/index/song1.png'),
+                singer:"阳台哪个唱歌的詹哈哈",
+                stitle:"雨和钢琴的相遇是天意"
+                },
+            ],
+            fcolor:{show:false},
+            active:"tap1"
         }
-    }
+    },
+    methods: {
+        change(e){
+            var i=e.target.dataset.i
+            console.log(e.target.nodeName) 
+            if(e.target.nodeName=='A'){
+                if(i){
+                    this.active=i
+                }           
+            }
+        }
+    },
 }
 </script>
 <style scoped>
+    .show{
+        color: #000 !important;
+    }
     .top{
         display: flex;
         padding: 10px;
@@ -72,19 +98,26 @@ export default {
         align-items: center;
         background: #ccc;
     }
+    .topbar li{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .topbar li a{
+        width:60px;
         color: #666;
         text-decoration: none;
     }
-    .topbar li a:hover{
+    /* .topbar li a:hover{
         color: #000;
-    }
+    } */
     .topbar2{
         height: 40px;
         display: flex;  
         justify-content:space-between;
         align-items: center;
-        border:1px solid #ccc;
     }
     .topbar2>img{
         margin-left: 40px;
@@ -108,5 +141,38 @@ export default {
     .randomplay span{
         color: #ccc;
         margin-left: 2px;
+    }
+    .songlist{
+        display:flex;
+        height: 70px;;
+    }
+    .songlist .songlistImg{
+        width: 50px;
+        padding: 10px;
+    }
+    .songlist .extra{
+        display: flex;
+        align-self: center;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+    .songlist span{
+        display: flex;
+        font-size: 16px;
+    }
+    .songlist img{
+        width:100%;
+    }
+    .songlist .right{
+        width:78%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom:1px solid #ccc;
+    }
+    .songlist .rightOfImg{
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>
