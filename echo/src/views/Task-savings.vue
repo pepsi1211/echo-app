@@ -1,7 +1,6 @@
 <template>
   <div id="savings">
     <div class="header">
-<<<<<<< HEAD
       <div class="head">
         <!-- <<<<<<< HEAD -->
         <!-- <<<<<<< HEAD -->
@@ -14,103 +13,79 @@
         <!-- >>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca -->
         <p>音乐勋章储蓄罐</p>
         <p>兑换记录</p>
-=======
-    <div class="head">
+        <div class="head">
+          <p @click="histiry"></p>
 
+          <p></p>
 
-            <p @click="histiry"></p>
+          <p></p>
 
-            <p></p>
-
-            <p></p>
-
-            <p>音乐勋章储蓄罐</p>
-            <p>兑换记录</p>
->>>>>>> pjq
-      </div>
-
-      <div class="showFriend">
-        <div>
-          <span>
-            <img src="../../public/img/task/ic_medal.png" alt />
-          </span>
-          <div>
-            <span>0.02</span>
-            <span>勋章累计总数</span>
-          </div>
+          <p>音乐勋章储蓄罐</p>
+          <p>兑换记录</p>
         </div>
 
-        <div>
+        <div class="showFriend">
           <div>
-            <span>0.00</span>
-            <span>勋章可兑换数</span>
+            <span>
+              <img src="../../public/img/task/ic_medal.png" alt />
+            </span>
+            <div>
+              <span>0.02</span>
+              <span>勋章累计总数</span>
+            </div>
           </div>
-          <span>
-            <img src="../../public/img/task/ic_medal.png" alt />
-          </span>
+
+          <div>
+            <div>
+              <span>0.00</span>
+              <span>勋章可兑换数</span>
+            </div>
+            <span>
+              <img src="../../public/img/task/ic_medal.png" alt />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="index">
-      <div class="first">勋章来源明细</div>
+      <div class="index">
+        <div class="first">勋章来源明细</div>
 
-      <div class="charge" v-for="(a,i) of arr" :key="i">
-        <span>
+        <div class="charge" v-for="(a,i) of arr" :key="i">
+          <span>
+            <img src="../../public/img/task/ic_medal.png" alt />
+            <div>收听歌曲</div>
+          </span>
+          <span>消耗￥0.20获得0.02</span>
+        </div>
+
+        <div class="realName">
           <img src="../../public/img/task/ic_medal.png" alt />
-          <div>收听歌曲</div>
-        </span>
-        <span>消耗￥0.20获得0.02</span>
+          <p>≈￥0.00 RMB</p>
+          <p>充值购买的音乐币可免费兑换MITC</p>
+          <a href="javasrcipt:;">实名认证并免费兑换</a>
+        </div>
       </div>
-
-      <div class="realName">
-        <img src="../../public/img/task/ic_medal.png" alt />
-        <p>≈￥0.00 RMB</p>
-        <p>充值购买的音乐币可免费兑换MITC</p>
-        <a href="javasrcipt:;">实名认证并免费兑换</a>
+      <div class="foot">
+        MITC为新加坡非盈利机构MusicLife Fondation发行的数字货币，由日本音乐生活株式会社进行商业运营。
+        音乐勋章可免费兑换为MITC，这是echo回声与MusicLife Fondation的非赢利合作，无任何金融交易与兑换手续费。
+        了解更多MITC信息请访问官网http://www.musiclife.io
       </div>
-    </div>
-    <div class="foot">
-      MITC为新加坡非盈利机构MusicLife Fondation发行的数字货币，由日本音乐生活株式会社进行商业运营。
-      音乐勋章可免费兑换为MITC，这是echo回声与MusicLife Fondation的非赢利合作，无任何金融交易与兑换手续费。
-      了解更多MITC信息请访问官网http://www.musiclife.io
     </div>
   </div>
 </template>
 <script>
 export default {
-<<<<<<< HEAD
   data() {
     return {
       arr: [1, 2, 3]
     };
-    // <<<<<<< HEAD
-    // <<<<<<< HEAD
-=======
-  data(){
-    return{
-        arr:[1,2,3]
-    }
-
->>>>>>> pjq
   },
   methods: {
     histiry() {
       window.history.go(-1);
     }
-<<<<<<< HEAD
   }
-  // =======
 };
-=======
-  },
-
-  }
-
-
-
-
->>>>>>> pjq
 </script>
 <style scoped>
 .header {
