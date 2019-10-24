@@ -1,9 +1,8 @@
 <template>
   <div>
-    <axn-text>139</axn-text>
     <!-- 列表 -->
     <ul class="channel-ul">
-      <li class="chanel-item" v-for="i in 10" :key="i">
+      <li class="chanel-item" v-for="i in imgs" :key="i">
         <!-- 上下弹性 -->
         <div class="channel-a">
           <!-- 背景图 -->
@@ -12,9 +11,9 @@
           <i class="channel-pause" :class="i==playI&&(paused)" @click="toggle(i)"></i>
           </i>
           <!-- 文字 -->
-          <p class="channel-title">3d音乐奇幻旋律馆</p>
+          <p class="channel-title">{{imgs.title}}</p>
           <!-- 文字 -->
-          <span class="channel-subtitle">138.1万关注</span>
+          <span class="channel-subtitle">{{imgs.subtitle}}</span>
         </div>
       </li>
     </ul>
@@ -51,6 +50,14 @@ export default {
   },
   components: {
     "axn-text": AxnText
+  },
+  props:{
+    imgs:{
+      type:Array,
+      default: function(){
+        return []
+      }
+    }
   },
   computed: {
     
