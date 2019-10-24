@@ -2,7 +2,9 @@
     <div class="container">
         <div class="top">
             <div class="topp">
-                <img src="../../public/img/PersonalPage/back_gray.png" alt="">
+                <button class="tlbtn" @click="back">
+                    <img src="../../public/img/PersonalPage/back_gray.png" alt="">
+                </button>         
             </div>
             <div class="topmid">
                 <span>我喜欢的</span>
@@ -10,15 +12,36 @@
         </div>
         <ul class="topbar" @click="change">
             <li>
-                <router-link to="" :class="active=='tap1'?'show':''" data-i="tap1">回声</router-link>
+                <mt-button :class="active=='tap1'?'show':''" data-i="tap1">回声</mt-button>
             </li>
             <li>
-                <router-link to="" :class="active=='tap2'?'show':''" data-i="tap2">活动内容</router-link>
+                <mt-button :class="active=='tap2'?'show':''" data-i="tap2">活动内容</mt-button>
             </li>
             <li>
-                <router-link to="" :class="active=='tap3'?'show':''" data-i="tap3">专题</router-link>
+                <mt-button :class="active=='tap3'?'show':''" data-i="tap3">专题</mt-button>
             </li>
         </ul>
+        <!-- <div class="topbar2">
+            <img src="../../public/img/PersonalPage/short_play_like_red.png">
+            <div class="randomplay">
+                <img src="../../public/img/PersonalPage/mp_ramdom.png">
+                <span>随机播放</span>
+            </div>
+        </div>
+        <div class="songlist" v-for="(item,index) of slists" :key="index">
+            <div class="songlistImg">
+                <img :src="item.spic">
+            </div>
+            <div class="right">
+                <div class="rightOfImg">
+                    <span>{{item.stitle}}</span>
+                    <span>{{item.singer}}</span>
+                </div>
+                <span class="extra">...</span>
+            </div>
+        </div> -->
+        <mt-tab-container v-model="active">
+        <mt-tab-container-item id="tap1">
         <div class="topbar2">
             <img src="../../public/img/PersonalPage/short_play_like_red.png">
             <div class="randomplay">
@@ -38,6 +61,18 @@
                 <span class="extra">...</span>
             </div>
         </div>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="tap2">
+            <div class="topbar2">
+            <img src="../../public/img/PersonalPage/short_play_like_red.png">        
+        </div>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="tap3">
+            <div class="topbar2">
+            <img src="../../public/img/PersonalPage/short_play_like_red.png">
+        </div>
+        </mt-tab-container-item>
+        </mt-tab-container>
     </div>
 </template>
 <script>
@@ -61,10 +96,13 @@ export default {
         }
     },
     methods: {
+        back(){
+            this.$router.push('/PersonalPage')
+        },
         change(e){
             var i=e.target.dataset.i
             console.log(e.target.nodeName) 
-            if(e.target.nodeName=='A'){
+            if(e.target.nodeName=='BUTTON'){
                 if(i){
                     this.active=i
                 }           
@@ -74,6 +112,12 @@ export default {
 }
 </script>
 <style scoped>
+    .tlbtn{
+        padding-top: 3px;
+        background: transparent;
+        border:0;
+        outline: none;
+    }
     .show{
         color: #000 !important;
     }
@@ -88,8 +132,9 @@ export default {
         width:100%;
         display: flex;
         justify-content: center;
-        font-size: 14px;
+        font-size: 16px;
         color: #000;
+        padding-right: 10px;
     }
     .topbar{
         height: 40px;
@@ -174,5 +219,13 @@ export default {
         display:flex;
         flex-direction: column;
         justify-content: center;
+    }
+    .mint-button--normal{
+        width:100%;
+        font-size: 14px;
+        background: transparent;
+    }
+    .mint-button:not(.is-disabled):active::after{
+        opacity: 0;
     }
 </style>

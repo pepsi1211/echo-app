@@ -36,7 +36,7 @@
                 <li>
                     <div>
                         <p>0</p>
-                        <router-link to="" class="likecolor">我喜欢的</router-link>
+                        <router-link to="/Myfavorite" class="likecolor">我喜欢的</router-link>
                     </div>
                 </li>
                 <li>
@@ -295,6 +295,7 @@ export default {
         color: #000;
         font-size: 16px;
         padding-right: 28px;
+        text-decoration: none;
     }
     .parent .leftInfo .leftInfo3{
         color: #666;
