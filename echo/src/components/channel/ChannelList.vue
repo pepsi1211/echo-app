@@ -15,7 +15,9 @@
     <!-- 1.订阅 -->
     <!-- <channel-take></channel-take> -->
     <!-- 2.最热 -->
-    <channel-hot></channel-hot>
+    <!-- <channel-hot></channel-hot> -->
+    <!-- 3.最新 -->
+    <channel-new></channel-new>
   </div>
 </template>
 <script>
@@ -23,6 +25,8 @@
 import ChannelTake from './channel/Channel-take'
 // 2.引入最热
 import ChannelHot from './channel/Channel-hot'
+// 3.引入最新
+import ChannelNew from './channel/Channel-new'
 export default {
   data() {
    return{
@@ -72,7 +76,8 @@ export default {
   },
   components: {
     "channel-take":ChannelTake,
-    "channel-hot": ChannelHot
+    "channel-hot": ChannelHot,
+    "channel-new": ChannelNew
   },
   created() {
   
@@ -94,10 +99,10 @@ export default {
       a{
         color: #888;
         text-decoration: none;
-        padding: 4px 10px;
+        padding: .25rem .625rem;
       }
      a.active{
-      border-radius: 15px;
+      border-radius: .9375rem;
       background: #fff;
       color: #8fdf8f;
       }
