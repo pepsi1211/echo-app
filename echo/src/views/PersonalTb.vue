@@ -35,6 +35,10 @@ export default {
         padding:7px;
         background-color: #fff;
         border: none;
+        color: #000;
+    }
+    .headPage span{
+        margin-top: 5px;
     }
     .headPage .headLeft{
         height: 30px;
