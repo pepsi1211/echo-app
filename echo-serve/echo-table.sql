@@ -88,6 +88,14 @@ create table echo_famous(
 	uid int#如果个人用户实名认证后,通过"名人"认证后,会被记录下uid,以便于识别用户和名人两张表的关联
 );
 
+#创建用户钱包表
+CREATE TABLE echo_wallet(
+	uid int ,
+	music_coin decimal(9,2),
+	gold_coin decimal(9,1),
+	pay_time TIMESTAMP
+);
+
 
 #向频道表插入数据
 insert into echo_channel values(null,'3D音乐奇幻旋律馆',null,'http://127.0.0.1:5050/img/channel/channel1.jpg',47000,1381000,18000,"echo独家3D音乐，颠覆你的听觉体验");
@@ -146,3 +154,6 @@ INSERT INTO echo_famous VALUES(null,"大张伟","http://127.0.0.1:5050/img/famou
 
 #测试用户
 insert into echo_user values(null,"安静的稻草人",md5('123456'),"15575446613@163.com","15575446613","http://127.0.0.1:5050/img/avatar/安静的稻草人.jpg","缅甸","1","狮子座",null,0,0,0);
+
+#测试用户的钱包数据
+insert INTO echo_wallet VALUES(1,66.23,662.3,null);

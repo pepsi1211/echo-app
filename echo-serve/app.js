@@ -107,4 +107,29 @@ app.get("/getindex",(req,res)=>{
   });
 });
 
-// 4..
+// 4.响应任务模块
+app.get("/task",(req,res)=>{
+  var uid = req.session.uid;
+  pool.query("select music_coin,gold_coin from echo_wallet where uid = ?",[uid],(err,result)=>{
+    if (err) throw err;
+    if(result.length>0){
+      res.send({code:1,msg:"响应成功",data:result})
+    }else{
+      res.send({code:-1,msg:"响应失败,没有得到uid"})
+    }
+  });
+});
+
+// 5.响应频道页
+app.get("/getHotChannel",(req,res)=>{
+  pool.query("select cname,pic,followed from echo_channel",[],(err,result)=>{
+    if(err) throw err;
+    if(result.length>0){
+      res.send({code:1,msg:"响应成功",data:result})
+    }else{
+      res.send({code:-1,msg:"响应失败"})
+    }
+  });
+});
+
+// 响应签到
