@@ -81,6 +81,8 @@
                     </div>
                 </li>
             </ul>
+            <!-- 测试人格 -->
+            <Index-test></Index-test>
             <!-- 灰色分割线 -->
             <div class="line"></div>
             <!-- 功能1 -->
@@ -217,6 +219,7 @@
 <script>
 //1.引入子组件
 import PersonalTb from "./PersonalTb"
+import Indextest from '../components/index/Index_test'
 //2.注册子组件
 export default {
     data(){
@@ -235,7 +238,7 @@ export default {
                 ],
             changec:{cc:false},   
             plist:{
-                bgp:require('../../public/img/index/song1.png'),
+                bgp:require('../../public/img/PersonalPage/mypic.jpg'),
                 num:11,
                 id:23413445,
                 name:"吃面忘了要馍"
@@ -243,7 +246,8 @@ export default {
         }
     },
     components:{
-        PersonalTb
+        PersonalTb,
+        Indextest
     },
     methods: {
         change(event){
