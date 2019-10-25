@@ -2,7 +2,7 @@
   <div>
     <!-- 列表 -->
     <ul class="channel-ul">
-      <li class="chanel-item" v-for="i in imgs" :key="i">
+      <li class="chanel-item" v-for="(item,i) of imgs" :key="i">
         <!-- 上下弹性 -->
         <div class="channel-a">
           <!-- 背景图 -->
