@@ -4,6 +4,7 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return{
@@ -12,22 +13,25 @@ export default {
   },
   methods: {
     
-    },
+   },
   watch: {
     
-    },
+  },
+  components:{
+   
+  },
   computed: {
     
-    },
+  },
   created() {
     
-    },
+  },
   mouted() {
-  
+
   }
 }
 </script>
-<style scoped lang='scss'>
+<style lang='scss'>
   // 分割线
   .line{
     padding: 0 10px;
