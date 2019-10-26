@@ -220,6 +220,7 @@
 //1.引入子组件
 import PersonalTb from "./PersonalTb"
 import Indextest from '../components/index/Index_test'
+import funs from "../assets/js/fun"
 //2.注册子组件
 export default {
     data(){
@@ -257,6 +258,11 @@ export default {
             console.log(event.target)
         }
     },
+    created(){
+        funs.getPersonalPage(result=>{
+            console.log(result)
+        })
+    }
 }
 </script>
 <style scoped>

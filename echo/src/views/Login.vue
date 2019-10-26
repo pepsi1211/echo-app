@@ -1,9 +1,8 @@
 
 <template>
-    <main>
-<!--         
+    <main>        
         <div class="login-bg">
-            页面顶部
+            <!-- 页面顶部 -->
             <div class="login-top">
                 <div class="logo">
                     <img src="../../public/img/login/logo_echo.png">
@@ -12,7 +11,7 @@
                     <span style="font-size:14px;">潮流音乐生活方式</span>
                 </div>
             </div>
-            页面中部
+            <!-- 页面中部 -->
             <div class="login-mid">
                 <div class="inputphone">
                     <p class="areacode">+86</p>
@@ -20,7 +19,7 @@
                 </div>
                 <div class="login-mid1">
                     <div class="code1">
-                        <input maxlength="4" v-model="varifycode" class="textcode" type="text" placeholder="输入验证码">
+                        <input maxlength="4" value="phone" v-model="varifycode" class="textcode" type="text" placeholder="输入验证码">
                     </div>
                     <div class="code2">
                         <button class="sendcode" @click="send" :disabled="sendAuthcode">
@@ -30,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            页面底部
+            <!-- 页面底部 -->
             <p class="pp">
                 <a href="javascript:;">其他登录方式</a>
             </p>
@@ -58,17 +57,18 @@
                   </div>
                 </div>
             </div>
-            协议
+            <!-- 协议 -->
             <div class="xieyi">
                 <p>
                     <a href="javascript:;">注册即视为同意echo回声用户协议</a>
                 </p>
             </div>
-        </div> -->
+        </div>
     </main>
 </template>
 
 <script>
+import axios from "axios"
 export default {
     data(){
         return {
@@ -80,6 +80,7 @@ export default {
         }
     },
     methods:{
+        //判断手机号
         send(){
             var pnum=this.iptphone;
             var preg=/^1[3-8][0-9]{9}$/; 
@@ -93,14 +94,15 @@ export default {
             }else{
                 this.varify(); 
                 this.ran()
-                //发送axios请求
-                // var url
-                // var obj={}
-                // this.axios.get(url,{params:obj}).then(res=>{
-                //     console.log(res)
-                // })
+                // 发送axios请求
+                var url="login"
+                var obj={phone:pnum}
+                this.axios.get(url,{params:obj}).then(res=>{
+                    console.log(res.data)
+                })
             }
         },
+        //判断验证码
         varify:function(){
             var t=setInterval(()=>{
                 this.auth_time--;
@@ -112,8 +114,9 @@ export default {
                     var resend=document.getElementById('resend')
                     resend.innerHTML="重新发送"
                 }
-            },100)
+            },1000)
         },
+        //随机数
         ran:function(){
             var randoms=[0,1,2,3,4,5,6,7,8,9]
             var rancode="";
@@ -125,7 +128,8 @@ export default {
             console.log(rancode)
             localStorage.setItem("rc",rancode)
             var rc=localStorage.getItem("rc")
-        }
+        },
+    
     },
     watch:{
         varifycode(){
