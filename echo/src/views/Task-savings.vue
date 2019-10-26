@@ -13,22 +13,12 @@
         <!-- >>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca -->
         <p>音乐勋章储蓄罐</p>
         <p>兑换记录</p>
-<<<<<<< HEAD
-        <div class="head">
-          <p @click="histiry"></p>
-=======
     <div class="head">
->>>>>>> lwj
 
           <p></p>
 
           <p></p>
 
-<<<<<<< HEAD
-          <p>音乐勋章储蓄罐</p>
-          <p>兑换记录</p>
-        </div>
-=======
             <p></p>
 
             <p></p>
@@ -36,7 +26,6 @@
             <p>音乐勋章储蓄罐</p>
             <p>兑换记录</p>
       </div>
->>>>>>> lwj
 
         <div class="showFriend">
           <div>
@@ -86,31 +75,20 @@
       </div>
     </div>
   </div>
-  </div>
+
 </template>
 <script>
 export default {
-<<<<<<< HEAD
-  data() {
-    return {
-      arr: [1, 2, 3]
-    };
-=======
   data(){
     return{
         arr:[1,2,3]
     }
 
->>>>>>> lwj
   },
   methods: {
     histiry() {
       window.history.go(-1);
     }
-<<<<<<< HEAD
-  }
-};
-=======
   },
 
   }
@@ -118,7 +96,6 @@ export default {
 
 
 
->>>>>>> lwj
 </script>
 <style scoped>
 .header {

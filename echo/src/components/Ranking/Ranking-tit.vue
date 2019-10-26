@@ -47,7 +47,7 @@ export default {
 <style scoped lang='scss'>
   // 最外层
   .container{
-    padding: 0 .5rem;
+    padding: 0 .625rem;
   }
   // 清除浮动
   .tit{
@@ -70,6 +70,8 @@ export default {
         background: url(../../../public/img/index/ic_hot_fire.png) no-repeat;
         background-size: contain;
         vertical-align: middle;
+        margin-right: .375rem;
+        margin-bottom: .125rem;
       }
     }
     // 右边浮动
