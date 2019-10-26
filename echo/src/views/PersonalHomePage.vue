@@ -80,6 +80,7 @@ export default {
         border-bottom-right-radius: 14px;
         background: rgb(224, 223, 223);
         margin-top: -12px;
+        margin-right:15px;
     }
     .onfocus{
         display: flex;
@@ -89,9 +90,10 @@ export default {
     }
     .focus{
         height: 50px;
-        width:60%;
+        width:58%;
         display:flex;
         justify-content: space-between;
+        align-items: center;
     }
     .focus li{
         height:30px;
@@ -103,6 +105,7 @@ export default {
         display: flex;
         padding-left: 26px;
         flex-direction: column;
+        justify-content: center;
     }
      .focus li div:first-child{
         border-left: 1px solid #ccc;

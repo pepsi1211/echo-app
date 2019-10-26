@@ -10,7 +10,7 @@ var pool = mysql.createPool({
   port:3306,
   user:"root",
   password:"",
-  database:"echo",
+  database:"echo_app",
   connectionLimit:15
 })
 
@@ -45,9 +45,11 @@ app.use(express.static("./public"));
 app.get("/login",(req,res)=>{
   // 获取前台得到的数据
   var phone = req.query.phone;
-  var upwd = req.query.upwd;
+  // var upwd = req.query.upwd;
   // console.log(phone,upwd);
-  pool.query("select uid,avatar from echo_user where phone = ? and upwd = md5(?)",[phone,upwd],(err,result)=>{
+  console.log(phone)
+  pool.query("select uid,avatar from echo_user where phone = ? ",[phone],(err,result)=>{
+  // pool.query("select uid,avatar from echo_user where phone = ? and upwd = md5(?)",[phone,upwd],(err,result)=>{
     if(err) throw err;
     // 获取执行结果 判断查询是否成功result.length
     if(result.length==0){
