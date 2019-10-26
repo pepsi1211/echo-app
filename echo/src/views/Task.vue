@@ -133,7 +133,7 @@ export default {
 }
 </script>
 <style scoped>
-#renWu{background: #eee;width: 375px;height: 670px}
+#renWu{background: #eee;width: 375px;height: 630px}
 #renWu>.head{width: 100%;height:100px;display: flex;}
 #renWu>.head>.bg{width: 100%;height:100px;background: #ccc;border-bottom-left-radius: 50% 50%;border-bottom-right-radius:50% 50%;
 display: flex;flex-flow: column;text-align: center;margin: 0 auto;}

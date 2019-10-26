@@ -3,7 +3,7 @@
         <div class="head">
             <p @click="histiry"></p>
             <p>我的音乐币</p>
-            <p>交易记录</p>
+            <p @click="record">交易记录</p>
         </div>
         
         <div class="index">
@@ -106,6 +106,9 @@ export default {
     methods: {
       histiry(){
         window.history.go(-1)
+      },
+      record(){
+          this.$router.push("/TaskRecord")
       }
     },
 }

@@ -93,7 +93,22 @@ CREATE TABLE echo_wallet(
 	uid int ,
 	music_coin decimal(9,2),
 	gold_coin decimal(9,1),
-	pay_time TIMESTAMP
+	pay_time int
+);
+
+
+#创建用户签到表
+CREATE TABLE echo_sign(
+	esid int primary key auto_increment,
+	sign_in boolean,
+	currenttime BIGINT,
+	dayzerotime BIGINT,
+	dayContinuity int,
+	uid int
+);
+
+insert into echo_sign values(
+	null,0,123,123,0,1
 );
 
 

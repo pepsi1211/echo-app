@@ -10,7 +10,7 @@ var pool = mysql.createPool({
   port:3306,
   user:"root",
   password:"",
-  database:"echo",
+  database:"echo_app",
   connectionLimit:15
 })
 
@@ -132,4 +132,30 @@ app.get("/getHotChannel",(req,res)=>{
   });
 });
 
-// 响应签到
+// 响应查看当天有没签到
+app.get("/sign",(req,res)=>{
+  pool.query("select sign_in,currenttime,dayzerotime,dayContinuity,uid from echo_sign where uid=1",[],
+  (err,result)=>{
+    if(err) throw err;
+    if(result.length>0){res.send(result)}
+    else{
+      res.send({code:-1,msg:"响应失败"})
+    }
+  })
+})
+
+//响应修改签到
+app.get("/modifySign",(req,res)=>{
+  var sign=req.query.sign;   //是否签到
+  var currenttime=req.query.currenttime;  //现在时间
+  var dayzerotime=req.query.dayzerotime;  //当天零点
+  var dayContinuity=req.query.dayContinuity;  //连续签到
+  var uid=req.query.uid;
+  console.log(sign,currenttime,dayzerotime,dayContinuity,uid)
+  pool.query("update echo_sign set sign_in=?,currenttime=?,dayzerotime=?,dayContinuity=? where uid=?",[sign,currenttime,dayzerotime,dayContinuity,uid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){res.send(result)}
+    else{res.send({code:-1,msg:"修改失败"})}
+  })
+
+})

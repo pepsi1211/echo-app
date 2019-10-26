@@ -110,7 +110,7 @@ display: flex;justify-content: space-between;flex-wrap: wrap;border-bottom:1px s
 
 #ranking>.index>.Slide{width: 100%;height: 352px;overflow-y: scroll}
 #ranking>.index>.Slide>.WorldRanked{width: 95%;margin: 0 auto;padding: 0.8rem 0;
-display: flex;justify-content: space-between;flex-wrap: wrap;border-bottom: 1px solid #ccc}
+display: flex;justify-content: space-between;flex-wrap: wrap;}
 #ranking>.index>.Slide>.WorldRanked>.first{width: 90%;text-align: left;display: flex;align-items: center}
 
 /*其他名*/
