@@ -116,7 +116,7 @@ export default {
 <style scoped>
 a{text-decoration: none}
 .dnone{display: none}
-#purchase{background: #fff;width: 375px;height: 670px}
+#purchase{background: #fff;width: 100%;height: 670px}
 #purchase>.head{display: flex;justify-content: space-between;
 padding: 1.5rem 0.5rem 0.5rem ;height: 3%}
 #purchase>.head>p:first-child{width: 8px;height: 8px;margin:3px 0 0 10px;

@@ -134,7 +134,7 @@ app.get("/getHotChannel",(req,res)=>{
 
 // 响应查看当天有没签到
 app.get("/sign",(req,res)=>{
-  pool.query("select sign_in,currenttime,dayzerotime,dayContinuity,uid from echo_sign where uid=1",[],
+  pool.query("select sign_in,currenttime,dayzerotime,dayContinuity,music_coin,uid from echo_sign where uid=1",[],
   (err,result)=>{
     if(err) throw err;
     if(result.length>0){res.send(result)}
@@ -150,9 +150,22 @@ app.get("/modifySign",(req,res)=>{
   var currenttime=req.query.currenttime;  //现在时间
   var dayzerotime=req.query.dayzerotime;  //当天零点
   var dayContinuity=req.query.dayContinuity;  //连续签到
+  var coin=req.query.coin;
   var uid=req.query.uid;
-  console.log(sign,currenttime,dayzerotime,dayContinuity,uid)
-  pool.query("update echo_sign set sign_in=?,currenttime=?,dayzerotime=?,dayContinuity=? where uid=?",[sign,currenttime,dayzerotime,dayContinuity,uid],(err,result)=>{
+  console.log(sign,currenttime,dayzerotime,dayContinuity,coin,uid)
+  pool.query("update echo_sign set sign_in=?,currenttime=?,dayzerotime=?,dayContinuity=?,music_coin=? where uid=?",[sign,currenttime,dayzerotime,dayContinuity,coin,uid],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows>0){res.send(result)}
+    else{res.send({code:-1,msg:"修改失败"})}
+  })
+
+})
+
+app.get("/changesign",(req,res)=>{
+  var sign=req.query.sign;   //修改每天零点登陆后把签到变回未登陆
+  var uid=req.query.uid;
+  console.log(uid,sign)
+  pool.query("update echo_sign set sign_in=? where uid=?",[sign,uid],(err,result)=>{
     if(err) throw err;
     if(result.affectedRows>0){res.send(result)}
     else{res.send({code:-1,msg:"修改失败"})}

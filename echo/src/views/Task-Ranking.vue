@@ -76,7 +76,7 @@ export default {
 }
 </script>
 <style scoped>
-#ranking{background: #eee;width: 375px;height: 670px}
+#ranking{background: #eee;width: 100%;height: 670px}
 #ranking>.head{width: 100%;height:100px;display: flex;}
 #ranking>.head>.bg{width: 100%;height:100%;background-image:url("../../public/img/task/bg_medal_ranking_top.png");background-size: 100% 100%;display: flex;flex-flow: column;text-align: center;margin: 0 auto;}
 #ranking>.head>.bg>div{width: 100%;color: #fff;margin: 0.8rem 0 0 0;font-size: 0.8rem}

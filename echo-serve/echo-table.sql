@@ -104,11 +104,12 @@ CREATE TABLE echo_sign(
 	currenttime BIGINT,
 	dayzerotime BIGINT,
 	dayContinuity int,
+	music_coin decimal(9,2),
 	uid int
 );
 
 insert into echo_sign values(
-	null,0,123,123,0,1
+	null,0,123,123,0,0.00,1
 );
 
 

@@ -35,8 +35,8 @@
         <div class="redeem">
           <div>
             <p>兑换码</p>
-            <p>iNF5-XV1GH-ABKsN</p>
-            <p>复制</p>
+            <p >iNF5-XV1GH-ABKsN</p>
+            <p @click="copy">复制</p>
           </div>
         </div>
 
@@ -51,11 +51,11 @@
               <img src="../../public/img/task/v2_timeline.png" alt="">
               <p>朋友圈</p>
             </div>
-            <div>
+            <div @click="weixin">
               <img src="../../public/img/task/v2_wechat.png" alt="">
               <p>微信</p>
             </div>
-            <div>
+            <div @click="qq">
               <img src="../../public/img/task/v2_qq.png" alt="">
               <p>qq</p>
             </div>
@@ -63,11 +63,11 @@
               <img src="../../public/img/task/v2_douban.png" alt="">
               <p>豆瓣</p>
             </div>
-            <div>
+            <div @click="weibo">
               <img src="../../public/img/task/v2_sina.png" alt="">
               <p>微博</p>
             </div>
-            <div>
+            <div @click="QQspace">
               <img src="../../public/img/task/v2_qzone.png" alt="">
               <p>QQ空间</p>
             </div>
@@ -103,6 +103,23 @@ export default {
   methods: {
     histiry(){
       window.history.go(-1)
+    },
+    qq(){
+      window.location.href="mqqwpa://"
+    },
+    weixin(){
+      window.location.href="weixin://"
+    },
+    weibo(){
+      window.location.href="weibo://";
+    },
+    QQspace(){
+      window.location.href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey"
+    },
+    copy(event){
+      var str="iNF5-XV1GH-ABKsN";
+      document.execCommand(str,true,"Copy")
+    
     }
   },
 }
