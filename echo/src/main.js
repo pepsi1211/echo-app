@@ -5,8 +5,6 @@ import store from './store'
 import headerv1 from './components/header/Header.vue'
 import headerv2 from './components/header/AudioHeader.vue'
 import tabbar from './components/tabbar/Tabbar.vue'
-
-
 Vue.component("echo-headerv1",headerv1);
 Vue.component("echo-headerv2",headerv2);
 Vue.component("echo-tabbar",tabbar);
