@@ -5,13 +5,34 @@
       <i class="tit-icon"></i>
       <span>9月份排行总榜</span>
     </div>
-    <!--  -->
+    <!-- 回声 -->
+    <banner :color="color">
+      <span>回声</span>
+    </banner>
+    <!-- 榜单 -->
+    <public :list="list"></public>
   </div>
 </template>
 <script>
+// 引入banner
+import Banner from './Banner'
+// 引入public
+import Public from './public'
 export default {
   data() {
-   return{}
+   return{
+     color:"#f29da0,#fbacb1",
+     list:[
+       {img:require('../../../public/img/index/mouth.jpg'),text:"echo回声",textIcon:require('../../../public/img/index/echo.jpg'),title:"我和我的祖国(钢琴独奏版)-JI LIU(刘骥)"
+       },
+       {img:require('../../../public/img/index/mouth.jpg'),text:"echo回声",
+       textIcon:require('../../../public/img/index/echo.jpg'),title:"我和我的祖国(钢琴独奏版)-JI LIU(刘骥)"
+       },
+       {img:require('../../../public/img/index/mouth.jpg'),text:"echo回声",
+       textIcon:require('../../../public/img/index/echo.jpg'),title:"我和我的祖国(钢琴独奏版)-JI LIU(刘骥)"
+       },
+     ]
+   }
   },
   methods: {
     
@@ -20,7 +41,8 @@ export default {
     
   },
   components: {
-    
+    "banner": Banner,
+    "public": Public
   },
   props: {
     
