@@ -48,10 +48,7 @@ app.use(express.static("./public"));
 app.post("/login",(req,res)=>{
   // 获取前台得到的数据
   var phone = req.body.phone;
-<<<<<<< HEAD
-=======
   // console.log(req.body);
->>>>>>> lrl
   var uname = "用户"+Math.floor(Math.random()*999);
   console.log(uname);
   pool.query("select uid,avatar from echo_user where phone = ? ",[phone],(err,result)=>{
@@ -59,34 +56,31 @@ app.post("/login",(req,res)=>{
       // 获取执行结果 判断查询是否成功result.length
       console.log(result);
     if(result.length==0){
-      res.send({code:-1,msg:"查找不到该手机号码,将进行注册插入数据"});
       // 此时判断为新用户,进行注册操作
       pool.query("insert into echo_user values(?,?,?,?,?,?,?,?,?,?,?,?)",[null,uname,null,phone,"http://127.0.0.1:5050/img/avatar/echo.png",null,null,null,null,0,0,0],(err,result)=>{
-<<<<<<< HEAD
-=======
         if(err) throw err
->>>>>>> lrl
         if(result.affectedRows>0){
           res.send({code:2,msg:"注册成功"});
-          pool.query("select uid from echo_user where phone = ?",[],(err,result)=>{
+          pool.query("select uid from echo_user where phone = ?",[phone],(err,result)=>{
+            if (err) throw err;
             if(result.length>0){
-              var uid = result.uid;
+              var uid = result[0].uid;
               var pay_time = Math.floor(Date.now()/1000);
-              console.log(uid);
-              pool.query("insert into from echo_wallet set ?",[uid,20,200,pay_time],(err,result)=>{
+              console.log(pay_time);
+              pool.query("insert into echo_wallet values(?,?,?,?)",[uid,20,200,pay_time],(err,result)=>{
+                if (err) throw err;
                 if(result.affectedRows>0){
-                  res.send({code:3,msg1:"配备钱包数据,初始体验音乐币成功",msg2:"登录成功"})
                   req.session.uid = uid;
                 }else{
-                  res.send({code:-3,msg:"插入数据失败,未知原因"})
+                  console.log("code:-3,msg:'插入数据失败,未知原因'");
                 }
               })
             }else{
-              res.send({msg:"查询失败"})
+              console.log("查询失败")
             }
           })
         }else{
-          res.send({code:-2,msg:"注册失败,未知原因"});
+          console.log("注册失败,未知原因")
         }
       });
     }else{
