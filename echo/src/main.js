@@ -41,11 +41,7 @@ VueTouch.config.swipe = {
 //引入axios模块
 import axios from "axios"
 //设置服务器基础路径
-<<<<<<< HEAD
-axios.defaults.baseURL="http://127.0.0.1:8080/"
-=======
 axios.defaults.baseURL="http://127.0.0.1:5050/"
->>>>>>> lrl
 //设置保存session信息
 axios.defaults.withCredentials=true;
 //注册axios

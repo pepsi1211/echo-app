@@ -123,11 +123,9 @@ export default {
             for(var i=0;i<4;i++){
                 var index=Math.floor(Math.random()*10)
                 rancode+=randoms[index]
-                rancode.substring(0,4)
+                rancode = rancode.substring(0,4)
             }
             console.log(rancode)
-            localStorage.setItem("rc",rancode)
-            var rc=localStorage.getItem("rc")
         },
     
     },

@@ -75,10 +75,6 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> lrl
 </template>
 <script>
 export default {

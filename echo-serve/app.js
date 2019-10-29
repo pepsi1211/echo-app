@@ -3,6 +3,10 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
+const crypto = require("crypto");
+const request = require("request");
+const bodyParser = require('body-parser');
+const sender = require('./SmsSender.js')
 
 //创建连接池
 var pool = mysql.createPool({
@@ -35,9 +39,9 @@ app.use(session({
 
 app.listen(5050);
 
-// app.use(bodyParser.urlencoded({
-//   extended:false
-// }))
+app.use(bodyParser.urlencoded({
+  extended:false
+}))
 
 app.use(express.static("./public"));
 
@@ -137,3 +141,19 @@ app.get("/getHotChannel",(req,res)=>{
 // 6.响应签到
 
 
+
+
+
+
+// 后台接入腾讯短信服务接口
+sender.config.sdkappid = 1400278193;
+sender.config.appkey = '05f8e469cb020ac14c44d85513fb9e98';
+
+var phoneNumbers = ['16620654352'];
+
+sender.singleSmsSendWithParam('86', phoneNumbers[0], 454808, ['744922','2'], '深圳民治龙舟队', '', '', function (data) {
+  var ret = JSON.parse(data);
+  if (0 != ret.result) {
+      console.log(ret);
+  }
+});
