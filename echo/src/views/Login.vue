@@ -128,12 +128,6 @@ export default {
             // var rancode="";
             for(var i=0;i<4;i++){
                 var index=Math.floor(Math.random()*10)
-<<<<<<< HEAD
-                rancode+=randoms[index]
-                rancode = rancode.substring(0,4)
-            }
-            console.log(rancode)
-=======
                 this.rancode+=randoms[index]
                 //截取前四位字符串
                 this.rancode=this.rancode.substring(0,4)
@@ -141,7 +135,6 @@ export default {
                 console.log(this.rancode)
             // localStorage.setItem("rc",rancode)
             // var rc=localStorage.getItem("rc")
->>>>>>> lrl
         },
     
     },

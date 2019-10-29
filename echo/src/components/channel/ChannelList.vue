@@ -13,11 +13,13 @@
     <v-touch @panstart="panstart" @panmove="panmove" @panend="panend" >
       <ul style="overflow:hidden;" :style="marginLeft">
           <transition name="tag" v-for="(item,i) of list" :key="i" >
-           <li @click="clickTag(i)" :data-active="i">
-          <router-link to="" :class="active==i?'active':''">
-            {{item}}
-          </router-link>
-        </li>
+           
+              <li @click="clickTag(i)" :data-active="i">
+              <router-link to="" :class="active==i?'active':''">
+              {{item}}
+            </router-link>
+            </li>
+            
         </transition>
       </ul>
     </v-touch>
@@ -39,6 +41,7 @@ import ChannelTake from './channel/Channel-take'
 import ChannelHot from './channel/Channel-hot'
 // 3.引入最新
 import ChannelNew from './channel/Channel-new'
+
 export default {
   data() {
    return{
@@ -47,10 +50,15 @@ export default {
      move:0,
      marginLeft:{marginLeft:0},
     // 保存当前访问组件
-    componentId:["channel-take","channel-hot","channel-new"]
+    componentId:["channel-take","channel-hot","channel-new"],
+    
    }
   },
   methods: {
+    // 切换菜单
+    changeTan(i){
+      this.curIndex = i;
+    },
     clickTag(i){
       // 改变样式
       this.active = i;
@@ -94,7 +102,8 @@ export default {
     "channel-take":ChannelTake,
     "channel-hot": ChannelHot,
     "channel-new": ChannelNew,
-    "nav-bar": NavBar
+    "nav-bar": NavBar,
+    
   },
   created() {
   

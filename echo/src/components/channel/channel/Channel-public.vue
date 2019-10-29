@@ -2,7 +2,7 @@
   <div>
     
     <!-- 列表 -->
-    <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
+    <mescroll-vue ref="mescroll" :down="mescrollDown">
     <!-- 频道 -->
     <axn-text>139</axn-text>
     <ul class="channel-ul">
@@ -41,15 +41,11 @@ export default {
     img:require('../../../../public/img/index/pull_refresh_anim.gif'),
      mescroll:null,   // mescroll实例对象
      mescrollDown:{
-       htmlContent:`<img src="http://127.0.0.1:5050/img/channel/pull_refresh_anim.gif" style="width:210px;">`  // 下拉刷新的动画
-     }, // 下拉刷新的配置()
-     mescrollUp: {  // 上拉刷新的配置
-       callback: this.upCallback,
-      //  use: false,  // 不启用上拉刷新
-      isLock:true,  // 锁定上拉刷新
-      htmlLoading:"",
-      
-     },
+       htmlContent:`<img src="http://127.0.0.1:5050/img/channel/pull_refresh_anim.gif" style="width:210px;">`,  // 下拉刷新的动画
+       callback: this.downCallback,
+       autoShowLoading:true
+       
+     }, 
      dataList:[]  // 列表数据
    }
   },
@@ -65,15 +61,10 @@ export default {
       }
     },
     // mescroll组件初始化的回调，可获取到mescroll对象
-    mescrollInit(page,mescroll) {
-      this.mescroll = mescroll;  // 如果this.mescroll对象没有使用到，则可以不写
-    },
-    // 上拉回调 
-    upCallback(page,mescroll) {
+    downCallback(mescroll){
       setTimeout(()=>{
-        mescroll.endErr();
+        mescroll.endSuccess();
       },800)
-      
     }
   },
   watch: {
