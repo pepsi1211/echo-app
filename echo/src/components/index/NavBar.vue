@@ -1,5 +1,5 @@
 <template>
-<div class="out">
+<div>
   <div class="container">
     <!-- 头部导航栏 -->
     <!-- 左 中 右 -->
@@ -16,12 +16,11 @@
     <slot name="space" class="space"></slot>
   </div>
   <!-- 白线 -->
-  <line-division></line-division>
+  <div class="line"></div>
 </div> 
 </template>
  
 <script>
-import Line from '../index/sublevel/Line'
 export default {
   data() {
    return{}
@@ -35,7 +34,7 @@ export default {
     
   },
   components: {
-    "line-division":Line
+    
   },
   props: {
     
@@ -57,14 +56,7 @@ export default {
   }
 }
 </script>
-<style>
-  /* line */
-  .line{
-    margin :0;
-  }
-</style>
 <style scoped lang='scss'>
-
   // 最外层div
   .container{
     padding: 0 .5rem;
@@ -104,6 +96,7 @@ export default {
         &:nth-child(2){
           background: url(../../../public/img/index/disk.png) no-repeat;
           background-size: contain;
+         
         }
       }
     }
@@ -118,6 +111,11 @@ export default {
     // 空白
     .space{
       width: 3rem;
+    }
+    // line
+    .line{
+      color: #e5e5e5;
+      height: 1px;
     }
   }
 </style>

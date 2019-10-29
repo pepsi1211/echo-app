@@ -1,11 +1,10 @@
 const express = require("express");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const cors = require("cors");
 const session = require("express-session");
 const crypto = require("crypto");
 const request = require("request");
-const bodyParser = require('body-parser');
 const sender = require('./SmsSender.js')
 
 //创建连接池
@@ -45,19 +44,45 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("./public"));
 
-// 1.登录模块功能
-app.get("/login",(req,res)=>{
+// 1.登录/注册 模块功能
+app.post("/login",(req,res)=>{
   // 获取前台得到的数据
-  var phone = req.query.phone;
-  // var upwd = req.query.upwd;
-  console.log(phone);
+  var phone = req.body.phone;
+  // console.log(req.body);
+  var uname = "用户"+Math.floor(Math.random()*999);
+  console.log(uname);
   pool.query("select uid,avatar from echo_user where phone = ? ",[phone],(err,result)=>{
-    // pool.query("select uid,avatar from echo_user where phone = ? and upwd = md5(?)",[phone,upwd],(err,result)=>{
-      if(err) throw err;
-      // 获取执行结果 判断查询是否成功result.length\
+    if(err) throw err;
+      // 获取执行结果 判断查询是否成功result.length
       console.log(result);
     if(result.length==0){
-      res.send({code:-1,msg:"用户名或密码有误"})
+      res.send({code:-1,msg:"查找不到该手机号码,将进行注册插入数据"});
+      // 此时判断为新用户,进行注册操作
+      pool.query("insert into echo_user values(?,?,?,?,?,?,?,?,?,?,?,?)",[null,uname,null,phone,"http://127.0.0.1:5050/img/avatar/echo.png",null,null,null,null,0,0,0],(err,result)=>{
+        if(err) throw err
+        if(result.affectedRows>0){
+          res.send({code:2,msg:"注册成功"});
+          pool.query("select uid from echo_user where phone = ?",[],(err,result)=>{
+            if(result.length>0){
+              var uid = result.uid;
+              var pay_time = Math.floor(Date.now()/1000);
+              console.log(uid);
+              pool.query("insert into from echo_wallet set ?",[uid,20,200,pay_time],(err,result)=>{
+                if(result.affectedRows>0){
+                  res.send({code:3,msg1:"配备钱包数据,初始体验音乐币成功",msg2:"登录成功"})
+                  req.session.uid = uid;
+                }else{
+                  res.send({code:-3,msg:"插入数据失败,未知原因"})
+                }
+              })
+            }else{
+              res.send({msg:"查询失败"})
+            }
+          })
+        }else{
+          res.send({code:-2,msg:"注册失败,未知原因"});
+        }
+      });
     }else{
       // 将用户的id保存在session对象中
       //result数据格式将会是[{id:1}]
@@ -68,7 +93,40 @@ app.get("/login",(req,res)=>{
   })
 });
 
-//2.注册模块功能
+// 点击发送验证码,后台接入腾讯短信服务接口
+app.get("/sendSms",(req,res)=>{
+  // 获取前台输入的手机号
+  var phoneNumbers = [req.query.phone];
+  // 这是sdkappid和appkey
+  sender.config.sdkappid = 1400278193;
+  sender.config.appkey = '05f8e469cb020ac14c44d85513fb9e98';
+
+  /**
+  * 带模板单发短信接口
+  * @param {string} nationCode 国家码，如果中国 86
+  * @param {string} phoneNumber 手机号
+  * @param {number} templId 短信模板参数，如不清楚，请在 https:/console.qcloud.com/sms/smsContent 查看
+  * @param {array} params 模板参数数组，元素类型为 {string}，元素个数不要超过模板参数个数
+  * @param {string} sign 短信签名
+  * @param {string} extend 扩展字段，如无需要请填空字符串
+  * @param {string} ext 此字段腾讯云后台服务器会按原样在应答中
+  * @param {function} cb 异步结果回调函数
+  */
+  var rand = Math.floor(Math.random()*9999);
+  if(rand<1000){
+    rand += ""+(Math.floor(Math.random()*10))
+  }
+  console.log(rand);
+   // 调用发送的函数
+  sender.singleSmsSendWithParam('86', phoneNumbers[0], 454808, [`${rand}`,'2'], '深圳民治龙舟队', '', '', function (data) {
+    var ret = JSON.parse(data);
+    if (0 != ret.result) {
+        console.log(ret);
+    }
+  });
+  // 将随机数返回前台
+  res.send({code:1,data:rand});
+});
 
 //3.请求主页
 app.get("/getindex",(req,res)=>{
@@ -146,15 +204,3 @@ app.get("/getHotChannel",(req,res)=>{
 
 
 
-// 后台接入腾讯短信服务接口
-sender.config.sdkappid = 1400278193;
-sender.config.appkey = '05f8e469cb020ac14c44d85513fb9e98';
-
-var phoneNumbers = ['16620654352'];
-
-sender.singleSmsSendWithParam('86', phoneNumbers[0], 454808, ['744922','2'], '深圳民治龙舟队', '', '', function (data) {
-  var ret = JSON.parse(data);
-  if (0 != ret.result) {
-      console.log(ret);
-  }
-});

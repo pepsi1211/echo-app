@@ -68,43 +68,61 @@
 </template>
 
 <script>
+import qs from 'qs'
 import axios from "axios"
 export default {
     data(){
         return {
+            //用户输入手机号
             iptphone:"",
+            //按钮禁用
             sendAuthcode:false,
+            //时间
             auth_time:30,
             rancode:"",
             varifycode:"",
             pnum:"",
-            rancode:""
+            t:"",
+            canclick:true
         }
     },
     methods:{
         //判断手机号
         send(){
-            //在函数内声明的变量不能被外部访问，要在data中声明
-            this.pnum=this.iptphone;
-            var preg=/^1[3-8][0-9]{9}$/; 
-            if(!this.pnum){//如果为空
-                this.$messagebox("提示","手机不能为空");
-                return;
-            }else if(!preg.test(this.pnum)){
-                //如果手机格式不正确
-                this.$messagebox("提示","请输入正确的手机号");
-                return;
-            }else{
-                //调用定时器
-                this.varify(); 
-                //随机数
-                this.ran()
-            }
+            if(this.canclick){
+                this.canclick=false
+                //在函数内声明的变量不能被外部访问，要在data中声明
+                this.pnum=this.iptphone;
+                var preg=/^1[3-8][0-9]{9}$/; 
+                if(!this.pnum){//如果为空
+                    this.$messagebox("提示","手机不能为空");
+                    return;
+                }else if(!preg.test(this.pnum)){
+                    //如果手机格式不正确
+                    this.$messagebox("提示","请输入正确的手机号");
+                    return;
+                }else{
+                    // 调用定时器
+                    this.varify(); 
+                    setTimeout(()=>{
+                        this.canclick=true;
+                    },1000)
+                    // 随机数
+                    // this.ran()
+                    // axios
+                    var url="sendSms"
+                    var obj={phone:this.pnum}
+                    this.axios.get(url,{params:obj}).then(res=>{
+                        this.rancode=res.data.data
+                        console.log(this.rancode)
+                        console.log(res.data)
+                    })
+                }
+            }            
         },
-        //判断验证码
+        //设置周期定时器
         varify:function(){
-            //设置周期定时器
-            var t=setInterval(()=>{
+            this.t=setInterval(()=>{
                 this.auth_time--;
                 this.sendAuthcode=true;
                 if(this.auth_time<=0){
@@ -113,55 +131,32 @@ export default {
                     //将按钮的disable设置为false
                     this.sendAuthcode=false;
                     //清除定时器
-                    clearInterval(t)
+                    clearInterval(this.t)
                     //将页面上的发送改为重新发送
-                    if(res.innerHTML!=null){
-                        var resend=document.getElementById('resend')
-                        resend.innerHTML="重新发送"
-                    }
+                    var resend=document.getElementById('resend')
+                    resend.innerHTML="重新发送"
                 }
             },1000)
         },
-        //随机数
-        ran:function(){
-            var randoms=[0,1,2,3,4,5,6,7,8,9]
-            // var rancode="";
-            for(var i=0;i<4;i++){
-                var index=Math.floor(Math.random()*10)
-<<<<<<< HEAD
-                rancode+=randoms[index]
-                rancode = rancode.substring(0,4)
-            }
-            console.log(rancode)
-=======
-                this.rancode+=randoms[index]
-                //截取前四位字符串
-                this.rancode=this.rancode.substring(0,4)
-            }
-                console.log(this.rancode)
-            // localStorage.setItem("rc",rancode)
-            // var rc=localStorage.getItem("rc")
->>>>>>> lrl
-        },
-    
     },
     watch:{
-        varifycode(){
-            console.log(this.rancode,this.varifycode)
+        varifycode(){//输入框
+            // console.log(this.rancode,this.varifycode)
             if(this.varifycode==this.rancode){
                 // 发送axios请求
-                var url="login"
-                console.log(this.pnum);
-                var obj={phone:this.pnum}
-                this.axios.get(url,{params:obj}).then(res=>{
-                    console.log(res.data)
+                var url="/login"
+                var obj=this.pnum;
+                this.axios.post(url,qs.stringify({phone:obj})).then(res=>{
+                    console.log(res)
                 })
                 // console.log("登录成功")
+                clearInterval(this.t)
                 this.$router.push("/index")
             }
-            var vc="";
+            var vc;
             vc+=this.varifycode
             if(vc.length==4){
+                vc=Number(vc)
                 if(vc!==this.rancode){
                     this.$messagebox("提示","验证码不正确")
                     return;
