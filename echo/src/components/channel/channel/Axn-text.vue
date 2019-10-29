@@ -40,7 +40,7 @@ export default {
 <style scoped lang='scss'>
   // 最外层div
   .container{
-    padding: 14px 0 8px 0;
+    padding: 10px 0 20px 0;
   }
   p{
     color: #adadad;

@@ -48,6 +48,10 @@ app.use(express.static("./public"));
 app.post("/login",(req,res)=>{
   // 获取前台得到的数据
   var phone = req.body.phone;
+<<<<<<< HEAD
+=======
+  // console.log(req.body);
+>>>>>>> lrl
   var uname = "用户"+Math.floor(Math.random()*999);
   console.log(uname);
   pool.query("select uid,avatar from echo_user where phone = ? ",[phone],(err,result)=>{
@@ -58,6 +62,10 @@ app.post("/login",(req,res)=>{
       res.send({code:-1,msg:"查找不到该手机号码,将进行注册插入数据"});
       // 此时判断为新用户,进行注册操作
       pool.query("insert into echo_user values(?,?,?,?,?,?,?,?,?,?,?,?)",[null,uname,null,phone,"http://127.0.0.1:5050/img/avatar/echo.png",null,null,null,null,0,0,0],(err,result)=>{
+<<<<<<< HEAD
+=======
+        if(err) throw err
+>>>>>>> lrl
         if(result.affectedRows>0){
           res.send({code:2,msg:"注册成功"});
           pool.query("select uid from echo_user where phone = ?",[],(err,result)=>{

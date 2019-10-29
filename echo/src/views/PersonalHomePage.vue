@@ -19,10 +19,14 @@
             </div>
             <!-- 图片 -->
             <div class="mypic">
-                <img src="../../public/img/PersonalPage/mypic.jpg">
+                <img @click="addPic" src="../../public/img/PersonalPage/mypic.jpg">
             </div>
+            <mt-actionsheet
+        :actions="pic1"
+        v-model="sheetVisiblepic1">
+        </mt-actionsheet>
             <div class="mypicp">
-                <img src="../../public/img/PersonalPage/mypic.jpg">
+                <img @click="addPic" src="../../public/img/PersonalPage/mypic.jpg">
                 <span>吃面忘了要馍</span>
             </div>
         </div>
@@ -87,8 +91,13 @@ export default {
                 {name:"编辑资料",method:this.getData},
                 {name:"分享",method:this.getShare}
             ],
+            pic1:[
+                {name:"添加封面图片",method:""},
+                {name:"添加封面影月音乐",method:""}
+            ],
             sheetVisible1:false,
-            sheetVisible2:false
+            sheetVisible2:false,
+            sheetVisiblepic1:false,
         }
     },
     methods: {
@@ -100,6 +109,9 @@ export default {
         },
         edit(){
             this.sheetVisible2=true
+        },
+        addPic(){
+            this.sheetVisiblepic1=true
         }
     },
 }
