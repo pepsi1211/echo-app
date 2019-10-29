@@ -77,69 +77,92 @@ export default {
             auth_time:30,
             rancode:"",
             varifycode:"",
+            pnum:"",
+            rancode:""
         }
     },
     methods:{
         //判断手机号
         send(){
-            var pnum=this.iptphone;
+            //在函数内声明的变量不能被外部访问，要在data中声明
+            this.pnum=this.iptphone;
             var preg=/^1[3-8][0-9]{9}$/; 
-            if(!pnum){//如果为空
+            if(!this.pnum){//如果为空
                 this.$messagebox("提示","手机不能为空");
                 return;
-            }else if(!preg.test(pnum)){
+            }else if(!preg.test(this.pnum)){
                 //如果手机格式不正确
                 this.$messagebox("提示","请输入正确的手机号");
                 return;
             }else{
+                //调用定时器
                 this.varify(); 
+                //随机数
                 this.ran()
-                // 发送axios请求
-                var url="login"
-                var obj={phone:pnum}
-                this.axios.get(url,{params:obj}).then(res=>{
-                    console.log(res.data)
-                })
             }
         },
         //判断验证码
         varify:function(){
+            //设置周期定时器
             var t=setInterval(()=>{
                 this.auth_time--;
                 this.sendAuthcode=true;
                 if(this.auth_time<=0){
+                    //刷新定时器
                     this.auth_time=30
+                    //将按钮的disable设置为false
                     this.sendAuthcode=false;
+                    //清除定时器
                     clearInterval(t)
-                    var resend=document.getElementById('resend')
-                    resend.innerHTML="重新发送"
+                    //将页面上的发送改为重新发送
+                    if(res.innerHTML!=null){
+                        var resend=document.getElementById('resend')
+                        resend.innerHTML="重新发送"
+                    }
                 }
             },1000)
         },
         //随机数
         ran:function(){
             var randoms=[0,1,2,3,4,5,6,7,8,9]
-            var rancode="";
+            // var rancode="";
             for(var i=0;i<4;i++){
                 var index=Math.floor(Math.random()*10)
+<<<<<<< HEAD
                 rancode+=randoms[index]
                 rancode = rancode.substring(0,4)
             }
             console.log(rancode)
+=======
+                this.rancode+=randoms[index]
+                //截取前四位字符串
+                this.rancode=this.rancode.substring(0,4)
+            }
+                console.log(this.rancode)
+            // localStorage.setItem("rc",rancode)
+            // var rc=localStorage.getItem("rc")
+>>>>>>> lrl
         },
     
     },
     watch:{
         varifycode(){
-            console.log(localStorage.rc,this.varifycode)
-            if(this.varifycode==localStorage.rc){
-                this.$messagebox("提示","登录成功")
-
+            console.log(this.rancode,this.varifycode)
+            if(this.varifycode==this.rancode){
+                // 发送axios请求
+                var url="login"
+                console.log(this.pnum);
+                var obj={phone:this.pnum}
+                this.axios.get(url,{params:obj}).then(res=>{
+                    console.log(res.data)
+                })
+                // console.log("登录成功")
+                this.$router.push("/index")
             }
             var vc="";
             vc+=this.varifycode
             if(vc.length==4){
-                if(vc!==localStorage.rc){
+                if(vc!==this.rancode){
                     this.$messagebox("提示","验证码不正确")
                     return;
                 }
