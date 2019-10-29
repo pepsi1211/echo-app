@@ -11,7 +11,6 @@ use echo_app;
 create table echo_user(
 	uid int primary key auto_increment,
 	uname varchar(32),
-	upwd varchar(32),
 	email varchar(64),
 	phone varchar(16) not null unique,
 	avatar varchar(255),
@@ -21,7 +20,7 @@ create table echo_user(
 	introduction varchar(100),
 	following int,#关注个数
 	followed int,#被关注,
-	friend int   #友个数
+	friend int   #好友个数
 );
 #收藏列表
 create table echo_love(
@@ -153,7 +152,7 @@ INSERT INTO echo_famous VALUES(null,"大张伟","http://127.0.0.1:5050/img/famou
 
 
 #测试用户
-insert into echo_user values(null,"安静的稻草人",md5('123456'),"15575446613@163.com","15575446613","http://127.0.0.1:5050/img/avatar/安静的稻草人.jpg","缅甸","1","狮子座",null,0,0,0);
+insert into echo_user values(1,"安静的稻草人","15575446613@163.com","15575446613","http://127.0.0.1:5050/img/avatar/安静的稻草人.jpg","缅甸","1","狮子座",null,0,0,0);
 
 #测试用户的钱包数据
 insert INTO echo_wallet VALUES(1,66.23,662.3,null);
