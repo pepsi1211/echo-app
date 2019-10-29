@@ -5,7 +5,9 @@
         </div>
         <span>{{midMsg}}</span>
         <div class="headRight">
-            <img :src="rightFimg">
+            <router-link to="/PersonalSearch">
+                <img :src="rightFimg">
+            </router-link>
             <img :src="rightSimg">
         </div>
     </div>
@@ -24,7 +26,7 @@ export default {
 <style scoped>
     .headPage{
         width: 100%;
-        height: 30px;
+        height: 28px;
         display: flex;
         position: fixed;
         top:0;
@@ -41,11 +43,11 @@ export default {
         margin-top: 5px;
     }
     .headPage .headLeft{
-        height: 30px;
+        height: 28px;
         width: 25%;
     }
     .headPage .headLeft img{
-        height: 30px;
+        height: 28px;
         display: flex;
         flex-direction: column;
     }
@@ -53,10 +55,10 @@ export default {
         display: flex;
         justify-content: space-around;
         width: 25%;
-        height: 30px;
+        height: 28px;
         padding-right: 7px;
     }
     .headPage .headRight img{
-        height: 30px;
+        height: 28px;
     }
 </style>

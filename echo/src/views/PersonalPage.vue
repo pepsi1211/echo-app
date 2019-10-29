@@ -12,23 +12,23 @@
             <div class="parent">
                 <div class="pLeft">
                     <div class="psize">
+                        <router-link to="/PersonalHomePage">
                         <img :src="plist.bgp">
+                        </router-link>
                     </div>
                     <ul class="leftInfo">
                         <li>
-                            <router-link to="" class="leftInfo1">{{plist.name}}</router-link>
+                            <router-link to="/PersonalHomePage" class="leftInfo1">{{plist.name}}</router-link>
                             <p class="leftInfo2">{{plist.num}}&nbsp;人访问过我的主页</p>
                             <p class="leftInfo3">echo ID:&nbsp;{{plist.id}}</p>  
                         </li>
                     </ul>                   
                 </div>
                 <div class="pRight">
-                    <div>
+                    <router-link to="/PersonalHomePage">
                         <span>个人主页</span>
-                    </div>
-                    <div>
                         <img src="../../public/img/PersonalPage/gray_left_arrow.png">
-                    </div>
+                    </router-link>
                 </div>
             </div>
             <!-- 喜欢关注 -->
@@ -81,8 +81,10 @@
                     </div>
                 </li>
             </ul>
+            <!-- 灰色分割线 -->
+            <div class="line"></div>
             <!-- 测试人格 -->
-            <Index-test></Index-test>
+            <PersonalTest :testPic="require('../../public/img/PersonalPage/test.png')"></PersonalTest>
             <!-- 灰色分割线 -->
             <div class="line"></div>
             <!-- 功能1 -->
@@ -219,7 +221,7 @@
 <script>
 //1.引入子组件
 import PersonalTb from "./PersonalTb"
-import Indextest from '../components/index/Index_test'
+import PersonalTest from './PersonalTest'
 import funs from "../assets/js/fun"
 //2.注册子组件
 export default {
@@ -247,21 +249,21 @@ export default {
         }
     },
     components:{
-        PersonalTb,
-        Indextest
+        PersonalTest,
+        PersonalTb
     },
     methods: {
         change(event){
-            if(event.target.nodeName=="LI"){
+            if(event.target.nodeName=="DIV"){
                 this.c=true;
             }
             console.log(event.target)
         }
     },
     created(){
-        funs.getPersonalPage(result=>{
-            console.log(result)
-        })
+        // funs.getPersonalPage(result=>{
+        //     console.log(result)
+        // })
     }
 }
 </script>
@@ -280,8 +282,8 @@ export default {
         width:100%;
         display: flex;
         justify-content: space-between;
-        background-color: #ddd;
-        margin-top:50px;
+        background-color: #e4e4e4;
+        margin-top:42px;
         padding: 15px;
     }
     .parent .pLeft{
@@ -313,18 +315,31 @@ export default {
         border:1px solid #666;
     }
     .parent .pRight{
+        height: 20px;
         width: 23%;
         display: flex;
         margin-top: 7px;
+        align-items: center;
+        margin-right: 10px;
     }
-    .parent .pRight img{
+    .parent .pRight a{
+        display: flex;
+        align-items: center;
+        color:#2c3e50;
+    }
+    .parent .pRight a img{
         height: 15px;
         margin-left: 5px;
+        margin-top: -2px;
     }
     .like{
         display: flex;
         justify-content: space-around;
         color:#000;
+    }
+    .like li{
+        width: 100%;
+        height:100%;
     }
     .likecolor{
         color:#666;
@@ -332,7 +347,7 @@ export default {
     .line{
         width: 100%;
         height: 10px;
-        background: #ccc;
+        background: #e8e8e8;
     }
     /* 制作 */
     .make{
@@ -394,7 +409,7 @@ export default {
         width: 8px;
     }
     .switch{
-        background:#ccc;
+        background:#e8e8e8;
         padding: 20px;
     }
     .switch div{
@@ -405,7 +420,7 @@ export default {
         padding: 10px;
         font-size: 14px;
     }
-    .a{
+    a{
         text-decoration: none;
     }
 </style>

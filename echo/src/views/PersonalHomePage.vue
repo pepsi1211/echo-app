@@ -4,10 +4,16 @@
             <!-- 头 -->
             <div class="top">
                 <div class="topp">
-                    <img src="../../public/img/PersonalPage/back_white.png">     
+                    <router-link to="/PersonalPage">
+                        <img src="../../public/img/PersonalPage/back_white.png">     
+                    </router-link>
                 </div>
                 <div class="topRight">
-                    <img class="topRight1" src="../../public/img/PersonalPage/ic_action_more_white.png">
+                    <img @click="edit" class="topRight1" src="../../public/img/PersonalPage/ic_action_more_white.png">
+                    <mt-actionsheet
+                    :actions="editData"
+                    v-model="sheetVisible2">
+                    </mt-actionsheet>
                     <img class="topRight2" src="../../public/img/PersonalPage/ic_music_details_disk_white.png">
                 </div>
             </div>
@@ -54,21 +60,62 @@
                 </li>
             </ul>
             <div class="compile">
-                <span>编辑资料</span>
+                <router-link to="/PersonalSetting">
+                    <span>编辑资料</span>
+                </router-link>
             </div>
         </div>
+        <!-- 像鸡 -->
+        <div class="photo" >
+            <img src="../../public/img/PersonalPage/ic_take_photo_green.png" @click="selectPic">
+        </div>
+        <mt-actionsheet
+        :actions="data"
+        v-model="sheetVisible1">
+        </mt-actionsheet>
     </div>
 </template>
 <script>
 export default {
     data(){
         return {
-
+            data:[
+                {name:"拍照",method:this.getCamera},
+                {name:"从相册中选择",method:this.getAlbum}
+            ],
+            editData:[
+                {name:"编辑资料",method:this.getData},
+                {name:"分享",method:this.getShare}
+            ],
+            sheetVisible1:false,
+            sheetVisible2:false
         }
-    }
+    },
+    methods: {
+        getData(){
+          this.$router.push("/PersonalSetting")  
+        },
+        selectPic(){
+            this.sheetVisible1=true
+        },
+        edit(){
+            this.sheetVisible2=true
+        }
+    },
 }
 </script>
 <style scoped>
+    .photo{
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+    }
+    .photo img{
+        width:40px;
+        margin-left: 8px;
+        padding: 18px;
+        background: #e8e8e8;
+    }
     .compile{
         width:70px;
         height:30px;
@@ -78,7 +125,7 @@ export default {
         border-top-right-radius: 14px;
         border-bottom-left-radius: 14px;
         border-bottom-right-radius: 14px;
-        background: rgb(224, 223, 223);
+        background: #e8e8e8;
         margin-top: -12px;
         margin-right:15px;
     }
@@ -204,5 +251,8 @@ export default {
         background: transparent;
         border:0;
         outline: none;
+    }
+    a{
+        color:#666;
     }
 </style>

@@ -6,6 +6,10 @@ import PersonalPage from './views/PersonalPage'
 import PersonalTb from './views/PersonalTb'
 import Myfavorite from './views/Myfavorite'
 import PersonalHomePage from './views/PersonalHomePage'
+import PersonalTest from './views/PersonalTest'
+import PersonalSearch from './views/PersonalSearch'
+import PersonalSetting from './views/PersonalSetting'
+import PersonalIntroduce from './views/PersonalIntroduce'
 import Task from './views/Task.vue'
 import TaskPurchase from './views/Task-purchase.vue'
 import TaskInvitation from './views/Task-Invitation.vue'
@@ -33,6 +37,10 @@ export default new Router({
     {path:'/PersonalTb',component:PersonalTb},
     {path:'/Myfavorite',component:Myfavorite},
     {path:'/PersonalHomePage',component:PersonalHomePage},
+    {path:'/PersonalTest',component:PersonalTest},
+    {path:'/PersonalSearch',component:PersonalSearch},
+    {path:'/PersonalSetting',component:PersonalSetting},
+    {path:'/PersonalIntroduce',component:PersonalIntroduce},
     {path:'/task',component:Task},
     {path:"/Index",component:Index},
 

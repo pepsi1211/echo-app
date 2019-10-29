@@ -46,12 +46,12 @@ app.get("/login",(req,res)=>{
   // 获取前台得到的数据
   var phone = req.query.phone;
   // var upwd = req.query.upwd;
-  // console.log(phone,upwd);
-  console.log(phone)
+  console.log(phone);
   pool.query("select uid,avatar from echo_user where phone = ? ",[phone],(err,result)=>{
-  // pool.query("select uid,avatar from echo_user where phone = ? and upwd = md5(?)",[phone,upwd],(err,result)=>{
-    if(err) throw err;
-    // 获取执行结果 判断查询是否成功result.length
+    // pool.query("select uid,avatar from echo_user where phone = ? and upwd = md5(?)",[phone,upwd],(err,result)=>{
+      if(err) throw err;
+      // 获取执行结果 判断查询是否成功result.length\
+      console.log(result);
     if(result.length==0){
       res.send({code:-1,msg:"用户名或密码有误"})
     }else{
@@ -59,6 +59,7 @@ app.get("/login",(req,res)=>{
       //result数据格式将会是[{id:1}]
       req.session.uid = result[0].uid;
       res.send({code:1,msg:"登录成功"});
+      console.log(result)
     }
   })
 });
