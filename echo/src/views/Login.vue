@@ -138,6 +138,24 @@ export default {
                 }
             },1000)
         },
+<<<<<<< HEAD
+=======
+        //随机数
+        ran:function(){
+            var randoms=[0,1,2,3,4,5,6,7,8,9]
+            // var rancode="";
+            for(var i=0;i<4;i++){
+                var index=Math.floor(Math.random()*10)
+                this.rancode+=randoms[index]
+                //截取前四位字符串
+                this.rancode=this.rancode.substring(0,4)
+            }
+                console.log(this.rancode)
+            // localStorage.setItem("rc",rancode)
+            // var rc=localStorage.getItem("rc")
+        },
+    
+>>>>>>> lwj
     },
     watch:{
         varifycode(){//输入框

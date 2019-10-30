@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <!-- tabbar -->
-    <echo-tabbar></echo-tabbar>
+    
   </div>
 </template>
 
