@@ -128,51 +128,51 @@ app.get("/sendSms",(req,res)=>{
   res.send({code:1,data:rand});
 });
 
-//3.请求主页
-app.get("/getindex",(req,res)=>{
-  let sid = req.query.sid;
-  // 响应主页每日推荐歌曲
-  pool.query("select sname,song_pic,author from echo_song where sid in(?)",[sid],(err,result)=>{
-    if(err) throw err;
-    if(result.length>0){
-      res.send({code:1,msg:"响应每日推荐歌曲数据",data:result});
-    }else{
-      res.send({code:-1,msg:"失败"});
-    }
-  });
-  // 响应主页歌曲频道
-  let cid = req.query.cid;
-  pool.query("select cname,pic,followed,phrase from echo_channel where cid in(?)",[cid],(err,result)=>{
-    if(err) throw err;
-    if(result.length>0){
-      console.log(result);
-      res.send({code:1,msg:"响应首页频道数据",dataChannel:result});
-      pool.query("select sname,author,song_pic where cid in(?)",[cid],(err,result)=>{
-        if(err) throw err;
-        if(result.length>0){
-          console.log(result);
-          res.send({code:2,msg:"响应首页频道下歌曲数据",dataSong:result});
-        }else{
-          res.send({code:-2,msg:"响应失败"});
-        }
-      });
-    }else{
-      res.send({code:-1,msg:"响应失败"});
-    }
-  });
-  //响应主页的艺人栏
-  let fid = req.query.fid;
-  pool.query("select fname,followed,f_avatar from echo_famous where fid in(?)",[fid],(err,result)=>{
-    if(err) throw err;
-    if(result.length>0){
-      res.send({code:1,msg:"响应主页艺人成功",dataFamous:result});
-    }else{
-      res.send({code:-1,msg:"响应失败"})
-    }
-  });
-});
+//3.主页接口
+// app.get("/getindex",(req,res)=>{
+//   let sid = req.query.sid;
+//   // 主页每日推荐歌曲接口
+//   pool.query("select sname,song_pic,author from echo_song where sid in(?)",[sid],(err,result)=>{
+//     if(err) throw err;
+//     if(result.length>0){
+//       res.send({code:1,msg:"响应每日推荐歌曲数据",data:result});
+//     }else{
+//       res.send({code:-1,msg:"失败"});
+//     }
+//   });
+//   // 主页歌曲频道接口
+//   let cid = req.query.cid;
+//   pool.query("select cname,pic,followed,phrase from echo_channel where cid in(?)",[cid],(err,result)=>{
+//     if(err) throw err;
+//     if(result.length>0){
+//       console.log(result);
+//       res.send({code:1,msg:"响应首页频道数据",dataChannel:result});
+//       pool.query("select sname,author,song_pic where cid in(?)",[cid],(err,result)=>{
+//         if(err) throw err;
+//         if(result.length>0){
+//           console.log(result);
+//           res.send({code:2,msg:"响应首页频道下歌曲数据",dataSong:result});
+//         }else{
+//           res.send({code:-2,msg:"响应失败"});
+//         }
+//       });
+//     }else{
+//       res.send({code:-1,msg:"响应失败"});
+//     }
+//   });
+//   //主页的艺人栏接口
+//   let fid = req.query.fid;
+//   pool.query("select fname,followed,f_avatar from echo_famous where fid in(?)",[fid],(err,result)=>{
+//     if(err) throw err;
+//     if(result.length>0){
+//       res.send({code:1,msg:"响应主页艺人成功",dataFamous:result});
+//     }else{
+//       res.send({code:-1,msg:"响应失败"})
+//     }
+//   });
+// });
 
-// 4.响应任务模块
+// 4.任务模块接口
 app.get("/task",(req,res)=>{
   var uid = req.session.uid;
   pool.query("select music_coin,gold_coin from echo_wallet where uid = ?",[uid],(err,result)=>{
@@ -185,8 +185,8 @@ app.get("/task",(req,res)=>{
   });
 });
 
-// 5.响应频道页
-app.get("/getHotChannel",(req,res)=>{
+// 5.频道页接口
+app.get("/getChannel",(req,res)=>{
   pool.query("select cname,pic,followed from echo_channel",[],(err,result)=>{
     if(err) throw err;
     if(result.length>0){
@@ -199,8 +199,54 @@ app.get("/getHotChannel",(req,res)=>{
 
 // 6.响应签到
 
+// 7."我的"页面接口
+/*  分别查询两张表格
+    第一张表格返回的数据形式为data1:result1
+    **第一张表格为用户名,头像,关注个数,被关注个数
+    第二张表格返回的数据形式为data2:result2
+    **第二章表格为喜欢歌曲的总数
+*/
+app.get("/getMe",(req,res)=>{
+  var uid = req.session.uid;
+  var loveSongTotal = 0;
+  pool.query("select uname,avatar,following,followed from echo_user where uid = ?",[uid],(err,result1)=>{
+    if(err) throw err;
+    console.log(result1)
+    if(result1.length>0){
+      console.log("查询成功")
+      pool.query("select sid from echo_love where uid = ?",[uid],(err,result2)=>{
+        if (err) throw err;
+        loveSongTotal = result2.length;
+        res.send({code:1,msg:"查询成功",data1:result1,data2:result2});
+      })
+    }else{
+      res.send({code:-1,msg:"查询失败,获取不到uid"})
+    }
+  });
+});
 
-
-
-
+// 8.个人主页接口
+app.get("/getPersonPage",(req,res)=>{
+  var uid = req.session.uid;
+  var sid = [];
+  pool.query("select uname,avatar,xz,gender,city,following,followed,friend from echo_user where uid = ?",[uid],(err,result1)=>{
+    if(err) throw err;
+    if(result.length>0){
+      console.log("这步已经查询到了用户名,头像等等...");
+      pool.query("select sid from echo_love where uid = ?",[uid],(err,result2)=>{
+        if(err) throw err;
+        if(result2.length>0){
+          for(var i=0;i<result2.length;i++){
+            sid = result2[i].sid;
+          };
+          pool.query("select song_pic,sname,love",[],(err,result3)=>{})
+        }else{
+          res.send({code:-2,msg:"查询失败"})
+        }
+      })
+    }else{
+      res.send({code:-1,msg:"查询失败,获取uid失败"})
+    }
+  })
+});
 
