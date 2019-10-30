@@ -117,7 +117,7 @@ export default {
       window.location.href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey"
     },
     copy(event){
-      var str="iNF5-XV1GH-ABKsN";
+      
       document.execCommand(str,true,"Copy")
     
     }

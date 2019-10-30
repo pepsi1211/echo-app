@@ -129,7 +129,18 @@ export default {
              if(i==0){this.$router.push("MyTask")}
              else if(i==1){this.$router.push("Taskranking")}
          },
-    }
+         task(){
+             this.axios.get("/task").then(res=>{
+                if(res.data.code==1){}else if(res.data.code==-1){
+                    alert("请登陆");
+                    this.$router.push("/login")
+                }
+             })
+         }
+    },
+    created(){
+        this.task()
+    },
 }
 </script>
 <style scoped>

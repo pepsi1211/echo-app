@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "alipay-sdk": "^3.0.8",
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "mint-ui": "^2.2.13",
