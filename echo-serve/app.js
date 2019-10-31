@@ -299,3 +299,23 @@ app.get("/changesign",(req,res)=>{
   })
 });
 
+// 13.播放器请求
+app.get("/song",(req,res)=>{
+  var  sid = req.query.sid;
+  pool.query("select sname,author,song,lyrics,song_pic,love,share,author_pic,cid from echo_song where sid = ?",[sid],(err,result1)=>{
+    console.log(1);
+    if(err) throw err;
+    if(result1.length>0){
+      var cid = result1[0].cid;
+      pool.query("select cname,pic,song_count,share,followed from echo_channel where cid = ?",[cid],(err,result2)=>{
+        if(err) throw err;
+        if(result2.length>0){
+          res.send({code:2,msg:"查询成功",dataSong:result1,dataChannel:result2});
+        }
+      });
+    }else{
+      res.send({code:-1,msg:"查询失败,没有接收到sid"})
+    }
+  })
+});
+
