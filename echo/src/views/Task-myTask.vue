@@ -12,13 +12,13 @@
                     <svg  width="40" height="40" viewBox="0 0 40 40">
                     <circle id="circle" cx="20" cy="20" r="18"  fill="none" stroke-width="3" stroke="#38b653" style="stroke-dasharray: 0,360"/>
                     </svg>
-                    <div>2</div>
+                    <div>{{sign.dayContinuity}}</div>
                 </div>
 
 
                 <div class="content">
                     <span >签到</span>
-                    <span>连续签到五天获得10金币</span>
+                    <span>连续签到七天获得10金币</span>
                 </div>
                 <div class="right">
                     <span class="sign" @click="Sign">签到</span>
@@ -60,22 +60,123 @@ export default {
                 {left:"0/20",title:"应用市场评分任务",content:"应用市场5星好评",right:"15金币"},
                 {left:"0/14",title:"圆满完成奖励",content:"完成所有的每日任务",right:"5金币"},
             ],
-            complete:{complete:"complete",isNaN:false}
+            complete:{complete:"complete",isNaN:false},
+            sign:[]
         }
     },
     methods: {
         Sign(e){
-            var parent=e.target.parentNode.parentNode.firstChild.firstChild.firstChild;
-            parent.style.cssText="stroke-dasharray: 360,360;";
-            e.target.className="complete";
-            e.target.innerHTML="已签到";
+            let time=new Date();
+            var sameDay=time.getTime();
+            time.setHours(0);   //设置指定当天小时字段
+			 time.setMinutes(0);  //设置指定当天分钟字段
+			 time.setSeconds(0);  //设置指定当天秒钟字段
+             time.setMilliseconds(0);  //设置指定当天毫钟字段
+             time=time.getTime();
+
+
+            var Continuity=parseInt(this.sign.dayContinuity);
+            var Coin=parseFloat(this.sign.music_coin);
+          
+           
+           
+            console.log(this.sign)
+            console.log(time,this.sign.dayzerotime)
+            console.log(Continuity)
+            //console.log(time)
+            //console.log(this.sign.sign_in)
+            //console.log(this.sign.dayzerotime)
+            if(this.sign.sign_in==undefined){
+                this.axios.get("modifySign",{params:{
+                    sign:1,
+                    currenttime:sameDay,
+                    dayzerotime:time,
+                    dayContinuity:1,
+                    coin:Coin+2,
+                    uid:this.sign.uid
+                    }}).then(res=>{
+                    console.log(res);
+                     this.cles();
+                     return
+                })
+            };
+            var topTime=parseInt(this.sign.dayzerotime+86400000);
+            if(time==topTime){
+                this.axios.get("modifySign",{params:{
+                    sign:1,
+                    currenttime:sameDay,   // currenttime  数据库签到时间
+                    dayzerotime:time,     // dayzerotime  数据库签到当天零点
+                    dayContinuity:Continuity+1>7?1:Continuity+1,     // dayContinuity  连续签到
+                    coin:Continuity+1>7?(Coin+10):(Coin+2), 
+                    uid:this.sign.uid
+                    }}).then(res=>{
+                    console.log(res);
+                     this.cles()
+                })
+            }else if(time>topTime){
+                this.axios.get("modifySign",{params:{
+                    sign:1,
+                    currenttime:sameDay,   // currenttime  数据库签到时间
+                    dayzerotime:time,     // dayzerotime  数据库签到当天零点
+                    dayContinuity:1,   // dayContinuity  连续签到
+                    coin:Coin+2,    
+                    uid:this.sign.uid
+                    }}).then(res=>{
+                    console.log(res);
+                     this.cles()
+                })
+            }
         },
          histiry(){
             window.history.go(-1)
         },
-        circles(){
-           
-        }
+
+        //判断进入时任务有没完成了
+        cles(){
+            var url="sign";
+            let time=new Date();
+            var sameDay=time.getTime();
+            time.setHours(0);   //设置指定当天小时字段
+			 time.setMinutes(0);  //设置指定当天分钟字段
+			 time.setSeconds(0);  //设置指定当天秒钟字段
+             time.setMilliseconds(0);  //设置指定当天毫钟字段
+             time=time.getTime();
+            console.log(time)
+           this.axios.get(url).then(res=>{
+               //符值给data的sign
+               this.sign=res.data[0];
+                console.log(this.sign.uid);
+                 console.log(this.sign.dayzerotime)
+                 console.log(this.sign)
+               if(res.data[0].sign_in==0){}
+               else if(res.data[0].sign_in==undefined){}
+               else if(res.data[0].dayzerotime<time){
+                    //这里还差个每天登陆判断数据库的零点时间要是小于现在当天的零点就变成sing_in为0
+                   this.axios.get("changesign",{params:{
+                    uid:this.sign.uid,
+                    sign:0
+                   
+                    }}).then(res=>{
+                    console.log(res);
+                })
+               }
+               else{
+                   var sign=document.getElementsByClassName("sign");
+                    sign=sign[0];
+                    
+                var parent=sign.parentNode.parentNode.firstChild.firstChild.firstChild;
+                    //console.log(parent)
+                    parent.style.cssText="stroke-dasharray: 360,360;";
+                    sign.className="complete";
+                    sign.innerHTML="已签到";
+               }
+              
+           });
+        },
+
+    },
+    created(){
+        this.cles()
     },
     
 }

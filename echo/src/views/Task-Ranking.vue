@@ -76,7 +76,7 @@ export default {
 }
 </script>
 <style scoped>
-#ranking{background: #eee;width: 375px;height: 670px}
+#ranking{background: #eee;width: 100%;height: 670px}
 #ranking>.head{width: 100%;height:100px;display: flex;}
 #ranking>.head>.bg{width: 100%;height:100%;background-image:url("../../public/img/task/bg_medal_ranking_top.png");background-size: 100% 100%;display: flex;flex-flow: column;text-align: center;margin: 0 auto;}
 #ranking>.head>.bg>div{width: 100%;color: #fff;margin: 0.8rem 0 0 0;font-size: 0.8rem}
@@ -110,7 +110,7 @@ display: flex;justify-content: space-between;flex-wrap: wrap;border-bottom:1px s
 
 #ranking>.index>.Slide{width: 100%;height: 352px;overflow-y: scroll}
 #ranking>.index>.Slide>.WorldRanked{width: 95%;margin: 0 auto;padding: 0.8rem 0;
-display: flex;justify-content: space-between;flex-wrap: wrap;border-bottom: 1px solid #ccc}
+display: flex;justify-content: space-between;flex-wrap: wrap;}
 #ranking>.index>.Slide>.WorldRanked>.first{width: 90%;text-align: left;display: flex;align-items: center}
 
 /*其他名*/

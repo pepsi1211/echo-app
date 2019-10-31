@@ -15,6 +15,8 @@ import TaskPurchase from './views/Task-purchase.vue'
 import TaskInvitation from './views/Task-Invitation.vue'
 import TaskSavings from './views/Task-savings.vue'
 import MyTask from './views/Task-myTask.vue'
+import Record from './views/Task-record.vue'
+import TaskRanking from './views/Task-Ranking.vue'
 // 首页
 import Index from './views/Index'
 // 首页下的频道
@@ -32,6 +34,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:"/Taskranking",component:TaskRanking},
     {path:'/login',component:Login},
     {path:'/PersonalPage',component:PersonalPage},
     {path:'/PersonalTb',component:PersonalTb},
@@ -45,6 +48,7 @@ export default new Router({
     {path:"/Index",component:Index},
 
     // 测试
+    {path:"/TaskRecord",component:Record},
     {path:"/mytask",component:MyTask},
     {path:"/tasksavings",component:TaskSavings},
     {path:"/taskinvitation",component:TaskInvitation},

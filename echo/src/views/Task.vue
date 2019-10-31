@@ -129,11 +129,22 @@ export default {
              if(i==0){this.$router.push("MyTask")}
              else if(i==1){this.$router.push("Taskranking")}
          },
-    }
+         task(){
+             this.axios.get("/task").then(res=>{
+                if(res.data.code==1){}else if(res.data.code==-1){
+                    alert("请登陆");
+                    this.$router.push("/login")
+                }
+             })
+         }
+    },
+    created(){
+        this.task()
+    },
 }
 </script>
 <style scoped>
-#renWu{background: #eee;width: 375px;height: 670px}
+#renWu{background: #eee;width:100%;height: 640px}
 #renWu>.head{width: 100%;height:100px;display: flex;}
 #renWu>.head>.bg{width: 100%;height:100px;background: #ccc;border-bottom-left-radius: 50% 50%;border-bottom-right-radius:50% 50%;
 display: flex;flex-flow: column;text-align: center;margin: 0 auto;}
@@ -142,7 +153,7 @@ display: flex;flex-flow: column;text-align: center;margin: 0 auto;}
 #renWu>.head>.bg>p>span{color: aquamarine;}
 
 .bg>.huiZhang>.baiYuan{background: #fff;border-radius: 50%;
-width: 15%;height: 3.5rem;margin: 0.6rem auto 0;
+width: 17%;height: 4rem;margin: 0.9rem auto 0;
 display: flex;justify-content: center;align-items: center}
 .huiZhang>.baiYuan>div{background: #eee;width: 90%;
 height:667px;height: 90%;border-radius: 50%;display: flex;justify-content: center;align-items: center;position: relative;}
@@ -178,7 +189,7 @@ line-height: 30px;font-size: 0.8rem;color: rgba(0,0,0,0.5);
 display: flex;justify-content:space-around}
 
 #renWu>.index>.myTask>.after>.zi{width:80%;text-align:right;font-size: 12px}
-#renWu>.index>.myTask>.after>.jiaTou{width:4%;height: 18%;
+#renWu>.index>.myTask>.after>.jiaTou{width:4%;height: 23%;
 border-bottom: 1px solid #666;transform:rotate(-135deg);
 border-left: 1px solid #666;margin: 0.7rem 0 0 -0.1rem;}
 
