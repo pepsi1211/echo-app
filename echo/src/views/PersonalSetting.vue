@@ -54,6 +54,7 @@
                 </div>
             </li>
         </ul>
+        
     </div>
 </template>
 <script>
@@ -68,7 +69,8 @@ export default {
             data:[
                 {name:"拍照",method:this.getPic},
                 {name:"从相册中选择",method:this.getAlbum},
-                ]
+                ],
+            files:""
         }
     },
     methods:{

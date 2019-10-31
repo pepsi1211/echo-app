@@ -5,7 +5,7 @@
             <router-link to="/PersonalSetting" slot="left">
                 <mt-button icon="back"></mt-button>
             </router-link>
-            <mt-button slot="right" @input="handleFinish()">完成</mt-button>
+            <mt-button slot="right" @click="handleFinish()">完成</mt-button>
         </mt-header>
         <mt-field placeholder="请输入简介" type="textarea" rows="7" v-model="message"></mt-field>
     </div>
@@ -18,7 +18,6 @@ export default {
     },
     methods: {
         handleFinish(){
-            this.message();
             this.$router.push("/PersonalHomePage")
         }
     },

@@ -19,16 +19,17 @@
             </div>
             <!-- 图片 -->
             <div class="mypic">
-                <img @click="addPic" src="../../public/img/PersonalPage/mypic.jpg">
+                <img @click="addPic" :src="list.avatar">
             </div>
             <mt-actionsheet
         :actions="pic1"
         v-model="sheetVisiblepic1">
         </mt-actionsheet>
             <div class="mypicp">
-                <img @click="addPic" src="../../public/img/PersonalPage/mypic.jpg">
-                <span>吃面忘了要馍</span>
+                <img @click="addPic" :src="list.avatar">
+                <!-- <span>{{list.uname}}</span> -->
             </div>
+                <span class="nam">吃面忘了要馍</span>
         </div>
         <!-- 个人资料 -->
         <div class="pdata">
@@ -46,19 +47,19 @@
             <ul class="focus">
                 <li>
                     <div>
-                        <span>0</span>
+                        <span>{{list.followed}}</span>
                         <span>被关注</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <span>0</span>
+                        <span>{{list.following}}</span>
                         <span>关注</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <span>0</span>
+                        <span>{{list.followed}}</span>
                         <span>好友</span>
                     </div>
                 </li>
@@ -77,12 +78,65 @@
         :actions="data"
         v-model="sheetVisible1">
         </mt-actionsheet>
+        <!-- 喜欢的回声 -->
+        <div class="likeMusic">
+            <div>
+                <i></i>
+                <span>
+                    喜欢的回声
+                </span>
+            </div>
+            <div class="all">
+                <span>全部</span>
+                4
+            </div>
+        </div>
+        <!-- 获取数据 -->
+        <ul>
+            <li>
+                <div class="songlist" v-for="(item,index) of slists" :key="index">
+            <div class="songlistImg">
+                <img :src="item.spic">
+            </div>
+            <div class="right">
+                <div class="rightOfImg">
+                    <span>{{item.stitle}}</span>
+                    <span>{{item.singer}}</span>
+                </div>
+            </div>
+        </div>
+            </li>
+        </ul>
     </div>
 </template>
 <script>
+import Axios from 'axios'
 export default {
     data(){
         return {
+            slists:[
+                {
+                spic:require('../../public/img/index/song3.png'),
+                singer:"播放9w+",
+                stitle:"有了你 波尔卡圆点粉色小屋才完整「Little Pink House」"
+                },
+                {
+                spic:require('../../public/img/index/song4.png'),
+                singer:"播放9w+",
+                stitle:"陪伴是最长情的告白 正确把霉方式 Enchanted"
+                },
+                {
+                spic:require('../../public/img/index/song2.png'),
+                singer:"播放8w+",
+                stitle:"「前奏控」一秒好心情的霓虹流行 Funky J-Pop サンキュー!!"
+                },
+                {
+                spic:require('../../public/img/index/song1.png'),
+                singer:"播放10w+",
+                stitle:"10秒钟征服耳朵系列 霓虹美式R&B"
+                },
+            ],
+            list:[],
             data:[
                 {name:"拍照",method:this.getCamera},
                 {name:"从相册中选择",method:this.getAlbum}
@@ -93,7 +147,7 @@ export default {
             ],
             pic1:[
                 {name:"添加封面图片",method:""},
-                {name:"添加封面影月音乐",method:""}
+                {name:"添加封面音乐",method:""}
             ],
             sheetVisible1:false,
             sheetVisible2:false,
@@ -114,9 +168,82 @@ export default {
             this.sheetVisiblepic1=true
         }
     },
+    created() {
+        var url="getMe"
+        Axios.get(url).then(res=>{
+            this.list=res.data.data1[0]
+            console.log(res.data)
+        })
+    },
 }
 </script>
 <style scoped>
+    .songlist{
+        display:flex;
+        height: 70px;;
+        border-bottom:1px solid rgb(231, 229, 229);
+    }
+    .songlist .songlistImg{
+        width: 60px;
+        padding: 10px;
+
+    }
+    .songlist .extra{
+        display: flex;
+        align-self: center;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+    .songlist span{
+        width:290px;
+        display: flex;
+        display: block;
+        font-size: 14px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .songlist img{
+        width:100%;
+    }
+    .songlist .right{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .songlist .rightOfImg{
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .likeMusic{
+        display: flex;
+        justify-content: space-between;
+    }
+    .likeMusic>div>i{
+        display: inline-block;
+        width: 25px;
+        height: 30px;
+        background: url(../../public/img/PersonalPage/channel_detail_disk.png) no-repeat;
+        background-size: 100%;
+    }
+    .likeMusic div{
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin: 10px;
+        font-size: 14px;
+    }
+    .likeMusic .all{
+        color: rgb(83, 192, 156);
+    }
+    .likeMusic div span{
+        margin-left: 8px;
+        margin-right: 8px;
+    }
     .photo{
         display: flex;
         border-bottom: 1px solid #ccc;
@@ -222,9 +349,12 @@ export default {
         width: 100%;
         background-color: #fff;
     }
-    .mypicp span{
+    .nam{
         position: absolute;
+        top: 170px;
+        left: 148px;
         color: #fff;
+        font-size: 14px;
     }
     .top{
         width:100%;
@@ -235,7 +365,7 @@ export default {
         justify-content: space-between;
     }
     .top .topp img{
-        width: 15px;
+        width: 10px;
     }
     .top .topRight{
         width:27%;
@@ -245,10 +375,10 @@ export default {
         margin-right: 15px;
     }
     .top .topRight .topRight1{
-        height: 5px;
+        height: 3px;
     }
     .top .topRight .topRight2{
-        height: 30px;
+        height: 20px;
     }
     .topmid{
         width:100%;
