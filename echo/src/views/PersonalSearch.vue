@@ -1,9 +1,8 @@
 <template>
     <div>
-        <mt-search
-  v-model="value" ref="id"
-  cancel-text="取消"
-  placeholder="搜索">
+        <mt-search v-model="value">
+        <mt-cell autofocus=true  :value="value">
+        </mt-cell>
         </mt-search>
     </div>
 </template>
@@ -14,9 +13,7 @@ export default {
             value:""
         }
     },
-    mounted() {
-        this.$refs.id.focus();
-    },
+
 }
 </script>
 <style scoped>

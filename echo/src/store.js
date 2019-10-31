@@ -5,15 +5,22 @@ Vue.use(Vuex)
 
  const store=new Vuex.Store({
   state: {
-    message:"qqq"
+    message:"菜壹零_吃面忘了要馍"
+  },
+  getters:{
+    getMessage(state){
+      return state.message
+    }
   },
   mutations: {
-    setIntro(message){
-      
+    setMessage(state,name){
+      state.message=name;
     }
   },
   actions: {
-
+    setMessageName({commit,state},name){
+      commit("setMessage,name")
+    }
   }
 })
 export default store

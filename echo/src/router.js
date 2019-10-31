@@ -10,6 +10,8 @@ import PersonalTest from './views/PersonalTest'
 import PersonalSearch from './views/PersonalSearch'
 import PersonalSetting from './views/PersonalSetting'
 import PersonalIntroduce from './views/PersonalIntroduce'
+import PersonalExit from './views/PersonalExit'
+import PersonalList from './views/PersonalList'
 import Task from './views/Task.vue'
 import TaskPurchase from './views/Task-purchase.vue'
 import TaskInvitation from './views/Task-Invitation.vue'
@@ -41,6 +43,8 @@ export default new Router({
     {path:'/PersonalSearch',component:PersonalSearch},
     {path:'/PersonalSetting',component:PersonalSetting},
     {path:'/PersonalIntroduce',component:PersonalIntroduce},
+    {path:'/PersonalExit',component:PersonalExit},
+    {path:'/PersonalList',component:PersonalList},
     {path:'/task',component:Task},
     {path:"/Index",component:Index},
 

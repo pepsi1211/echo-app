@@ -146,6 +146,9 @@ export default {
                 // 发送axios请求
                 var url="/login"
                 var obj=this.pnum;
+                // post请求要安装qs模块
+                //qs.stringify(phone:12345678910)
+                //             phone=12345678910
                 this.axios.post(url,qs.stringify({phone:obj})).then(res=>{
                     console.log(res)
                 })

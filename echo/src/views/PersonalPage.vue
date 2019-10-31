@@ -13,14 +13,14 @@
                 <div class="pLeft">
                     <div class="psize">
                         <router-link to="/PersonalHomePage">
-                        <img :src="plist.bgp">
+                        <img :src="plist.avatar">
                         </router-link>
                     </div>
                     <ul class="leftInfo">
                         <li>
-                            <router-link to="/PersonalHomePage" class="leftInfo1">{{plist.name}}</router-link>
-                            <p class="leftInfo2">{{plist.num}}&nbsp;人访问过我的主页</p>
-                            <p class="leftInfo3">echo ID:&nbsp;{{plist.id}}</p>  
+                            <router-link to="/PersonalHomePage" class="leftInfo1">{{plist.uname}}</router-link>
+                            <p class="leftInfo2">{{plist.followed}}&nbsp;人访问过我的主页</p>
+                            <p class="leftInfo3">echo ID:&nbsp;{{plist2}}</p>  
                         </li>
                     </ul>                   
                 </div>
@@ -35,20 +35,20 @@
             <ul class="like">
                 <li>
                     <div>
-                        <p>0</p>
+                        <p>{{plist1}}</p>
                         <router-link to="/Myfavorite" class="likecolor">我喜欢的</router-link>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <p>0</p>
-                        <router-link to="" class="likecolor">离线回声</router-link>
+                        <p>{{plist.following}}</p>
+                        <router-link to="" class="likecolor">关注</router-link>
                     </div>
                 </li> 
                 <li>
                     <div>
-                        <p>0</p>
-                        <router-link to="" class="likecolor">我关注的频道</router-link>
+                        <p>{{plist.followed}}</p>
+                        <router-link to="" class="likecolor">被关注</router-link>
                     </div> 
                 </li>
             </ul>
@@ -204,7 +204,7 @@
             <!-- 灰色分割线 -->
             <div class="line"></div>
             <!-- 设置 -->
-            <div class="focus">
+            <div class="focus" @click="pSetting">
                 <div>
                     <img class="focus1" src="../../public/img/PersonalPage/my_center_setting.png">
                     <span>设置</span>
@@ -223,6 +223,7 @@
 import PersonalTb from "./PersonalTb"
 import PersonalTest from './PersonalTest'
 import funs from "../assets/js/fun"
+import Axios from "axios"
 //2.注册子组件
 export default {
     data(){
@@ -240,12 +241,9 @@ export default {
                 {img:require('../../public/img/PersonalPage/ic_menu_ar.png'),name:"扫一扫s"},
                 ],
             changec:{cc:false},   
-            plist:{
-                bgp:require('../../public/img/PersonalPage/mypic.jpg'),
-                num:11,
-                id:23413445,
-                name:"吃面忘了要馍"
-            }
+            plist:{},
+            plist1:{},
+            plist2:{}
         }
     },
     components:{
@@ -253,6 +251,9 @@ export default {
         PersonalTb
     },
     methods: {
+        pSetting(){
+            this.$router.push("/PersonalExit")
+        },
         change(event){
             if(event.target.nodeName=="DIV"){
                 this.c=true;
@@ -261,10 +262,15 @@ export default {
         }
     },
     created(){
-        // funs.getPersonalPage(result=>{
-        //     console.log(result)
-        // })
-    }
+        var url="getMe"
+        Axios.get(url).then(res=>{
+            var {plist,plist1,plist2}=res.data
+            this.plist=res.data.data1[0]
+            this.plist1=res.data.data2,
+            this.plist2=res.data.data3
+            console.log(res.data)
+        })
+    },
 }
 </script>
 <style scoped>
@@ -279,11 +285,10 @@ export default {
         overflow: auto;
     }
     .parent{
-        width:100%;
         display: flex;
         justify-content: space-between;
         background-color: #e4e4e4;
-        margin-top:42px;
+        margin-top:34px;
         padding: 15px;
     }
     .parent .pLeft{
@@ -302,16 +307,17 @@ export default {
     .parent .leftInfo{
         display: flex;
         margin-left: 10px;
+        text-align: left;
     }
     .parent .leftInfo .leftInfo1{
         color: #000;
         font-size: 16px;
-        padding-right: 28px;
         text-decoration: none;
     }
     .parent .leftInfo .leftInfo3{
         color: #666;
         font-size: 12px;
+        padding-left: 4px;
         border:1px solid #666;
     }
     .parent .pRight{
@@ -320,7 +326,6 @@ export default {
         display: flex;
         margin-top: 7px;
         align-items: center;
-        margin-right: 10px;
     }
     .parent .pRight a{
         display: flex;
