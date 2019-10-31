@@ -58,7 +58,7 @@ export default {
    }
   },
 methods: {
-  
+   
   },
 watch: {
   
@@ -90,7 +90,10 @@ mouted() {
         font-size: 15px;
         span{
           font-size: 14px;
-          color: #2c3e50;;
+          color: #2c3e50;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
       }
       span{
@@ -112,5 +115,14 @@ mouted() {
         margin: 0 4px 3px 0;
       }
     }
-  
+    
+      
+    
+    .songs-right{
+      span{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
 </style>

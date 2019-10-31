@@ -12,9 +12,9 @@
         <li class="stars-item" v-for="(star,i) of stars" :key="i">
           <div>
             <a href="javascript:void(0);" class="stars-link">
-              <img :src="star.img" style="width:100px" alt="">
-              <span>{{star.name}}</span>
-              <i>{{star.msg}}</i>
+              <img :src="star.f_avatar" style="width:100px;border-radius:50%" alt="">
+              <span>{{star.fname}}</span>
+              <i>{{star.followed}}关注者</i>
             </a>
           </div>
         </li>
@@ -30,25 +30,33 @@ import Replace_title from './sublevel/Replace_title'
 export default {
   data() {
    return{
-     stars:[
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
-       {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //  stars:[
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
+    //    {img:require("../../../public/img/index/stars1.jpg"),name:"陈楚生",msg:"3万关注者"},
        
-     ]
+    //  ]
    }
   },
   methods: {
-  
+    
   },
   watch: {
   
   },
+  props:{
+    stars:{
+      type:Array,
+      default:()=>{
+        return [];
+      }
+    }
+  },
   computed: {
-  
+    
   },
   components:{
     "line-division": Line,

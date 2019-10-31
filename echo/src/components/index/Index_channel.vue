@@ -7,15 +7,15 @@
     </replace-title>
     <!-- 主体 -->
     <div class="feature">
-      <div class="feature-item"  v-for="(item,i) of songs" :key="i">
+      <div class="feature-item"  v-for="(item,i) of arr" :key="i" >
         <a href="javascript:void(0);">
           <!-- 播放图标 -->
           <i :class="paused"></i>
           <div class="feature-item-img">
-            <img :src="item.img" alt="" >
+            <img :src="item.pic" alt="" >
           </div>
-          <p>{{item.title}}</p>
-          <p>{{item.subtitle}}</p>
+          <p>{{item.cname}}</p>
+          <p>{{item.followed}}关注</p>
         </a>
       </div>
     </div>
@@ -29,12 +29,13 @@ import Line from './sublevel/Line'
 export default {
   data() {
    return{
-     songs:[
-       {img:require("../../../public/img/index/wall-big1.jpg"),title:"最美纯人声伴奏合唱",subtitle:"26.2万关注"},
-       {img:require("../../../public/img/index/wall-big2.jpg"),title:"嘻哈帝国",subtitle:"6713关注"},
-       {img:require("../../../public/img/index/wall-big3.jpg"),title:"做一名优秀的DJ",subtitle:"24.9万关注"},
-       {img:require("../../../public/img/index/wall-big4.jpg"),title:"霹雳俱乐部",subtitle:"1.0万关注"},
-     ],
+    //  songs:[
+    //    {img:require("../../../public/img/index/wall-big1.jpg"),title:"最美纯人声伴奏合唱",subtitle:"26.2万关注"},
+    //    {img:require("../../../public/img/index/wall-big2.jpg"),title:"嘻哈帝国",subtitle:"6713关注"},
+    //    {img:require("../../../public/img/index/wall-big3.jpg"),title:"做一名优秀的DJ",subtitle:"24.9万关注"},
+    //    {img:require("../../../public/img/index/wall-big4.jpg"),title:"霹雳俱乐部",subtitle:"1.0万关注"},
+    //  ],
+
      paused:{
        pause:true,
        play:false
@@ -42,23 +43,36 @@ export default {
    }
   },
 methods: {
-  
+
+  },
+  props:{
+    songs:{
+      type:Array,
+      default:()=>{
+        return [];
+      }
+    }
   },
 watch: {
   
   },
 computed: {
-  
+    arr(){
+      // console.log(this.songs);
+      return this.songs.splice(Math.random()*4,4);
+    }
   },
 created() {
-  
+    
   },
   components:{
     "replace-title":Replace_title,
     "line-division": Line,
   },
-mouted() {
-  
+mounted() {
+  },
+  updated(){
+    
   }
 }
 </script>

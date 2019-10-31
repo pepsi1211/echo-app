@@ -258,7 +258,7 @@ export default {
   width: 100%;
   height: 5.75rem;
   position: fixed;
-  bottom: -5.75rem;
+  bottom: 0;
  
   background: #f4f4f4;
   // box-shadow: 0 0 5px rgba(0,0,0,.5);

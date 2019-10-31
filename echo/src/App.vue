@@ -29,4 +29,7 @@ body{
     display: table;
     height:1.75rem;
 }
+a{
+  text-decoration: none;
+}
 </style>

@@ -57,9 +57,9 @@ computed: {
 }
 </script>
 <style lang="scss">
+
 .main-center::after{
     display: table;
-    height:1.75rem;
 }
   .headerv2{
     width: 100%;

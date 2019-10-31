@@ -1,10 +1,6 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <mescroll-vue ref="mescroll" :down="mescrollDown" >
-=======
     <mescroll-vue ref="mescroll" :down="mescrollDown" @init="mescrollInit">
->>>>>>> lwj
      
     <!-- 没有更多内容了 -->
     <div class="empty" v-show="isShow">

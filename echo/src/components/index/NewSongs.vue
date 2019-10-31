@@ -5,12 +5,12 @@
     <!-- 新歌 list -->
     <div class="new-songs-list">
       <ul>
-        <li v-for="(song,i) of songs" :key="i">
+        <li v-for="(song,i) of getData" :key="i">
           <div class="new-songs-item">
             <a href="javascript:void(0);">
-              <img :src="song.img" alt="" style="width:100px;">
-              <span>{{song.title}}</span>
-              <i>{{song.subtitle}}</i>
+              <img :src="song.song_pic" alt="" style="width:100px;height:100px;">
+              <span>{{song.sname}}</span>
+              <i>{{song.author}}</i>
             </a>
           </div>
         </li>
@@ -24,14 +24,14 @@ import Replace_title from './sublevel/Replace_title'
 export default {
   data() {
    return{
-     songs:[
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
-       {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"}
-     ]
+    //  songs:[
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"},
+    //    {img:require("../../../public/img/index/newsongs1.jpg"),title:"King Of Cowards",subtitle:"Pits Pits Pigs Pigs"}
+    //  ]
    }
   },
   methods: {
@@ -40,8 +40,30 @@ export default {
   watch: {
   
   },
+  props:{
+    songs:{
+      type:Array,
+      default: ()=>{
+        return [];
+      }
+    }
+  },
   computed: {
-  
+    getData(){
+      // 随机拿到三首歌
+      var arr = [];
+      for(var i=0;i<11;i++){
+        // 随机选取
+        var num = parseInt(Math.random()*10);
+        console.log(num);
+        if(arr.indexOf(this.songs[num])==-1){
+          arr.push(this.songs[num]);
+          if(arr.length==6){
+            return arr;
+          }
+        }
+      }
+    }
   },
   components:{
     "replace-title": Replace_title
