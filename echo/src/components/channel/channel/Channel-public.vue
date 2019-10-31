@@ -2,26 +2,6 @@
   <div>
     <!-- 列表 -->
     <mescroll-vue ref="mescroll" :down="mescrollDown">
-<<<<<<< HEAD
-      <!-- 频道 -->
-      <axn-text>139</axn-text>
-      <ul class="channel-ul">
-        <li class="chanel-item" v-for="(item,i) of imgs" :key="i">
-          <!-- 上下弹性 -->
-          <div class="channel-a">
-            <!-- 背景图 -->
-            <i class="channel-bg">
-              <!-- 按钮 -->
-              <i class="channel-pause" :class="i==playI&&(paused)" @click="toggle(i)"></i>
-            </i>
-            <!-- 文字 -->
-            <p class="channel-title">{{imgs.title}}</p>
-            <!-- 文字 -->
-            <span class="channel-subtitle">{{imgs.subtitle}}</span>
-          </div>
-        </li>
-      </ul>
-=======
     <!-- 频道 -->
     <axn-text>139</axn-text>
     <ul class="channel-ul">
@@ -40,33 +20,11 @@
         </div>
       </li>
     </ul>
->>>>>>> lwj
     </mescroll-vue>
   </div>
 </template>
 <script>
 // 引入 频道(统计)
-<<<<<<< HEAD
-import AxnText from "./Axn-text";
-export default {
-  data() {
-    return {
-      // 保存按钮状态
-      paused: {
-        "channel-play": true
-      },
-      // 保存当前点击按钮
-      playI: -1,
-      img: require("../../../../public/img/index/pull_refresh_anim.gif"),
-      mescroll: null, // mescroll实例对象
-      mescrollDown: {
-        htmlContent: `<img src="http://127.0.0.1:5050/img/channel/pull_refresh_anim.gif" style="width:210px;">`, // 下拉刷新的动画
-        callback: this.downCallback,
-        autoShowLoading: true
-      },
-      dataList: [] // 列表数据
-    };
-=======
 import AxnText from './Axn-text'
 import Mescroll from 'mescroll.js/mescroll.vue'
 export default {
@@ -87,7 +45,6 @@ export default {
      }, 
      dataList:[]  // 列表数据
    }
->>>>>>> lwj
   },
   methods: {
     // 1.切换播放状态
@@ -104,11 +61,7 @@ export default {
     downCallback(mescroll) {
       setTimeout(() => {
         mescroll.endSuccess();
-<<<<<<< HEAD
-      }, 800);
-=======
       },800)
->>>>>>> lwj
     }
   },
   watch: {},

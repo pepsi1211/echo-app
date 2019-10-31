@@ -3,7 +3,6 @@
   <div class="index">
     <mescroll-vue @init="mescrollInit" :down="mescrollDown">
       <!-- 头部 -->
-      <!-- <echo-headerv2></echo-headerv2> -->
       <echo-headerv1></echo-headerv1>
       <!-- 轮播图 -->
       <index-carousel></index-carousel>

@@ -3,11 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import headerv1 from './components/header/Header.vue'
-<<<<<<< HEAD
-import headerv2 from './components/header/AudioHeader.vue'
-=======
-
->>>>>>> lwj
 
 Vue.component("echo-headerv1",headerv1);
 
@@ -39,16 +34,6 @@ VueTouch.config.swipe = {
 // Vue.use(NavBar);
 // Vue.use(Icon);
 
-<<<<<<< HEAD
-//引入axios模块
-import axios from "axios"
-//设置服务器基础路径
-axios.defaults.baseURL="http://127.0.0.1:5050/"
-//设置保存session信息
-axios.defaults.withCredentials=true;
-//注册axios
-Vue.prototype.axios=axios;
-=======
  //引入axios模块
  import axios from "axios"
  //设置服务器基础路径
@@ -57,7 +42,6 @@ Vue.prototype.axios=axios;
  axios.defaults.withCredentials=true;
  //注册axios
  Vue.prototype.axios=axios;
->>>>>>> pjq
 
 Vue.config.productionTip = false
 new Vue({
