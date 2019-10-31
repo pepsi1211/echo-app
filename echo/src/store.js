@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
  const store=new Vuex.Store({
   state: {
-    message:"qqq"
+    message:"介绍一下自己"
   },
   mutations: {
     setIntro(message){

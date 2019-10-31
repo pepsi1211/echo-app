@@ -93,7 +93,7 @@ app.post("/login",(req,res)=>{
   })
 });
 
-// 点击发送验证码,后台接入腾讯短信服务接口
+// 2.点击发送验证码,后台接入腾讯短信服务接口
 app.get("/sendSms",(req,res)=>{
   // 获取前台输入的手机号
   var phoneNumbers = [req.query.phone];
@@ -128,49 +128,35 @@ app.get("/sendSms",(req,res)=>{
   res.send({code:1,data:rand});
 });
 
-//3.主页接口
-// app.get("/getindex",(req,res)=>{
-//   let sid = req.query.sid;
-//   // 主页每日推荐歌曲接口
-//   pool.query("select sname,song_pic,author from echo_song where sid in(?)",[sid],(err,result)=>{
-//     if(err) throw err;
-//     if(result.length>0){
-//       res.send({code:1,msg:"响应每日推荐歌曲数据",data:result});
-//     }else{
-//       res.send({code:-1,msg:"失败"});
-//     }
-//   });
-//   // 主页歌曲频道接口
-//   let cid = req.query.cid;
-//   pool.query("select cname,pic,followed,phrase from echo_channel where cid in(?)",[cid],(err,result)=>{
-//     if(err) throw err;
-//     if(result.length>0){
-//       console.log(result);
-//       res.send({code:1,msg:"响应首页频道数据",dataChannel:result});
-//       pool.query("select sname,author,song_pic where cid in(?)",[cid],(err,result)=>{
-//         if(err) throw err;
-//         if(result.length>0){
-//           console.log(result);
-//           res.send({code:2,msg:"响应首页频道下歌曲数据",dataSong:result});
-//         }else{
-//           res.send({code:-2,msg:"响应失败"});
-//         }
-//       });
-//     }else{
-//       res.send({code:-1,msg:"响应失败"});
-//     }
-//   });
-//   //主页的艺人栏接口
-//   let fid = req.query.fid;
-//   pool.query("select fname,followed,f_avatar from echo_famous where fid in(?)",[fid],(err,result)=>{
-//     if(err) throw err;
-//     if(result.length>0){
-//       res.send({code:1,msg:"响应主页艺人成功",dataFamous:result});
-//     }else{
-//       res.send({code:-1,msg:"响应失败"})
-//     }
-//   });
-// });
+// 3.主页接口
+app.get("/getindex",(req,res)=>{
+  // 主页每日推荐歌曲接口
+  pool.query("select sname,song_pic,author from echo_song",[],(err,result1)=>{
+    if(err) throw err;
+    if(result1.length>0){
+      console.log("code:1");
+      pool.query("select cname,pic,followed,phrase from echo_channel",[],(err,result2)=>{
+        if(err) throw err;
+        if(result2.length>0){
+          console.log("code:2");
+          pool.query("select fname,followed,f_avatar from echo_famous",[],(err,result3)=>{
+            if(err) throw err;
+            if(result4.length>0){
+              res.send({code:3,msg:"响应每日推荐歌曲,频道,",dataSong:result1,dataChannel:result2,dataFamous:result3});
+            }else{
+              res.send({code:-3,msg:"响应失败"})
+            }
+          });
+        }else{
+          res.send({code:-2,msg:"响应失败"})
+        }
+      });
+    }else{
+      res.send({code:-1,msg:"失败"});
+    }
+  });
+});
+
 
 // 4.任务模块接口
 app.get("/task",(req,res)=>{
@@ -217,7 +203,7 @@ app.get("/getMe",(req,res)=>{
       pool.query("select sid from echo_love where uid = ?",[uid],(err,result2)=>{
         if (err) throw err;
         loveSongTotal = result2.length;
-        res.send({code:1,msg:"查询成功",data1:result1,data2:result2});
+        res.send({code:1,msg:"查询成功",data1:result1,data2:loveSongTotal,data3:uid});
       })
     }else{
       res.send({code:-1,msg:"查询失败,获取不到uid"})
@@ -231,15 +217,21 @@ app.get("/getPersonPage",(req,res)=>{
   var sid = [];
   pool.query("select uname,avatar,xz,gender,city,following,followed,friend from echo_user where uid = ?",[uid],(err,result1)=>{
     if(err) throw err;
-    if(result.length>0){
+    if(result1.length>0){
       console.log("这步已经查询到了用户名,头像等等...");
       pool.query("select sid from echo_love where uid = ?",[uid],(err,result2)=>{
         if(err) throw err;
         if(result2.length>0){
           for(var i=0;i<result2.length;i++){
             sid = result2[i].sid;
+            console.log(sid)
           };
-          pool.query("select song_pic,sname,love",[],(err,result3)=>{})
+          pool.query("select song_pic,sname,love from echo_song where sid in(?)",[sid],(err,result3)=>{
+            if(err) throw err;
+            if(result.length>0){
+              res.send({code:3,msg:"查询歌曲详情成功",data:result1,data:result3});
+            }
+          })
         }else{
           res.send({code:-2,msg:"查询失败"})
         }
@@ -250,3 +242,22 @@ app.get("/getPersonPage",(req,res)=>{
   })
 });
 
+// 9.修改资料
+app.post("/update",(req,res)=>{
+  var uid = req.session.uid;
+  var obj = req.body;
+  pool.query("update echo_user set uname = ?,gender = ?,city = ?,xz = ?,introduction = ? where uid = ?",[obj.uname,obj.gender,obj.city,obj.xz,obj.introduction,uid],(err,result)=>{
+    if (err) throw err;
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"修改成功"})
+    }else{
+      res.send({code:-1,msg:"修改失败"})
+    }
+  });
+});
+
+// 10.注销接口
+app.get("/logout",(req,res)=>{
+  req.session.uid=undefined;
+  res.send({code:1,msg:'注销成功'})
+});

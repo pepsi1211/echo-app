@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-center100">
         <mt-header title="简介" style="color:#666;">
             <div class="line"></div>
             <router-link to="/PersonalSetting" slot="left">
@@ -35,7 +35,8 @@ export default {
 }
 </script>
 <style scoped>
-        .mint-header{
+
+    .mint-header{
         background-color: #fff;
     }
     a{

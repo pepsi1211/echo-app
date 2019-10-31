@@ -4,20 +4,21 @@
             <router-link to="" slot="left" >
                 <mt-button icon="back" @click="settingConfirm"></mt-button>
             </router-link>
-            <mt-button slot="right" @click="handleFinish">完成</mt-button>
+            <mt-button slot="right" @click="handleFinish">提交</mt-button>
         </mt-header>
         <ul class="introduce">
             <li @click="getPic">
                 <div class="item">
                     <img src="../../public/img/PersonalPage/img_loading_placeholder_round.png">
-                    <p>编辑头像</p>
+                    <p class="avatar-text">编辑头像</p>
                     <mt-actionsheet
                     :actions="data"
                     v-model="sheetVisible3">
                     </mt-actionsheet>
                 </div>
                 <div class="chose">   
-                    <img src="../../public/img/PersonalPage/gray_left_arrow.png">
+                    <!-- <img src="../../public/img/PersonalPage/gray_left_arrow.png"> -->
+                    <em></em>
                 </div>
             </li>
             <li>
@@ -114,35 +115,45 @@ export default {
         width: 100%;
         height: 3rem;
         text-align: left;
-        font-size: 1rem;
-        color: #666;
+        font-size: .75rem;
+        color: #c6c6c6;
         }
     .introduce li{
         display: flex;
         align-items: center;
-        padding: 15px;
+        padding: .55rem .55rem .55rem .5rem;
         justify-content: space-between;
         border-bottom: 1px solid #f3f1f1;
     }
     .introduce li .item{
-        margin-left: 30px;
+        /* margin-left: 30px; */
+        /* border-bottom: 1px solid #ccc; */
         display: flex;
         align-items: center;
     }
-    .introduce li .item p span{
-        margin-right:25px;
+    .introduce li .item .avatar-text{
+        margin-left: 0.95rem;
     }
-    .introduce li .chose img{
-        width: 10px !important;
+    .introduce li .item p span{
+        margin-right:3.025rem;
+    }
+    .introduce li .chose em{
+        /* width: 10px !important; */
+        width:.5rem;
+        height:.875rem;
+        display: inline-block;
+        background: url(../../public/img/PersonalPage/gray_left_arrow.png) no-repeat;
+        background-size: 100%
     }
     .introduce input{
-        margin-left: 30px;
+        caret-color:#6ed56c;
+        margin-left: 3.125rem;
         border: none;
         outline: none;
     }
     .introduce img{
-        width: 45px;
-        margin-right: 10px;
+        width: 50px;
+        margin-left: 1.25rem;
     }
     .introduce a{
         color: #2c3e50;

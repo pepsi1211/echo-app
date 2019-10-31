@@ -1,15 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <!-- 统计频道 -->
-    <axn-text>
-      0
-    </axn-text>
-    <!-- 没有更多内容了 -->
-    <div class="empty">
-      <p>没有更多内容了</p>
-    </div>
-=======
     <mescroll-vue ref="mescroll" :down="mescrollDown" >
      
     <!-- 没有更多内容了 -->
@@ -21,7 +11,6 @@
       <p><i></i>没有更多内容了</p>
     </div>
     </mescroll-vue>
->>>>>>> lwj
   </div>
 </template>
 <script>
@@ -29,11 +18,6 @@
 import AxnText from './Axn-text'
 export default {
   data() {
-<<<<<<< HEAD
-   return{}
-  },
-  methods: {
-=======
    return{
      img:require('../../../../public/img/index/pull_refresh_anim.gif'),
      mescroll:null,   // mescroll实例对象
@@ -76,7 +60,6 @@ export default {
      
     }
     // 上拉回调 
->>>>>>> lwj
     
   },
   watch: {
