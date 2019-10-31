@@ -138,8 +138,6 @@ export default {
                 }
             },1000)
         },
-<<<<<<< HEAD
-=======
         //随机数
         ran:function(){
             var randoms=[0,1,2,3,4,5,6,7,8,9]
@@ -155,7 +153,6 @@ export default {
             // var rc=localStorage.getItem("rc")
         },
     
->>>>>>> lwj
     },
     watch:{
         varifycode(){//输入框

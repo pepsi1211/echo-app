@@ -1,12 +1,9 @@
 <template>
   <div>
     <!-- 列表 -->
-<<<<<<< HEAD
-=======
     <mescroll-vue ref="mescroll" :down="mescrollDown">
     <!-- 频道 -->
     <axn-text>139</axn-text>
->>>>>>> lwj
     <ul class="channel-ul">
       <li class="chanel-item" v-for="(item,i) of imgs" :key="i">
         <!-- 上下弹性 -->
@@ -23,11 +20,13 @@
         </div>
       </li>
     </ul>
+    </mescroll-vue>
   </div>
 </template>
 <script>
 // 引入 频道(统计)
 import AxnText from './Axn-text'
+import Mescroll from 'mescroll.js/mescroll.vue'
 export default {
   data() {
    return{
@@ -36,11 +35,7 @@ export default {
       "channel-play": true,
     },
     // 保存当前点击按钮
-<<<<<<< HEAD
-    playI:0
-=======
     playI:-1,
-    img:require('../../../../public/img/index/pull_refresh_anim.gif'),
      mescroll:null,   // mescroll实例对象
      mescrollDown:{
        htmlContent:`<img src="http://127.0.0.1:5050/img/channel/pull_refresh_anim.gif" style="width:210px;">`,  // 下拉刷新的动画
@@ -49,7 +44,6 @@ export default {
        
      }, 
      dataList:[]  // 列表数据
->>>>>>> lwj
    }
   },
   methods: {
@@ -62,22 +56,20 @@ export default {
         // 否则改为i
         this.playI = i;
       }
-<<<<<<< HEAD
-=======
     },
     // mescroll组件初始化的回调，可获取到mescroll对象
     downCallback(mescroll){
       setTimeout(()=>{
         mescroll.endSuccess();
       },800)
->>>>>>> lwj
     }
   },
   watch: {
     
   },
   components: {
-    "axn-text": AxnText
+    "axn-text": AxnText,
+    "mescroll-vue": Mescroll
   },
   props:{
     imgs:{

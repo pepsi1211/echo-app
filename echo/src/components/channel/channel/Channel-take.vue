@@ -1,16 +1,6 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <!-- 统计频道 -->
-    <axn-text>
-      0
-    </axn-text>
-    <!-- 没有更多内容了 -->
-    <div class="empty">
-      <p>没有更多内容了</p>
-    </div>
-=======
-    <mescroll-vue ref="mescroll" :down="mescrollDown" >
+    <mescroll-vue ref="mescroll" :down="mescrollDown" @init="mescrollInit">
      
     <!-- 没有更多内容了 -->
     <div class="empty" v-show="isShow">
@@ -21,27 +11,22 @@
       <p><i></i>没有更多内容了</p>
     </div>
     </mescroll-vue>
->>>>>>> lwj
   </div>
 </template>
 <script>
 // 引入 频道(统计)
 import AxnText from './Axn-text'
+import Mescroll from 'mescroll.js/mescroll.vue'
 export default {
   data() {
-<<<<<<< HEAD
-   return{}
-  },
-  methods: {
-=======
    return{
-     img:require('../../../../public/img/index/pull_refresh_anim.gif'),
+    
      mescroll:null,   // mescroll实例对象
      mescrollDown:{
        htmlContent:`<img src="http://127.0.0.1:5050/img/channel/pull_refresh_anim.gif" style="width:210px;">`,  // 下拉刷新的动画
         callback: this.downCallback,
         auto: true,
-        autoShowLoading:true,
+        autoShowLoading:false,
         // 加载中的文本
        
      }, // 下拉刷新的配置()
@@ -52,13 +37,16 @@ export default {
   },
   methods: {
     // mescroll组件初始化的回调，可获取到mescroll对象
-  
+    mescrollInit(mescroll){
+      console.log(1)
+      this.mescroll = mescroll;
+    },
     downCallback(mescroll){
+      
       // 第1种: 请求具体接口
-					
-					
-					     
               // 成功隐藏下拉加载状态
+              console.log(mescroll.triggerDownScroll);
+              // mescroll.triggerDownScroll();
                setTimeout(()=>{
                   mescroll.endSuccess();
                   this.isShow = true;
@@ -76,14 +64,14 @@ export default {
      
     }
     // 上拉回调 
->>>>>>> lwj
     
   },
   watch: {
     
   },
   components: {
-    "axn-text": AxnText
+    "axn-text": AxnText,
+    "mescroll-vue": Mescroll
   },
   computed: {
     
@@ -95,7 +83,7 @@ export default {
     
   },
   updated() {
-    
+    this.mescroll.triggerDownScroll()
   },
   destroyed() {
     

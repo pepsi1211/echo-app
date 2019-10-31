@@ -24,7 +24,7 @@ import Ranking from './views/Ranking'
 // 首页下的铃声
 // 测试
 // 测试播放器
-import Audio from './views/test-1.vue'
+import PlayView from './views/PlayView'
 
 
 
@@ -49,7 +49,7 @@ export default new Router({
     {path:"/tasksavings",component:TaskSavings},
     {path:"/taskinvitation",component:TaskInvitation},
     {path:"/taskpurchase",component:TaskPurchase},
-    {path:"/test",component:Audio},
+    {path:"/Index/songs",component:PlayView},
 
     // 首页下的频道
     {path:"/Index/channel",component: IndexChannel},
