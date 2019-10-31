@@ -3,10 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import headerv1 from './components/header/Header.vue'
+<<<<<<< HEAD
 import headerv2 from './components/header/AudioHeader.vue'
+=======
+
+>>>>>>> lwj
 
 Vue.component("echo-headerv1",headerv1);
-Vue.component("echo-headerv2",headerv2);
+
 
 
 

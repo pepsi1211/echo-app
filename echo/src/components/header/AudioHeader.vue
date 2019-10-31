@@ -1,7 +1,7 @@
 <template>
 <main class="main-center">
   <header class="headerv2" ref="headerv2">
-    <div class="header-back">
+    <div class="header-back" @click="back">
       <em class="pic-back-white" ref="back"></em>
     </div>
     <div class="header-details">
@@ -43,8 +43,14 @@ export default {
     })
   },
 methods: {
+    back(){
+      this.$emit("back");
+    }
   },
 watch: {
+  },
+  props:{
+    
   },
 computed: {
   },

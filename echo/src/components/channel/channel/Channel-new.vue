@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- 频道 -->
-    <axn-text>176</axn-text>
     <!--  -->
     <channel-public :imgs="imgs"></channel-public>
   </div>
@@ -37,7 +35,6 @@ export default {
     
   },
   components: {
-    "axn-text": AxnText,
     "channel-public": ChannelPublic
   },
   computed: {

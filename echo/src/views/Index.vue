@@ -1,6 +1,8 @@
 <template>
 <div>
-  <my-component :is="componentsId[i]"></my-component>
+  <keep-alive>
+    <my-component :is="componentsId[i]"></my-component>
+  </keep-alive>
   <main class="main-footer">
     <footer class="footerv1">
       <div class="footer-left" @click="clickTag(0)">
@@ -27,6 +29,7 @@ import IndexAll from './Index-all'
 import PersonalPage from './PersonalPage'
 // 引入task
 import Task from './Task'
+
 export default {
   data() {
    return{

@@ -13,7 +13,7 @@
     </div>
     <div class="header-right">
       <em class="pic search"></em>
-      <em class="pic audio"></em>
+      <em class="pic audio" @click="goto()"></em>
     </div>
   </header>
 </main>
@@ -27,6 +27,9 @@ export default {
    }
   },
   methods: {
+      goto(){
+        this.$router.push('/Index/songs');
+      }
     },
   watch: {
     },

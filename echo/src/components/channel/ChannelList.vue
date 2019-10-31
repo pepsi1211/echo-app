@@ -29,7 +29,10 @@
     <!-- <channel-hot></channel-hot> -->
     <!-- 3.最新 -->
     <!-- <channel-new></channel-new> -->
-    <component :is="componentId[active]"></component>
+    <keep-alive>
+      <component :is="componentId[active]"></component>
+    </keep-alive>
+    
   </div>
 </template>
 <script>
