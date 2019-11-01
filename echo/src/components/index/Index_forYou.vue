@@ -31,7 +31,7 @@
       <span slot="title">为你推荐</span>
       <li slot="li" v-for="(item,i) of getData" :key="i">
         
-        <div class="songs" @click="playSongs($event)" :data-sid="item.sid">
+        <div class="songs" @click="jump($event)" :data-sid="item.sid">
           <div class="songs-img">
              <img :src="item.song_pic" alt="" slot="img">
           </div>
@@ -67,21 +67,11 @@ export default {
   },  
   
 methods: {
-    playSongs(e){
-      console.log(e.currentTarget.dataset.sid);
+    jump(e){
       var sid = e.currentTarget.dataset.sid;
       console.log(sid);
-      // 发送ajax请求
-      var url = 'song';
-      var obj = {sid};
-      this.axios.get(url,{params:{sid}}).then(res=>{
-        console.log(res);
-        this.$router.push({
-        name:'PlayView',
-        params: {songs:res.data.dataSong,channel:res.data.dataChannel}
-        })
-      })
-    }
+      this.$emit("jump",sid);
+    } 
   },
 watch: {
   

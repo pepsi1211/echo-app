@@ -3,8 +3,7 @@
     <h3>歌曲信息</h3>
     <div class="line"></div>
     <!-- 歌词 -->
-    <div class="lyric" v-html="songs">
-     
+    <div class="lyric" v-html="lyrics">
     </div>
   </div>
 </template>
@@ -23,24 +22,23 @@ export default {
     
   },
   props: {
-    songs:{
-      type:Array,
-      default: ()=>{
-        return [];
-      }
+    lyrics:{
+      type:String
     }
   },
   computed: {
-    
+    getLyrics(){
+      return this.songs[0].lyrics;
+    }
   },
   created() {
     
   },
   mounted() {
-    console.log(this.songs);
+    
   },
   updated() {
-    console.log(this.songs);
+    
   },
   destroyed() {
     

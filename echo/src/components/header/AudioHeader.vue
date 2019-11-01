@@ -25,7 +25,7 @@ export default {
     let back = this.$refs.back;
     let more = this.$refs.more;
     window.addEventListener('scroll',function () {
-      console.log(document.documentElement.scrollTop);
+      // console.log(document.documentElement.scrollTop);
       let t = document.documentElement.scrollTop;
       if(t>300){
         headerv2.style.background = '#fff';

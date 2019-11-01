@@ -23,7 +23,11 @@ var pool = mysql.createPool({
 var app = express();
 
 app.use(cors({
+<<<<<<< HEAD
   origin:["http://127.0.0.1:8080","http://localhost:8080","http://176.140.12.94:8080","http://176.140.12.126:8080","http://176.140.12.208:8080","http://176.140.12.133:8080"],
+=======
+  origin:["http://127.0.0.1:8080","http://localhost:8081"],
+>>>>>>> lwj
   credentials:true //每次发出的请求需要验证
 }))
 

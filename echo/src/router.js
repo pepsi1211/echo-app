@@ -61,7 +61,9 @@ export default new Router({
     {path:"/tasksavings",component:TaskSavings},
     {path:"/taskinvitation",component:TaskInvitation},
     {path:"/taskpurchase",component:TaskPurchase},
-    {path:"/Index/songs",component:PlayView,name:"PlayView"},
+    {path:"/Index/songs",component:PlayView,name:"PlayView",meta:{isUseCache:false,keepAlive: true,isBack:false},
+    component: resolve => require(['@/views/PlayView'], resolve)
+  },
 
     // 首页下的频道
     {path:"/Index/channel",component: IndexChannel},
