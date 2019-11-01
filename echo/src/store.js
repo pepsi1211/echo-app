@@ -5,7 +5,11 @@ Vue.use(Vuex)
 
  const store=new Vuex.Store({
   state: {
+<<<<<<< HEAD
     message:"菜壹零_吃面忘了要馍"
+=======
+    // message:"菜壹零_吃面忘了要馍"
+>>>>>>> lrl
   },
   getters:{
     getMessage(state){

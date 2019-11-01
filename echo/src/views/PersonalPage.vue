@@ -53,7 +53,7 @@
                 </li>
             </ul>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 制作 -->
             <ul class="make">
                 <li>
@@ -82,11 +82,11 @@
                 </li>
             </ul>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 测试人格 -->
             <PersonalTest :testPic="require('../../public/img/PersonalPage/test.png')"></PersonalTest>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 功能1 -->
             <ul class="functionf" @click="change">
                 <li v-for="(item,index) of list1" :key="index" :class="changec">
@@ -125,7 +125,7 @@
                 </li>
             </ul>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 关注动态 -->
             <div class="focus">
                 <div>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 消息提醒 -->
             <div class="focus" style="border-bottom:1px solid #ccc;">
                 <div>
@@ -155,7 +155,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 我的乐透眼镜 -->
             <div class="focus">
                 <div>
@@ -168,7 +168,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 我的MITC -->
             <div class="focus">
                 <div>
@@ -181,7 +181,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 兑换券 -->
             <div class="focus">
                 <div>
@@ -193,7 +193,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 24小时客服 -->
             <div class="focus">
                 <div>
@@ -202,7 +202,7 @@
                 </div>
             </div>
             <!-- 灰色分割线 -->
-            <div class="line"></div>
+            <div class="line1"></div>
             <!-- 设置 -->
             <div class="focus" @click="pSetting">
                 <div>
@@ -216,14 +216,15 @@
                 </div>
             </div>
         </div>
+        <Footer></Footer>
     </div>
 </template>
 <script>
 //1.引入子组件
 import PersonalTb from "./PersonalTb"
 import PersonalTest from './PersonalTest'
-import funs from "../assets/js/fun"
 import Axios from "axios"
+import Footer from "../components/tabbar/Tabbar"
 //2.注册子组件
 export default {
     data(){
@@ -248,7 +249,8 @@ export default {
     },
     components:{
         PersonalTest,
-        PersonalTb
+        PersonalTb,
+        Footer
     },
     methods: {
         pSetting(){
@@ -349,7 +351,7 @@ export default {
     .likecolor{
         color:#666;
     }
-    .line{
+    .line1{
         width: 100%;
         height: 10px;
         background: #e8e8e8;

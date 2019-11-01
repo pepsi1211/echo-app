@@ -156,28 +156,35 @@ export default {
     },
     watch:{
         varifycode(){//输入框
-            // console.log(this.rancode,this.varifycode)
-            if(this.varifycode==this.rancode){
-                // 发送axios请求
-                var url="/login"
-                var obj=this.pnum;
-                // post请求要安装qs模块
-                //qs.stringify(phone:12345678910)
-                //             phone=12345678910
-                this.axios.post(url,qs.stringify({phone:obj})).then(res=>{
-                    console.log(res)
-                })
-                // console.log("登录成功")
-                clearInterval(this.t)
-                this.$router.push("/index")
-            }
-            var vc;
-            vc+=this.varifycode
-            if(vc.length==4){
-                vc=Number(vc)
-                if(vc!==this.rancode){
+            //收集用户输入的数字
+                console.log('用户'+":"+this.varifycode,'验证码'+":"+this.rancode)
+                //数字长度==4
+                if(this.varifycode.length==4){
+                //如果用户输入与验证码相等
+                if(this.varifycode==this.rancode){
+                    // 发送axios请求
+                    var url="/login"
+                    var obj=this.pnum;
+                    // post请求要安装qs模块
+                    //qs.stringify(phone:12345678910)
+                    //             phone=12345678910
+                    this.axios.post(url,qs.stringify({phone:obj})).then(res=>{
+                        console.log(res)
+                        //如果获取到uid说明登陆或注册成功
+                        if(res.data.data!==undefined){
+                            clearInterval(this.t)
+                            this.$router.push("/index")
+                        }
+                        // else{
+                        //     this.$messagebox("提示","登陆失败，重新登陆");
+                        //     this.$router.push("/login");
+                        //     return;
+                        // }
+                    })
+                    // console.log("登录成功")
+                }else{
                     this.$messagebox("提示","验证码不正确")
-                    return;
+                    return;    
                 }
             }
         }

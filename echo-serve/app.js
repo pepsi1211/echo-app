@@ -58,11 +58,12 @@ app.post("/login",(req,res)=>{
       pool.query("insert into echo_user values(?,?,?,?,?,?,?,?,?,?,?,?)",[null,uname,null,phone,"http://127.0.0.1:5050/img/avatar/echo.png",null,null,null,null,0,0,0],(err,result)=>{
         if(err) throw err
         if(result.affectedRows>0){
-          res.send({code:2,msg:"注册成功"});
           pool.query("select uid from echo_user where phone = ?",[phone],(err,result)=>{
             if (err) throw err;
             if(result.length>0){
               var uid = result[0].uid;
+              req.session.uid = uid;
+              res.send({code:2,msg:"注册成功",data:req.session.uid});
               var pay_time = Math.floor(Date.now()/1000);
               console.log(pay_time);
               pool.query("insert into echo_wallet values(?,?,?,?)",[uid,20,200,pay_time],(err,result)=>{
@@ -86,7 +87,7 @@ app.post("/login",(req,res)=>{
       // 将用户的id保存在session对象中
       //result数据格式将会是[{id:1}]
       req.session.uid = result[0].uid;
-      res.send({code:1,msg:"登录成功"});
+      res.send({code:1,msg:"登录成功",data:req.session.uid});
       console.log(result,req.session)
     }
   })
@@ -112,6 +113,10 @@ app.get("/sendSms",(req,res)=>{
   * @param {function} cb 异步结果回调函数
   */
   var rand = (Math.random()*99999999999999999+"").substring(0,4);
+<<<<<<< HEAD
+=======
+  console.log(rand);
+>>>>>>> lrl
    // 调用发送的函数
   sender.singleSmsSendWithParam('86', phoneNumbers[0], 454808, [`${rand}`,'2'], '深圳民治龙舟队', '', '', function (data) {
     var ret = JSON.parse(data);
@@ -209,7 +214,11 @@ app.get("/getMe",(req,res)=>{
 app.get("/getPersonPage",(req,res)=>{
   var uid = req.session.uid;
   var selectSongSql = "select song_pic,sname,love from echo_song where sid in("
+<<<<<<< HEAD
   pool.query("select uname,avatar,xz,gender,city,following,followed,friend from echo_user where uid = ?",[uid],(err,result1)=>{
+=======
+  pool.query("select uname,avatar,xz,gender,city,following,followed,friend,introduction from echo_user where uid = ?",[uid],(err,result1)=>{
+>>>>>>> lrl
     if(err) throw err;
     if(result1.length>0){
       console.log("这步已经查询到了用户名,头像等等...");
@@ -297,6 +306,7 @@ app.get("/changesign",(req,res)=>{
     if(result.affectedRows>0){res.send(result)}
     else{res.send({code:-1,msg:"修改失败"})}
   })
+<<<<<<< HEAD
 });
 
 // 13.播放器请求
@@ -325,5 +335,7 @@ app.get("/song",(req,res)=>{
 >>>>>>> lwj
     }
   })
+=======
+>>>>>>> lrl
 });
 

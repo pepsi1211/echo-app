@@ -19,27 +19,34 @@
             </div>
             <!-- 图片 -->
             <div class="mypic">
-                <img @click="addPic" :src="list.avatar">
+                <img @click="addPic" :src="userList.avatar">
             </div>
             <mt-actionsheet
         :actions="pic1"
         v-model="sheetVisiblepic1">
         </mt-actionsheet>
             <div class="mypicp">
-                <img @click="addPic" :src="list.avatar">
-                <!-- <span>{{list.uname}}</span> -->
+                <img @click="addPic" :src="userList.avatar">
             </div>
-                <span class="nam">吃面忘了要馍</span>
+            <div class="nm">
+                <span class="nam">{{userList.uname}}</span>
+            </div>
         </div>
         <!-- 个人资料 -->
         <div class="pdata">
+            <div v-if="XZ">
+                <img class="pdatap1" :src="xzPic">
+                <span>{{userList.xz}}</span>
+            </div>
             <div>
                 <img class="pdatap1" src="../../public/img/PersonalPage/ic_location_male.png">
-                <span>男</span>
+                <span v-if="sex">未知</span>
+                <span v-else>{{this.gender}}</span>
             </div>
             <div>
                 <img class="pdatap2" src="../../public/img/PersonalPage/ic_location_black.png">
-                <span>未填写</span>
+                <span v-if="unknow">未填写</span>
+                <span v-else>{{userList.city}}</span>
             </div>
         </div>
         <!-- 关注 -->
@@ -47,19 +54,19 @@
             <ul class="focus">
                 <li>
                     <div>
-                        <span>{{list.followed}}</span>
+                        <span>{{userList.followed}}</span>
                         <span>被关注</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <span>{{list.following}}</span>
+                        <span>{{userList.following}}</span>
                         <span>关注</span>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <span>{{list.followed}}</span>
+                        <span>{{userList.friend}}</span>
                         <span>好友</span>
                     </div>
                 </li>
@@ -88,11 +95,11 @@
             </div>
             <div class="all">
                 <span>全部</span>
-                4
+                {{dataLove}}
             </div>
         </div>
         <!-- 获取数据 -->
-        <ul>
+        <!-- <ul>
             <li>
                 <div class="songlist" v-for="(item,index) of slists" :key="index">
             <div class="songlistImg">
@@ -106,7 +113,7 @@
             </div>
         </div>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </template>
 <script>
@@ -114,6 +121,27 @@ import Axios from 'axios'
 export default {
     data(){
         return {
+            xzPic:"",
+            xzList:{
+                xz0:require('../../public/img/PersonalPage/xz_0.png'),
+                xz1:require('../../public/img/PersonalPage/xz_1.png'),
+                xz2:require('../../public/img/PersonalPage/xz_2.png'),
+                xz3:require('../../public/img/PersonalPage/xz_3.png'),
+                xz4:require('../../public/img/PersonalPage/xz_4.png'),
+                xz5:require('../../public/img/PersonalPage/xz_5.png'),
+                xz6:require('../../public/img/PersonalPage/xz_6.png'),
+                xz7:require('../../public/img/PersonalPage/xz_7.png'),
+                xz8:require('../../public/img/PersonalPage/xz_8.png'),
+                xz9:require('../../public/img/PersonalPage/xz_9.png'),
+                xz10:require('../../public/img/PersonalPage/xz_10.png'),
+                xz11:require('../../public/img/PersonalPage/xz_11.png'),
+            },
+            city:"",
+            XZ:false,
+            gender:"",
+            sex:false,
+            unknow:false,
+            dataLove:"",
             slists:[
                 {
                 spic:require('../../public/img/index/song3.png'),
@@ -136,7 +164,7 @@ export default {
                 stitle:"10秒钟征服耳朵系列 霓虹美式R&B"
                 },
             ],
-            list:[],
+            userList:[],
             data:[
                 {name:"拍照",method:this.getCamera},
                 {name:"从相册中选择",method:this.getAlbum}
@@ -169,18 +197,79 @@ export default {
         }
     },
     created() {
-        var url="getMe"
+        var url="getPersonPage"
         Axios.get(url).then(res=>{
-            this.list=res.data.data1[0]
-            console.log(res.data)
+            this.userList=res.data.dataUser[0];
+            if(this.userList.city){
+                this.unknow=false;
+                this.city=this.userList.city;
+            }else{
+                this.unknow=true;
+            }
+            if(this.userList.gender==undefined){
+                this.sex=true;
+            }else{
+                this.sex=false;
+                this.gender=this.userList.gender==0?"女":"男"
+            }
+            if(this.userList.xz==undefined){
+                this.XZ=false
+            }else{
+                this.XZ=true
+                var xz=this.userList.xz
+                if(xz=="白羊座"){
+                    this.XZ=this.userList.xz
+                   this.XZ=this.xzList.xz0
+                }else if(xz=="天秤座"){
+                    this.XZ=this.userList.xz
+                    this.xzPic=this.xzList.xz1
+                console.log(this.xzPic)
+                }else if(xz=="天蝎座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz2
+                }else if(xz=="双子座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz3
+                }else if(xz=="天狼座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz4
+                }else if(xz=="处女座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz5
+                }else if(xz=="射手座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz6
+                }else if(xz=="水瓶座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz7
+                }else if(xz=="狮子座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz8
+                }else if(xz=="摩羯座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz9
+                }else if(xz=="金牛座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz10
+                }else if(xz=="双鱼座"){
+                    this.XZ=this.userList.xz
+                    this.XZ=this.xzList.xz11
+                }
+                
+            }
+            this.dataLove=res.data.dataLove
+            console.log(this.userList)
         })
+    },
+    mounted() {
+        
     },
 }
 </script>
 <style scoped>
     .songlist{
         display:flex;
-        height: 70px;;
+        height: 70px;
         border-bottom:1px solid rgb(231, 229, 229);
     }
     .songlist .songlistImg{
@@ -224,8 +313,8 @@ export default {
     }
     .likeMusic>div>i{
         display: inline-block;
-        width: 25px;
-        height: 30px;
+        width: 22px;
+        height: 25px;
         background: url(../../public/img/PersonalPage/channel_detail_disk.png) no-repeat;
         background-size: 100%;
     }
@@ -338,7 +427,7 @@ export default {
      height: 100px;
      width: 100px;
      position: absolute;
-     left: 50%;
+     left: 49%;
      margin-left: -50px;
      top: 8%;
      border-radius: 50%;
@@ -349,10 +438,16 @@ export default {
         width: 100%;
         background-color: #fff;
     }
+    .parent .nm{
+        width: 100%;
+        height:10%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
     .nam{
         position: absolute;
-        top: 170px;
-        left: 148px;
+        top: -25px;
         color: #fff;
         font-size: 14px;
     }
