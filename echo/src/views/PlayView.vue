@@ -2,12 +2,21 @@
   <main id="play-view" name="fade" :style="`transform:translateX(${translateX})`">
     <!-- 播放器头部 -->
     <echo-headerv2 @back="back"></echo-headerv2>
-    <!-- 歌词页面 -->
-    <audio-lyric></audio-lyric>
-    <!-- 播放主页面 -->
-    <echo-audio></echo-audio>
-    <!-- 评论页面 -->
-    <audio-comment></audio-comment>
+    <!-- 左右滑动 -->
+    <mt-swipe :continuous="false" :defaultIndex="1" :auto="0" style="width:100%;height:715px;margin:0 auto;" :showIndicators="false">
+      <mt-swipe-item style="height: 1000px;width: 375px;">
+        <!-- 歌词页面 -->
+        <audio-lyric :songs="songs"></audio-lyric>
+      </mt-swipe-item>
+      <mt-swipe-item style="height: 715px;width: 375px;">
+        <!-- 播放主页面 -->
+        <echo-audio></echo-audio>
+      </mt-swipe-item>
+      <mt-swipe-item >
+        <!-- 评论页面 -->
+        <audio-comment></audio-comment>
+      </mt-swipe-item>
+    </mt-swipe>
   </main>
 </template>
 <script>
@@ -23,19 +32,29 @@ export default {
   data() {
    return{
      translateX:0,
-     innerWidth:0
+     innerWidth:0,
+     songs:[],
+     channel:[]
    }
   },
   methods: {
     back(){
       // 这个方法触发返回 和 过渡的translateX()
       this.translateX = 375 + 'px';
-      this.$router.go(-1);
+      setTimeout(()=>{
+        this.$router.go(-1);
+      },300)
+      
     }
   },
   watch: {
   },
-  monted(){
+  mounted(){
+    var data = this.$route.params;
+    this.songs = data.songs;
+    this.channel = data.channel;
+    // console.log(this.$route.params)
+    console.log(this.songs);
   },
   computed: {
   },
@@ -50,6 +69,6 @@ export default {
 <style scoped>
   #play-view{
     /* transform: translateX(100px); */
-    transition: all .2s ;
+    transition: all .7s cubic-bezier(.001,.001,.001,1);
   }
 </style>

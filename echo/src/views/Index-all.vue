@@ -1,4 +1,3 @@
-
 <template>
   <div class="index">
     <mescroll-vue @init="mescrollInit" :down="mescrollDown">
@@ -12,24 +11,23 @@
       <!-- today -->
       <index-today></index-today>
       <!-- 为你推荐 -->
-      <index-for-you></index-for-you>
+      <index-for-you :songs="list.dataSong"></index-for-you>
       <!-- 特色频道 -->
-      <index-channel></index-channel>
+      <index-channel :songs="list.dataChannel"></index-channel>
       <!-- 测试人格 -->
       <index-test></index-test>
       <!-- 好歌推荐1 -->
-      <good-songs1></good-songs1>
+      <good-songs1 :songs="list.dataSong"></good-songs1>
       <!-- 好歌推荐2 -->
-      <good-songs2></good-songs2>
+      <good-songs2 :songs="list.dataSong"></good-songs2>
       <!-- 好歌推荐3 -->
-      <good-songs3></good-songs3>
+      <good-songs3 :songs="list.dataSong"></good-songs3>
       <!-- 新歌发布 -->
-      <new-songs></new-songs>
+      <new-songs :songs="list.dataSong"></new-songs>
       <!-- 瞩目艺人 -->
-      <index-head-linear></index-head-linear>
+      <index-head-linear :stars="list.dataFamous"></index-head-linear>
       <!-- 音乐杂志 -->
       <index-magazine></index-magazine>
-    
   </div>
 </template>
 <script>
@@ -70,7 +68,7 @@ export default {
       autoShowLoading:false,
      },
      dataList: [],
-     
+     list:0
    }
   },
 methods: {
@@ -82,6 +80,22 @@ methods: {
       setTimeout(()=>{
         mescroll.endSuccess();
       },800)
+    },
+     getData(){
+      // 发送ajax请求
+      var url = 'getindex'
+      this.axios.get(url,{}).then(res=>{
+        // console.log(res);
+        // console.log(res.data.datasong);
+        // 将请求回来数据放到data中
+        this.list = res.data;
+        var data = res.data;
+        // console.log(data.dataChannel.splice(Math.random()*8,4));
+        // 如果请求成功
+        if(data.code>0){
+
+        }
+      })
     }
   },
 watch: {
@@ -106,16 +120,15 @@ components:{
   "mescroll-vue": Mescroll
 },
 created() {
-  
+     
   },
 mounted() {
   this.mescroll.triggerDownScroll();
+  // 加载页面数据
+  this.getData();
   },
 updated(){
-  // 更新之后
-  console.log(1)
-  
-}
+  }
 }
 </script>
 <style scoped>

@@ -13,6 +13,9 @@
     // 下的span 标题
     span{
       font: "12px 微软雅黑";
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
     // 下的subtitle
     small{

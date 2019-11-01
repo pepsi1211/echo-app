@@ -28,16 +28,16 @@
          </ul>
     </mt-swipe> -->
     <index-songs>
-     
       <span slot="title">为你推荐</span>
-      <li slot="li" v-for="(item,i) of songs" :key="i">
-        <div class="songs">
+      <li slot="li" v-for="(item,i) of getData" :key="i">
+        
+        <div class="songs" @click="playSongs($event)" :data-sid="item.sid">
           <div class="songs-img">
-             <img :src="item.img" alt="" slot="img">
+             <img :src="item.song_pic" alt="" slot="img">
           </div>
           <div class="songs-right">
-            <span slot="songs-title">{{item.title}}</span>
-            <small slot="songs-subtitle">{{item.subtitle}}</small>
+            <span slot="songs-title">{{item.sname}}</span>
+            <small slot="songs-subtitle">{{item.author}}</small>
           </div>
         </div>
       </li>
@@ -52,28 +52,65 @@ export default {
   
   data() {
    return{
-     songs:[
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
-       {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"}
-     ]
+    //  songs:[
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"},
+    //    {img:require("../../../public/img/index/song1.png"),title:"[浪费]深情女声翻唱",subtitle:"毓毓毓然呀"}
+    //  ]
    }
-  },
+  },  
   
 methods: {
-   
+    playSongs(e){
+      console.log(e.currentTarget.dataset.sid);
+      var sid = e.currentTarget.dataset.sid;
+      console.log(sid);
+      // 发送ajax请求
+      var url = 'song';
+      var obj = {sid};
+      this.axios.get(url,{params:{sid}}).then(res=>{
+        console.log(res);
+        this.$router.push({
+        name:'PlayView',
+        params: {songs:res.data.dataSong,channel:res.data.dataChannel}
+        })
+      })
+    }
   },
 watch: {
   
   },
+props:{
+  songs:{
+    type:Array,
+    default:()=>{
+      return [];
+    }
+  }
+},
 computed: {
-  
+    getData(){
+      
+      // 随机拿到三首歌
+      var arr = [];
+      for(var i=0;i<11;i++){
+        // 随机选取
+        var num = parseInt(Math.random()*10);
+        console.log(num);
+        if(arr.indexOf(this.songs[num])==-1){
+          arr.push(this.songs[num]);
+          if(arr.length==3){
+            return arr;
+          }
+        }
+      }
+    }
   },
 components:{
     "index-songs":Index_songs,

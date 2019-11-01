@@ -126,7 +126,7 @@ app.get("/sendSms",(req,res)=>{
 // 3.主页接口
 app.get("/getindex",(req,res)=>{
   // 主页每日推荐歌曲接口
-  pool.query("select sname,song_pic,author from echo_song",[],(err,result1)=>{
+  pool.query("select sid,sname,song_pic,author from echo_song",[],(err,result1)=>{
     if(err) throw err;
     if(result1.length>0){
       console.log("code:1");
@@ -302,6 +302,10 @@ app.get("/changesign",(req,res)=>{
 // 13.播放器请求
 app.get("/song",(req,res)=>{
   var  sid = req.query.sid;
+<<<<<<< HEAD
+=======
+  console.log(req.query.sid);
+>>>>>>> lwj
   pool.query("select sname,author,song,lyrics,song_pic,love,share,author_pic,cid from echo_song where sid = ?",[sid],(err,result1)=>{
     console.log(1);
     if(err) throw err;
@@ -314,7 +318,11 @@ app.get("/song",(req,res)=>{
         }
       });
     }else{
+<<<<<<< HEAD
       res.send({code:-1,msg:"查询失败,没有接收到sid"})
+=======
+      res.send({code:-1,msg:"查询失败,没有接收到uid"})
+>>>>>>> lwj
     }
   })
 });
