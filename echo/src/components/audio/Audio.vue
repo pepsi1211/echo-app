@@ -1,18 +1,18 @@
 <template>
+ 
   <main class="audio">
-    
     <!-- <img src="../../../public/img/audio/『3D环绕』房东的猫 「云烟成雨」.jpg" class="audio-pic" /> -->
     <!-- 大背景 -->
     <div class="banner">
-      <i></i>
+      <i :style="`background-image: url('${songs.song_pic}')`"></i>
     </div>
     <!-- 歌曲标题 -->
     <div class="song-name">
-      <h3>超屌改编版杰伦《晴天》</h3>
+      <h3>{{songs.sname}}</h3>
       <div class="song-about">
         <span>
           <i></i>
-          <small>喜欢1.3万</small>
+          <small>喜欢{{songs.love| transform}}</small>
         </span>
         <span>
           <i></i>
@@ -20,7 +20,7 @@
         </span>
         <span>
           <i></i>
-          <small>分享1.3万</small>
+          <small>分享{{songs.share | transform}}</small>
         </span>
         <span>
           <i></i>
@@ -37,16 +37,16 @@
         <span class="green">+订阅</span>
       </div>
       <div class="channer-detail">
-        <i></i>
+        <i :style="`background-image: url('${channel.pic}')`"></i>
         <div>
-          <h4>做一名优秀的DJ</h4>
+          <h4>{{channel.cname}}</h4>
           <div class="state">
             <small>回声</small>
             <small>订阅</small>
             <small>分享</small>
-            <h6>5.6万</h6>
-            <h6>5.6万</h6>
-             <h6>5.6万</h6>
+            <h6>{{channel.song_count | transform}}</h6>
+            <h6>{{channel.followed | transform}}</h6>
+             <h6>{{channel.share | transform}}</h6>
           </div>
         </div>
       </div>
@@ -55,8 +55,8 @@
     <!-- 作者 -->
     <div class="author">
       <div class="left">
-        <i></i>
-        <span>上传者:王子云Valerie</span>
+        <i :style="`background-image: url('${songs.author_pic}');`"></i>
+        <span>上传者:{{songs.author}}</span>
       </div>
       <span class="green">关注</span>
     </div>
@@ -75,7 +75,7 @@
       
     </div>
     <audio ref="player">
-      <source src="../../../public/img/audio/『3D环绕』房东的猫 「云烟成雨」.mp3" type="audio/mpeg" />
+      <source :src="songs.song" type="audio/mpeg" />
     </audio>
     <div class="sound">
       <div class="progress">
@@ -106,6 +106,15 @@ export default {
       now: false
     }
   },
+  filters:{
+    transform(value){
+      if(value<10000) return value;
+      else{
+        return value/10000 + '万';
+      }
+    }
+  },
+  props:['channel','songs'],
   mounted()   {
     let music = this.$refs.player; // 音频所在的对象
     // console.log(music);
@@ -258,7 +267,7 @@ export default {
   width: 100%;
   height: 5.75rem;
   position: fixed;
-  bottom: 0;
+  bottom: --5rem;
  
   background: #f4f4f4;
   // box-shadow: 0 0 5px rgba(0,0,0,.5);
@@ -360,8 +369,9 @@ export default {
     display: inline-block;
     width: 100%;
     height: 23.4375rem;
-    background: url('../../../public/img/audio/『3D环绕』房东的猫 「云烟成雨」.jpg') no-repeat;
-    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 // 歌名
@@ -445,7 +455,7 @@ export default {
       display: inline-block;
       width: 96px;
       height: 55px;
-      background: url(../../../public/img/index/the.png) no-repeat;
+      background: no-repeat;
       background-size: contain;
       padding-right: .5rem;
     }
@@ -489,8 +499,8 @@ export default {
       display: inline-block;
       width: 1.625rem;
       height: 1.625rem;
-      background: url(../../../public/img/index/tva.png)    no-repeat;
-      background-size: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
       vertical-align: middle;
     }
     span{

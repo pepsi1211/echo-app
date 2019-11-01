@@ -12,19 +12,19 @@
       <!-- today -->
       <index-today></index-today>
       <!-- 为你推荐 -->
-      <index-for-you :songs="list.dataSong"></index-for-you>
+      <index-for-you :songs="list.dataSong" @jump="playSongs"></index-for-you>
       <!-- 特色频道 -->
       <index-channel :songs="list.dataChannel"></index-channel>
       <!-- 测试人格 -->
       <index-test></index-test>
       <!-- 好歌推荐1 -->
-      <good-songs1 :songs="list.dataSong"></good-songs1>
+      <good-songs1 :songs="list.dataSong" @jump="playSongs"></good-songs1>
       <!-- 好歌推荐2 -->
-      <good-songs2 :songs="list.dataSong"></good-songs2>
+      <good-songs2 :songs="list.dataSong" @jump="playSongs"></good-songs2>
       <!-- 好歌推荐3 -->
-      <good-songs3 :songs="list.dataSong"></good-songs3>
+      <good-songs3 :songs="list.dataSong" @jump="playSongs"></good-songs3>
       <!-- 新歌发布 -->
-      <new-songs :songs="list.dataSong"></new-songs>
+      <new-songs :songs="list.dataSong" @jump="playSongs"></new-songs>
       <!-- 瞩目艺人 -->
       <index-head-linear :stars="list.dataFamous"></index-head-linear>
       <!-- 音乐杂志 -->
@@ -73,6 +73,30 @@ export default {
    }
   },
 methods: {
+   playSongs(sid){
+      // console.log(e.currentTarget.dataset.sid);
+      // var sid = e.currentTarget.dataset.sid;
+      // console.log(data);
+      // 发送ajax请求
+      var url = 'song';
+      var obj = {sid};
+      this.axios.get(url,{params:{sid}}).then(res=>{
+        console.log(res);
+        var params={data:[{songs:res.data.dataSong},{channel:res.data.dataChannel}]};
+        // console.log(params);
+        // console.log(sessionStorage.params.length);
+        if(sessionStorage.getItem('params').length>0){
+          sessionStorage.clear();
+        }
+        if(sessionStorage.params==undefined){
+        sessionStorage.setItem("params",JSON.stringify(params))
+        }
+        this.$router.push({
+        name:'PlayView',
+        // params: {data:[{songs:res.data.dataSong},{channel:res.data.dataChannel}]}
+        })
+      })
+    },
     // mescroll组件初始化的回调，
     mescrollInit(mescroll){
       this.mescroll = mescroll;

@@ -6,7 +6,7 @@
     <div class="new-songs-list">
       <ul>
         <li v-for="(song,i) of getData" :key="i">
-          <div class="new-songs-item">
+          <div class="new-songs-item" @click="jump($event)" :data-sid="song.sid">
             <a href="javascript:void(0);">
               <img :src="song.song_pic" alt="" style="width:100px;height:100px;">
               <span>{{song.sname}}</span>
@@ -35,7 +35,11 @@ export default {
    }
   },
   methods: {
-  
+    jump(e){
+      var sid = e.currentTarget.dataset.sid;
+      console.log(sid);
+      this.$emit("jump",sid);
+    } 
   },
   watch: {
   

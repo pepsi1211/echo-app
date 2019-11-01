@@ -5,7 +5,7 @@
     <index-songs>
       <span slot="title">跟着节奏晃动身体</span>
       <li slot="li" v-for="(item,i) of getData" :key="i">
-        <div class="songs">
+        <div class="songs" @click="jump($event)" :data-sid="item.sid">
           <div class="songs-img">
              <img :src="item.song_pic" alt="" slot="img">
           </div>
@@ -40,7 +40,11 @@ export default {
    }
   },
   methods: {
-  
+    jump(e){
+      var sid = e.currentTarget.dataset.sid;
+      console.log(sid);
+      this.$emit("jump",sid);
+    } 
   },
   watch: {
   
