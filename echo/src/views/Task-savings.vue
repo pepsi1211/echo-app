@@ -1,33 +1,8 @@
 <template>
   <div id="savings">
     <div class="header">
-<<<<<<< HEAD
-      <div class="head">
-        <!-- <<<<<<< HEAD -->
-        <!-- <<<<<<< HEAD -->
-        <p @click="histiry"></p>
-        <!-- ======= -->
-        <p></p>
-        <!-- >>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca -->
-        <!-- ======= -->
-        <p></p>
-        <!-- >>>>>>> 4ff05887966fe27e7c7576fc7b374b5133a285ca -->
-        <p>音乐勋章储蓄罐</p>
-        <p>兑换记录</p>
-    <div class="head">
-
-          <p></p>
-
-          <p></p>
-
-            <p></p>
-
-            <p></p>
-
-=======
     <div class="head">
             <p @click="histiry"></p>
->>>>>>> pjq
             <p>音乐勋章储蓄罐</p>
             <p>兑换记录</p>
       </div>
@@ -75,15 +50,12 @@
     </div>
 
     </div>
-<<<<<<< HEAD
-=======
     <div class="foot">
       MITC为新加坡非盈利机构MusicLife Fondation发行的数字货币，由日本音乐生活株式会社进行商业运营。
       音乐勋章可免费兑换为MITC，这是echo回声与MusicLife Fondation的非赢利合作，无任何金融交易与兑换手续费。
       了解更多MITC信息请访问官网http://www.musiclife.io
     </div>
     
->>>>>>> pjq
   </div>
 </template>
 <script>
@@ -92,21 +64,6 @@ export default {
     return{
         arr:[1,2,3]
     }
-<<<<<<< HEAD
-
-  },
-  methods: {
-    histiry() {
-      window.history.go(-1);
-    }
-  },
-
-  }
-
-
-
-
-=======
   },
   methods: {
     histiry(){
@@ -114,7 +71,6 @@ export default {
       }
   },
 }
->>>>>>> pjq
 </script>
 <style scoped>
 .header{background: royalblue;color: #fff;margin-top:1rem}

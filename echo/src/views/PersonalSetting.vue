@@ -30,7 +30,7 @@
             <li>
                 <div class="item">
                     <span>性别</span>
-                    <input type="text" v-model="sex">
+                    <input type="text" v-model="gender">
                 </div>
             </li>
             <li>
@@ -42,7 +42,7 @@
             <li>
                 <div class="item">
                     <span>星座</span>
-                    <input type="text" v-model="constellation">
+                    <input type="text" v-model="xz">
                 </div>
             </li>
             <li @click="setIntroduce">
@@ -53,18 +53,22 @@
                     </p>
                 </div>
             </li>
-        </ul>
-        
+        </ul>  
     </div>
 </template>
 <script>
+import Axios from "axios"
+import qs from "qs"
 export default {
     data(){
         return {
-            uname:"16620654352",
-            sex:"未知",
-            city:"",
-            constellation:"",
+            gender:"",
+            message:"",
+            uname:"",
+            sex:"",
+            city:'',
+            xz:"",
+            avatar:"",
             sheetVisible3:false,
             data:[
                 {name:"拍照",method:this.getPic},
@@ -77,11 +81,27 @@ export default {
         getPic(){
             this.sheetVisible3=true;
         },
-        handleFinish(){ 
+        handleFinish(){
+            // this.commit();
             this.$router.push("/PersonalHomePage")
         },
         setIntroduce(){
             this.$router.push("/PersonalIntroduce")
+        },
+        commit:function(){
+            var url="update";
+                    var obj={
+                        uname:this.uname,
+                        gender:this.sex=="男"?1:0,
+                        city:this.city,
+                        xz:this.xz,
+                        introduction:this.message
+                    }
+                    console.log(qs.stringify(obj))
+                    Axios.post(url,qs.stringify(obj)).then(res=>{
+                        console.log(res)
+                    })
+                    this.$router.push("/PersonalHomePage")
         },
         settingConfirm(){
             this.$messagebox.confirm("",{
@@ -92,7 +112,7 @@ export default {
                 cancelButtonText:"取消",
             }).then(action=>{
                 if(action=="confirm"){
-                    this.$router.push("/PersonalHomePage")
+                    this.commit()
                 }
             }).catch(err=>{
                 if(err=="cancel"){
@@ -101,10 +121,16 @@ export default {
             })
         }
     },
-    computed: {
-        message(){
-            return this.$store.state.message
-        }
+    created() {
+        var url="getPersonPage"
+        Axios.get(url).then(res=>{
+            var {uname,avatar,xz,gender,city,friend,followed,following,introduction}=res.data.dataUser[0]
+            this.uname=uname
+            this.xz=xz
+            this.gender=gender==1?"男":"女"
+            this.city=city
+            this.message=introduction
+        })
     },
 }
 </script>

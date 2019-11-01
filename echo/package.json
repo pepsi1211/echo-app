@@ -7,12 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "alipay-sdk": "^3.0.8",
->>>>>>> pjq
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "mescroll": "0.0.3",
+    "mescroll.js": "^1.4.1",
     "mint-ui": "^2.2.13",
     "sass": "^1.23.0",
     "vant": "^2.2.9",
