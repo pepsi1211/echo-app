@@ -23,7 +23,7 @@ var pool = mysql.createPool({
 var app = express();
 
 app.use(cors({
-  origin:["http://127.0.0.1:8080","http://localhost:8080"],
+  origin:["http://127.0.0.1:8080","http://localhost:8080","http://176.140.12.94:8080","http://176.140.12.126:8080","http://176.140.12.208:8080","http://176.140.12.133:8080"],
   credentials:true //每次发出的请求需要验证
 }))
 
@@ -113,10 +113,7 @@ app.get("/sendSms",(req,res)=>{
   * @param {function} cb 异步结果回调函数
   */
   var rand = (Math.random()*99999999999999999+"").substring(0,4);
-<<<<<<< HEAD
-=======
   console.log(rand);
->>>>>>> lrl
    // 调用发送的函数
   sender.singleSmsSendWithParam('86', phoneNumbers[0], 454808, [`${rand}`,'2'], '深圳民治龙舟队', '', '', function (data) {
     var ret = JSON.parse(data);
@@ -214,11 +211,7 @@ app.get("/getMe",(req,res)=>{
 app.get("/getPersonPage",(req,res)=>{
   var uid = req.session.uid;
   var selectSongSql = "select song_pic,sname,love from echo_song where sid in("
-<<<<<<< HEAD
-  pool.query("select uname,avatar,xz,gender,city,following,followed,friend from echo_user where uid = ?",[uid],(err,result1)=>{
-=======
   pool.query("select uname,avatar,xz,gender,city,following,followed,friend,introduction from echo_user where uid = ?",[uid],(err,result1)=>{
->>>>>>> lrl
     if(err) throw err;
     if(result1.length>0){
       console.log("这步已经查询到了用户名,头像等等...");
@@ -306,16 +299,12 @@ app.get("/changesign",(req,res)=>{
     if(result.affectedRows>0){res.send(result)}
     else{res.send({code:-1,msg:"修改失败"})}
   })
-<<<<<<< HEAD
 });
 
 // 13.播放器请求
 app.get("/song",(req,res)=>{
   var  sid = req.query.sid;
-<<<<<<< HEAD
-=======
   console.log(req.query.sid);
->>>>>>> lwj
   pool.query("select sname,author,song,lyrics,song_pic,love,share,author_pic,cid from echo_song where sid = ?",[sid],(err,result1)=>{
     console.log(1);
     if(err) throw err;
@@ -328,14 +317,8 @@ app.get("/song",(req,res)=>{
         }
       });
     }else{
-<<<<<<< HEAD
-      res.send({code:-1,msg:"查询失败,没有接收到sid"})
-=======
       res.send({code:-1,msg:"查询失败,没有接收到uid"})
->>>>>>> lwj
     }
   })
-=======
->>>>>>> lrl
 });
 

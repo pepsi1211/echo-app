@@ -95,11 +95,12 @@ export default {
                 this.pnum=this.iptphone;
                 var preg=/^1[3-8][0-9]{9}$/; 
                 if(!this.pnum){//如果为空
-                    this.$messagebox("提示","手机不能为空");
+                    this.$toast({message:"手机号不能为空"});
+                    this.canclick=true;
                     return;
                 }else if(!preg.test(this.pnum)){
                     //如果手机格式不正确
-                    this.$messagebox("提示","请输入正确的手机号");
+                    this.$toast({message:"请输入正确的手机号"});
                     return;
                 }else{
                     // 调用定时器
@@ -183,7 +184,7 @@ export default {
                     })
                     // console.log("登录成功")
                 }else{
-                    this.$messagebox("提示","验证码不正确")
+                    this.$toast({message:"请输入正确验证码"})
                     return;    
                 }
             }

@@ -17,6 +17,8 @@ import "mint-ui/lib/style.css"
 import VueTouch from 'vue-touch'
 // 使用mint-ui
 Vue.use(Mint);
+// 自定义引用样式
+import "./icon/iconfont.css"
 
 // 使用vue-touch插件
 Vue.use(VueTouch,{name:'v-touch'});
@@ -34,25 +36,14 @@ VueTouch.config.swipe = {
 // Vue.use(NavBar);
 // Vue.use(Icon);
 
-<<<<<<< HEAD
- //引入axios模块
- import axios from "axios"
- //设置服务器基础路径
- axios.defaults.baseURL="http://127.0.0.1:5050/"
- //设置保存session信息
- axios.defaults.withCredentials=true;
- //注册axios
- Vue.prototype.axios=axios;
-=======
 //引入axios模块
 import axios from "axios"
 //设置服务器基础路径
-axios.defaults.baseURL="http://127.0.0.1:5050/"
+axios.defaults.baseURL="http://176.140.12.126:5050/"
 //设置保存session信息
 axios.defaults.withCredentials=true;
 //注册axios
 Vue.prototype.axios=axios;
->>>>>>> lrl
 
 Vue.config.productionTip = false
 new Vue({

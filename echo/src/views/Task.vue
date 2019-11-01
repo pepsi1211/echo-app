@@ -132,8 +132,10 @@ export default {
          task(){
              this.axios.get("/task").then(res=>{
                 if(res.data.code==1){}else if(res.data.code==-1){
-                    alert("请登陆");
-                    this.$router.push("/login")
+                    this.$toast({message:"您未登录"});
+                    setTimeout( () => {
+                        this.$router.push("/login")
+                    },3000)
                 }
              })
          }
