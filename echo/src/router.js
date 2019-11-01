@@ -3,6 +3,8 @@ import Router from 'vue-router'
 //个人
 import Login from './views/Login.vue'
 import PersonalPage from './views/PersonalPage'
+import LoadingPage from './views/LoadingPage'
+import Loading from './views/Loading'
 import PersonalTb from './views/PersonalTb'
 import Myfavorite from './views/Myfavorite'
 import PersonalHomePage from './views/PersonalHomePage'
@@ -39,6 +41,8 @@ export default new Router({
     {path:"/Taskranking",component:TaskRanking},
     {path:'/login',component:Login},
     {path:'/PersonalPage',component:PersonalPage},
+    {path:'/LoadingPage',component:LoadingPage},
+    {path:'/Loading',component:Loading},
     {path:'/PersonalTb',component:PersonalTb},
     {path:'/Myfavorite',component:Myfavorite},
     {path:'/PersonalHomePage',component:PersonalHomePage},

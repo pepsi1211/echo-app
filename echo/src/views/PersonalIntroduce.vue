@@ -11,25 +11,53 @@
     </div>
 </template>
 <script>
+import Axios from "axios"
+import qs from "qs"
 export default {
     data(){
         return {
+            message:"",
+            city:"",
+            followed:"",
+            friend:"",
+            following:"",
+            gender:"",
+            uname:"",
+            xz:"",
         }
     },
     methods: {
         handleFinish(){
+            var url="update"
+            var obj={
+                introduction:this.message,
+                city:this.city,
+                followed:this.followed,
+                friend:this.friend,
+                following:this.following,
+                gender:this.gender,
+                uname:this.uname,
+                xz:this.xz,
+                }
+                console.log(obj)
+            Axios.post(url,qs.stringify(obj)).then(res=>{
+                console.log(res)
+            })
             this.$router.push("/PersonalHomePage")
         }
     },
-    computed: {
-        message:{
-            get(){
-                return this.$store.state.message
-            },
-            set(){
-                this.$store.state.message=this.message
-            }
-        }
+    created() {
+        Axios.get("getPersonPage").then(res=>{
+            this.message=res.data.dataUser[0].introduction
+            this.city=res.data.dataUser[0].city,
+            this.friend=res.data.dataUser[0].friend,
+            this.followed=res.data.dataUser[0].followed,
+            this.following=res.data.dataUser[0].following,
+            this.gender=res.data.dataUser[0].gender,
+            this.uname=res.data.dataUser[0].uname,
+            this.xz=res.data.dataUser[0].xz,
+            console.log(res.data.dataUser[0])
+        })
     },
 }
 </script>

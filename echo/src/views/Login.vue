@@ -1,6 +1,7 @@
 
 <template>
-    <main>        
+    <transition  mode="out-in" name="fade">
+        <main v-if="show">        
         <div class="login-bg">
             <!-- 页面顶部 -->
             <div class="login-top">
@@ -65,6 +66,7 @@
             </div>
         </div>
     </main>
+    </transition>
 </template>
 
 <script>
@@ -73,6 +75,7 @@ import axios from "axios"
 export default {
     data(){
         return {
+            show:false,
             //用户输入手机号
             iptphone:"",
             //按钮禁用
@@ -87,6 +90,11 @@ export default {
         }
     },
     methods:{
+        loading(){
+            setTimeout(() => {
+            this.show=true
+            }, 2150);
+        },
         //判断手机号
         send(){
             if(this.canclick){
@@ -96,10 +104,12 @@ export default {
                 var preg=/^1[3-8][0-9]{9}$/; 
                 if(!this.pnum){//如果为空
                     this.$messagebox("提示","手机不能为空");
+                    this.canclick=true;
                     return;
                 }else if(!preg.test(this.pnum)){
                     //如果手机格式不正确
                     this.$messagebox("提示","请输入正确的手机号");
+                    this.canclick=true;
                     return;
                 }else{
                     // 调用定时器
@@ -154,6 +164,9 @@ export default {
         },
     
     },
+    created() {
+        this.loading();
+    },
     watch:{
         varifycode(){//输入框
             //收集用户输入的数字
@@ -192,6 +205,12 @@ export default {
 }
 </script>
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .main{
     width:375px;
 }
