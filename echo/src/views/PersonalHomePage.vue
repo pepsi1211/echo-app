@@ -39,7 +39,8 @@
                 <span>{{userList.xz}}</span>
             </div>
             <div>
-                <img class="pdatap1" src="../../public/img/PersonalPage/ic_location_male.png">
+                <img class="pdatap1" src="../../public/img/PersonalPage/ic_location_female.png" v-if="sex1">
+                <img class="pdatap1" src="../../public/img/PersonalPage/ic_location_male.png" v-else>
                 <span v-if="sex">未知</span>
                 <span v-else>{{this.gender}}</span>
             </div>
@@ -121,7 +122,7 @@ import Axios from 'axios'
 export default {
     data(){
         return {
-            xzPic:"",
+            sex1:false,
             xzList:{
                 xz0:require('../../public/img/PersonalPage/xz_0.png'),
                 xz1:require('../../public/img/PersonalPage/xz_1.png'),
@@ -138,7 +139,7 @@ export default {
             },
             city:"",
             XZ:false,
-            gender:"",
+            gender:"未知",
             sex:false,
             unknow:false,
             dataLove:"",
@@ -194,11 +195,11 @@ export default {
         },
         addPic(){
             this.sheetVisiblepic1=true
-        }
-    },
-    created() {
-        var url="getPersonPage"
-        Axios.get(url).then(res=>{
+        },
+        //获取数据
+        reqMsg(){
+            var url="getPersonPage"
+            Axios.get(url).then(res=>{
             this.userList=res.data.dataUser[0];
             if(this.userList.city){
                 this.unknow=false;
@@ -211,6 +212,11 @@ export default {
             }else{
                 this.sex=false;
                 this.gender=this.userList.gender==0?"女":"男"
+                if(this.userList.gender==0){
+                    this.sex1=true;
+                }else{
+                    this.sex1=false;
+                }
             }
             if(this.userList.xz==undefined){
                 this.XZ=false
@@ -219,50 +225,54 @@ export default {
                 var xz=this.userList.xz
                 if(xz=="白羊座"){
                     this.XZ=this.userList.xz
-                   this.XZ=this.xzList.xz0
+                   this.xzPic=this.xzList.xz0
                 }else if(xz=="天秤座"){
                     this.XZ=this.userList.xz
                     this.xzPic=this.xzList.xz1
-                console.log(this.xzPic)
                 }else if(xz=="天蝎座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz2
+                    this.xzPic=this.xzList.xz2
                 }else if(xz=="双子座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz3
+                    this.xzPic=this.xzList.xz3
                 }else if(xz=="天狼座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz4
+                    this.xzPic=this.xzList.xz4
                 }else if(xz=="处女座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz5
+                    this.xzPic=this.xzList.xz5
                 }else if(xz=="射手座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz6
+                    this.xzPic=this.xzList.xz6
                 }else if(xz=="水瓶座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz7
+                    this.xzPic=this.xzList.xz7
                 }else if(xz=="狮子座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz8
+                    this.xzPic=this.xzList.xz8
                 }else if(xz=="摩羯座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz9
+                    this.xzPic=this.xzList.xz9
                 }else if(xz=="金牛座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz10
+                    this.xzPic=this.xzList.xz10
                 }else if(xz=="双鱼座"){
                     this.XZ=this.userList.xz
-                    this.XZ=this.xzList.xz11
+                    this.xzPic=this.xzList.xz11
                 }
                 
             }
             this.dataLove=res.data.dataLove
             console.log(this.userList)
         })
+        }
+    },
+    created() {
+        this.reqMsg();
     },
     mounted() {
-        
+        //解决修改数据后跳转到页面数据不更新
+        this.reqMsg();
     },
 }
 </script>

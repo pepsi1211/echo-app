@@ -11,27 +11,35 @@
                 <div class="item">
                     <img src="../../public/img/PersonalPage/img_loading_placeholder_round.png">
                     <p class="avatar-text">编辑头像</p>
-                    <mt-actionsheet
-                    :actions="data"
-                    v-model="sheetVisible3">
-                    </mt-actionsheet>
                 </div>
                 <div class="chose">   
                     <!-- <img src="../../public/img/PersonalPage/gray_left_arrow.png"> -->
                     <em></em>
-                </div>
+                </div>                    
             </li>
+            <mt-actionsheet
+            :actions="data"
+            v-model="sheetVisible3">
+            </mt-actionsheet>
             <li>
                 <div class="item">
                     <span>昵称</span>
                     <input type="text" v-model="uname">
                 </div>
             </li>
-            <li>
+            <li @click="setSex">
                 <div class="item">
-                    <span>性别</span>
-                    <input type="text" v-model="gender">
+                    <p>
+                        <span>性别</span><span class="msgColor">{{sex}}</span>
+                    </p>
                 </div>
+                 <vuePickers :data="pickData1"
+                @cancel="cancel1"
+                @confirm="confirm1"
+                :showToolbar="true"
+                :maskClick="true"
+                :visible.sync="pickerVisible1"
+                />
             </li>
             <li>
                 <div class="item">
@@ -39,17 +47,25 @@
                     <input type="text" v-model="city">
                 </div>
             </li>
-            <li>
+            <li @click="setXz">
                 <div class="item">
-                    <span>星座</span>
-                    <input type="text" v-model="xz">
+                    <p>
+                        <span>星座</span><span class="msgColor">{{xz}}</span>
+                    </p>
                 </div>
+                <!-- 3.调用 -->
+                <vuePickers :data="pickData"
+                @cancel="cancel"
+                @confirm="confirm"
+                :showToolbar="true"
+                :maskClick="true"
+                :visible.sync="pickerVisible"
+                />
             </li>
             <li @click="setIntroduce">
                 <div class="item">
                     <p>
-                        <span>简介</span>
-                    {{message}}
+                        <span>简介</span>{{message}}
                     </p>
                 </div>
             </li>
@@ -57,11 +73,36 @@
     </div>
 </template>
 <script>
+//1.引入
 import Axios from "axios"
+import vuePickers from "vue-pickers"
 import qs from "qs"
 export default {
+    //2.注册
+    components: { vuePickers },
     data(){
+        let tdata = []
+        let list =["天蝎座","天秤座","水瓶座","双子座","天蝎座","摩羯座","处女座","白羊座","金牛座","射手座","双鱼座","狮子座"]
+        for (let i = 0; i < list.length; i++) {
+            tdata.push({
+            label: `${list[i]}`,
+            value: list[i]
+            })
+        }
+        let tdata1 = []
+        let list1 =["男","女"]
+        for (let i = 0; i < list1.length; i++) {
+            tdata1.push({
+            label: `${list1[i]}`,
+            value: list1[i]
+            })
+        }
         return {
+            pickerVisible: false,
+            pickData: [ tdata ],
+            pickerVisible1: false,
+            pickData1: [ tdata1 ],
+            result: '',
             gender:"",
             message:"",
             uname:"",
@@ -69,15 +110,39 @@ export default {
             city:'',
             xz:"",
             avatar:"",
-            sheetVisible3:false,
             data:[
                 {name:"拍照",method:this.getPic},
                 {name:"从相册中选择",method:this.getAlbum},
                 ],
+            sheetVisible3:false,
             files:""
         }
     },
     methods:{
+        setXz(){
+            this.pickerVisible=true;
+        },
+        setSex(){
+            this.pickerVisible1=true;
+        },
+        //性别
+        cancel1 () {
+            console.log('cancel')
+            this.result = 'click cancel result: null'
+        },
+        confirm1 (res1) {  
+            this.sex=res1[0].label
+            console.log(res1[0].label)
+        },
+        //星座
+        cancel () {
+            console.log('cancel')
+            this.result = 'click cancel result: null'
+        },
+        confirm (res) {  
+            this.xz=res[0].label
+            console.log(res[0].label)
+        },
         getPic(){
             this.sheetVisible3=true;
         },
@@ -88,6 +153,7 @@ export default {
         setIntroduce(){
             this.$router.push("/PersonalIntroduce")
         },
+        //封装的ajax更新请求
         commit:function(){
             var url="update";
                     var obj={
@@ -103,6 +169,7 @@ export default {
                     })
                     this.$router.push("/PersonalHomePage")
         },
+        //返回是否保存数据
         settingConfirm(){
             this.$messagebox.confirm("",{
                 title:"提示",
@@ -122,12 +189,13 @@ export default {
         }
     },
     created() {
+        //获取数据
         var url="getPersonPage"
         Axios.get(url).then(res=>{
             var {uname,avatar,xz,gender,city,friend,followed,following,introduction}=res.data.dataUser[0]
             this.uname=uname
             this.xz=xz
-            this.gender=gender==1?"男":"女"
+            this.sex=gender==1?"男":"女"
             this.city=city
             this.message=introduction
         })
@@ -135,6 +203,9 @@ export default {
 }
 </script>
 <style scoped>
+    .msgColor{
+        color:#585858;
+    }
     .introduce{
         height: 100% !important;
         display: flex;

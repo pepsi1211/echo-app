@@ -244,6 +244,7 @@ app.get("/getPersonPage",(req,res)=>{
 app.post("/update",(req,res)=>{
   var uid = req.session.uid;
   var obj = req.body;
+  console.log(obj)
   pool.query("update echo_user set uname = ?,gender = ?,city = ?,xz = ?,introduction = ? where uid = ?",[obj.uname,obj.gender,obj.city,obj.xz,obj.introduction,uid],(err,result)=>{
     if (err) throw err;
     if(result.affectedRows>0){

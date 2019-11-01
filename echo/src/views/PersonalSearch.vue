@@ -1,8 +1,7 @@
 <template>
     <div>
         <mt-search v-model="value">
-        <mt-cell autofocus=true  :value="value">
-        </mt-cell>
+            <mt-cell autofocus="true" :value="value"></mt-cell>
         </mt-search>
     </div>
 </template>
