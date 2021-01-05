@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "alipay-sdk": "^3.0.8",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "mescroll": "0.0.3",
     "mescroll.js": "^1.4.1",
